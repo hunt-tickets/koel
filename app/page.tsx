@@ -6,23 +6,26 @@ import Image from 'next/image'
 interface HeroSectionProps {
   title: string
   description: string
-  hero1: string
-  hero2: string
+  video?: string
+  hero1?: string
+  hero2?: string
 }
 
-function HeroSection({ title, description, hero1, hero2 }: HeroSectionProps) {
+function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionProps) {
   const [currentImage, setCurrentImage] = useState(1)
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState({ text: '', type: '' })
 
-  // Hero image rotation
+  // Hero image rotation (only for image-based heroes)
   useEffect(() => {
+    if (video) return // Don't rotate if using video
+
     const interval = setInterval(() => {
       setCurrentImage(prev => prev === 1 ? 2 : 1)
     }, 5000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [video])
 
   // Show message with auto-hide
   const showMessage = (text: string, type: 'success' | 'error') => {
@@ -77,22 +80,36 @@ function HeroSection({ title, description, hero1, hero2 }: HeroSectionProps) {
   return (
     <section className="hero-section">
       <div className="hero-container">
-        <Image
-          src={hero1}
-          alt="Hero"
-          className={`hero-image ${currentImage === 1 ? 'active' : ''}`}
-          fill
-          priority
-          style={{ objectFit: 'cover' }}
-        />
-        <Image
-          src={hero2}
-          alt="Hero"
-          className={`hero-image ${currentImage === 2 ? 'active' : ''}`}
-          fill
-          priority
-          style={{ objectFit: 'cover' }}
-        />
+        {video ? (
+          <video
+            className="hero-video"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src={video} type="video/mp4" />
+          </video>
+        ) : (
+          <>
+            <Image
+              src={hero1!}
+              alt="Hero"
+              className={`hero-image ${currentImage === 1 ? 'active' : ''}`}
+              fill
+              priority
+              style={{ objectFit: 'cover' }}
+            />
+            <Image
+              src={hero2!}
+              alt="Hero"
+              className={`hero-image ${currentImage === 2 ? 'active' : ''}`}
+              fill
+              priority
+              style={{ objectFit: 'cover' }}
+            />
+          </>
+        )}
       </div>
 
       <div className="content">
@@ -127,8 +144,7 @@ export default function Home() {
     {
       title: "Próximamente",
       description: "Déjanos tu correo para ser el primero en enterarte",
-      hero1: "/hero1.jpg",
-      hero2: "/hero2.jpg"
+      video: "/hero-video.mp4"
     },
     {
       title: "Próximamente",
@@ -216,6 +232,7 @@ export default function Home() {
             key={index}
             title={section.title}
             description={section.description}
+            video={section.video}
             hero1={section.hero1}
             hero2={section.hero2}
           />
