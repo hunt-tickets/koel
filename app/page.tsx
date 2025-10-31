@@ -3,7 +3,14 @@
 import { useState, useEffect, FormEvent } from 'react'
 import Image from 'next/image'
 
-export default function Home() {
+interface HeroSectionProps {
+  title: string
+  description: string
+  hero1: string
+  hero2: string
+}
+
+function HeroSection({ title, description, hero1, hero2 }: HeroSectionProps) {
   const [currentImage, setCurrentImage] = useState(1)
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState({ text: '', type: '' })
@@ -68,21 +75,10 @@ export default function Home() {
   }
 
   return (
-    <div className="container">
-      <header className="header">
-        <Image
-          src="/logo.png"
-          alt="Logo"
-          className="logo"
-          width={120}
-          height={40}
-          priority
-        />
-      </header>
-
+    <section className="hero-section">
       <div className="hero-container">
         <Image
-          src="/hero1.jpg"
+          src={hero1}
           alt="Hero"
           className={`hero-image ${currentImage === 1 ? 'active' : ''}`}
           fill
@@ -90,7 +86,7 @@ export default function Home() {
           style={{ objectFit: 'cover' }}
         />
         <Image
-          src="/hero2.jpg"
+          src={hero2}
           alt="Hero"
           className={`hero-image ${currentImage === 2 ? 'active' : ''}`}
           fill
@@ -100,8 +96,8 @@ export default function Home() {
       </div>
 
       <div className="content">
-        <h1>Próximamente</h1>
-        <p>Déjanos tu correo para ser el primero en enterarte</p>
+        <h1>{title}</h1>
+        <p>{description}</p>
         <form onSubmit={handleSubmit} className="email-form">
           <input
             type="email"
@@ -117,6 +113,38 @@ export default function Home() {
           {message.text}
         </p>
       </div>
-    </div>
+    </section>
+  )
+}
+
+export default function Home() {
+  return (
+    <>
+      <header className="header">
+        <Image
+          src="/logo.png"
+          alt="Logo"
+          className="logo"
+          width={120}
+          height={40}
+          priority
+        />
+      </header>
+
+      <div className="scroll-container">
+        <HeroSection
+          title="Próximamente"
+          description="Déjanos tu correo para ser el primero en enterarte"
+          hero1="/hero1.jpg"
+          hero2="/hero2.jpg"
+        />
+        <HeroSection
+          title="Próximamente"
+          description="Déjanos tu correo para ser el primero en enterarte"
+          hero1="/hero1.jpg"
+          hero2="/hero2.jpg"
+        />
+      </div>
+    </>
   )
 }
