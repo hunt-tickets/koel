@@ -16,15 +16,17 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
+  overflow: hidden;
 }
 
-.scroll-container {
+.swipe-container {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
-  height: 100vh;
+  height: auto;
+  will-change: transform;
+  touch-action: pan-y;
 }
 
 .hero-section {
@@ -35,8 +37,6 @@ body {
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 3rem;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 .header {

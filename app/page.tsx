@@ -118,6 +118,75 @@ function HeroSection({ title, description, hero1, hero2 }: HeroSectionProps) {
 }
 
 export default function Home() {
+  const [currentSection, setCurrentSection] = useState(0)
+  const [touchStart, setTouchStart] = useState(0)
+  const [touchEnd, setTouchEnd] = useState(0)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+
+  const sections = [
+    {
+      title: "Próximamente",
+      description: "Déjanos tu correo para ser el primero en enterarte",
+      hero1: "/hero1.jpg",
+      hero2: "/hero2.jpg"
+    },
+    {
+      title: "Próximamente",
+      description: "Déjanos tu correo para ser el primero en enterarte",
+      hero1: "/hero1.jpg",
+      hero2: "/hero2.jpg"
+    }
+  ]
+
+  // Minimum swipe distance (in pixels)
+  const minSwipeDistance = 50
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(0)
+    setTouchStart(e.targetTouches[0].clientY)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientY)
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+
+    const distance = touchStart - touchEnd
+    const isUpSwipe = distance > minSwipeDistance
+    const isDownSwipe = distance < -minSwipeDistance
+
+    if (isTransitioning) return
+
+    if (isUpSwipe && currentSection < sections.length - 1) {
+      setIsTransitioning(true)
+      setCurrentSection(prev => prev + 1)
+      setTimeout(() => setIsTransitioning(false), 700)
+    }
+
+    if (isDownSwipe && currentSection > 0) {
+      setIsTransitioning(true)
+      setCurrentSection(prev => prev - 1)
+      setTimeout(() => setIsTransitioning(false), 700)
+    }
+  }
+
+  // Handle wheel events for desktop
+  const onWheel = (e: React.WheelEvent) => {
+    if (isTransitioning) return
+
+    if (e.deltaY > 0 && currentSection < sections.length - 1) {
+      setIsTransitioning(true)
+      setCurrentSection(prev => prev + 1)
+      setTimeout(() => setIsTransitioning(false), 700)
+    } else if (e.deltaY < 0 && currentSection > 0) {
+      setIsTransitioning(true)
+      setCurrentSection(prev => prev - 1)
+      setTimeout(() => setIsTransitioning(false), 700)
+    }
+  }
+
   return (
     <>
       <header className="header">
@@ -131,19 +200,26 @@ export default function Home() {
         />
       </header>
 
-      <div className="scroll-container">
-        <HeroSection
-          title="Próximamente"
-          description="Déjanos tu correo para ser el primero en enterarte"
-          hero1="/hero1.jpg"
-          hero2="/hero2.jpg"
-        />
-        <HeroSection
-          title="Próximamente"
-          description="Déjanos tu correo para ser el primero en enterarte"
-          hero1="/hero1.jpg"
-          hero2="/hero2.jpg"
-        />
+      <div
+        className="swipe-container"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+        onWheel={onWheel}
+        style={{
+          transform: `translateY(-${currentSection * 100}vh)`,
+          transition: 'transform 0.6s cubic-bezier(0.65, 0, 0.35, 1)'
+        }}
+      >
+        {sections.map((section, index) => (
+          <HeroSection
+            key={index}
+            title={section.title}
+            description={section.description}
+            hero1={section.hero1}
+            hero2={section.hero2}
+          />
+        ))}
       </div>
     </>
   )
