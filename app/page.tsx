@@ -322,14 +322,40 @@ function HeroSection({ title, description, video, hero1, hero2, isMuted }: HeroS
 
 export default function Home() {
   const [isMuted, setIsMuted] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState<'home' | 'faqs'>('home')
 
   const toggleMute = () => {
     setIsMuted(!isMuted)
   }
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  const navigateTo = (section: 'home' | 'faqs') => {
+    setActiveSection(section)
+    setIsMenuOpen(false)
+  }
+
   return (
     <>
       <header className="header">
+        <button onClick={toggleMenu} className="menu-button" aria-label="Menu">
+          {isMenuOpen ? (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          ) : (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          )}
+        </button>
+
         <Image
           src="/logo.png"
           alt="Logo"
@@ -338,6 +364,7 @@ export default function Home() {
           height={40}
           priority
         />
+
         <button onClick={toggleMute} className="mute-button" aria-label={isMuted ? 'Unmute' : 'Mute'}>
           {isMuted ? (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -355,12 +382,108 @@ export default function Home() {
         </button>
       </header>
 
-      <HeroSection
-        title="KOEL ZEN"
-        description="Un aroma fresco y natural inspirado en la tranquilidad de un bosque de bambú. Perfecto para quienes buscan una fragancia ligera y revitalizante que te conecte con la naturaleza."
-        video="/hero-video.mp4"
-        isMuted={isMuted}
-      />
+      {isMenuOpen && (
+        <div className="menu-overlay" onClick={toggleMenu}>
+          <div className="menu-content" onClick={(e) => e.stopPropagation()}>
+            <nav className="menu-nav">
+              <button
+                className={`menu-item ${activeSection === 'home' ? 'active' : ''}`}
+                onClick={() => navigateTo('home')}
+              >
+                Home
+              </button>
+              <button
+                className={`menu-item ${activeSection === 'faqs' ? 'active' : ''}`}
+                onClick={() => navigateTo('faqs')}
+              >
+                FAQs
+              </button>
+            </nav>
+          </div>
+        </div>
+      )}
+
+      {activeSection === 'home' ? (
+        <HeroSection
+          title="KOEL ZEN"
+          description="Un aroma fresco y natural inspirado en la tranquilidad de un bosque de bambú. Perfecto para quienes buscan una fragancia ligera y revitalizante que te conecte con la naturaleza."
+          video="/hero-video.mp4"
+          isMuted={isMuted}
+        />
+      ) : (
+        <div className="faqs-section">
+          <div className="faqs-container">
+            <h1 className="faqs-title">Preguntas Frecuentes</h1>
+
+            <div className="faq-item">
+              <h3>¿Qué incluye el kit inicial de preventa de KOEL?</h3>
+              <p>El kit inicial de preventa de KOEL incluye:</p>
+              <ul>
+                <li>1 Deodorant Case en un elegante color azul claro, diseñado para durar y acompañarte en cualquier momento.</li>
+                <li>1 Deodorant Pod biodegradable con tu fragancia favorita.</li>
+                <li>Un empaque exclusivo de preventa hecho de cartón reciclado con un diseño especial.</li>
+              </ul>
+              <p>Además, todos los pedidos de preventa participan en un sorteo para ganar una Golden Box que te otorga un año completo de desodorante KOEL gratis.</p>
+            </div>
+
+            <div className="faq-item">
+              <h3>¿Cómo funciona el desodorante recargable de KOEL?</h3>
+              <p>Es muy fácil y práctico:</p>
+              <ol>
+                <li>Gira la tapa del Deodorant Case para abrirlo.</li>
+                <li>Encaja tu Deodorant Pod biodegradable en el interior.</li>
+                <li>Empuja hasta escuchar un clic. ¡Listo para usar!</li>
+              </ol>
+              <p>El proceso de recarga toma segundos y está diseñado para que cualquier persona pueda hacerlo sin complicaciones. Además, incluiremos un video tutorial en nuestra página web para guiarte paso a paso.</p>
+            </div>
+
+            <div className="faq-item">
+              <h3>¿Las fragancias de KOEL son aptas para piel sensible?</h3>
+              <p>¡Claro que sí! Las fragancias Bamboo Whisper y Unscented Pure están formuladas con ingredientes 100% naturales, libres de aluminio y alcohol, asegurando una experiencia suave y efectiva. Ambas son ideales para todo tipo de piel, incluso las más sensibles, respetando tu piel y manteniéndola fresca todo el día.</p>
+            </div>
+
+            <div className="faq-item">
+              <h3>¿Cuánto tiempo dura la recarga del desodorante?</h3>
+              <p>Cada Deodorant Pod está diseñado para durar entre uno y dos meses, dependiendo del uso diario. Esto asegura frescura y eficacia constante durante todo el mes.</p>
+            </div>
+
+            <div className="faq-item">
+              <h3>¿Qué medidas de sostenibilidad incorpora KOEL en sus productos?</h3>
+              <p>En KOEL, la sostenibilidad es un pilar fundamental:</p>
+              <ul>
+                <li>Usamos materiales biodegradables y reciclables en nuestras recargas y empaques.</li>
+                <li>Promovemos la eliminación de plásticos de un solo uso mediante el diseño de un Deodorant Case duradero y reutilizable.</li>
+                <li>Nuestro compromiso no termina aquí: constantemente buscamos formas innovadoras de reducir nuestro impacto ambiental.</li>
+              </ul>
+            </div>
+
+            <div className="faq-item">
+              <h3>¿KOEL planea lanzar más fragancias en el futuro?</h3>
+              <p>¡Definitivamente! Actualmente ofrecemos dos opciones:</p>
+              <ul>
+                <li><strong>Bamboo Whisper</strong>, una fragancia fresca e inspiradora que conecta con la naturaleza.</li>
+                <li><strong>Unscented Pure</strong>, para quienes prefieren la frescura sin fragancia.</li>
+              </ul>
+              <p>Estamos trabajando en nuevas fragancias para el futuro, diseñadas para complementar diferentes estilos de vida y preferencias.</p>
+            </div>
+
+            <div className="faq-item">
+              <h3>¿Está disponible el desodorante KOEL fuera de Colombia?</h3>
+              <p>Por ahora, KOEL estará disponible únicamente en Colombia. Sin embargo, ya estamos planeando expandirnos a otros países de América Latina y, eventualmente, al mercado global.</p>
+            </div>
+
+            <div className="faq-item">
+              <h3>¿Qué tan rápido recibiré mi KOEL?</h3>
+              <p>Los tiempos de envío serán definidos y comunicados antes de completar tu pedido. Trabajamos para que recibas tu KOEL lo más rápido posible.</p>
+            </div>
+
+            <div className="faq-item">
+              <h3>¿KOEL tendrá más productos en el futuro?</h3>
+              <p>¡Sí! Nuestro objetivo es llevar esta revolución recargable a otras áreas del aseo personal. Queremos ofrecerte más opciones sostenibles y prácticas para transformar tu rutina diaria.</p>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }
