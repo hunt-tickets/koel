@@ -44,6 +44,7 @@ function HeroSection({ title, description, video, hero1, hero2, isMuted }: HeroS
   const [currentImage, setCurrentImage] = useState(1)
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState({ text: '', type: '' })
+  const [isExpanded, setIsExpanded] = useState(false)
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const audioRef = React.useRef<HTMLAudioElement>(null)
 
@@ -274,9 +275,45 @@ function HeroSection({ title, description, video, hero1, hero2, isMuted }: HeroS
         />
       </div>
 
-      <div className="content">
+      <div className={`content ${isExpanded ? 'expanded' : ''}`}>
+        <button
+          className="expand-button"
+          onClick={() => setIsExpanded(!isExpanded)}
+          aria-label={isExpanded ? 'Cerrar información' : 'Ver más información'}
+        >
+          {isExpanded ? (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="7 13 12 18 17 13"></polyline>
+              <polyline points="7 6 12 11 17 6"></polyline>
+            </svg>
+          )}
+        </button>
+
         <h1>{title}</h1>
         {description && <p className="product-description">{description}</p>}
+
+        {isExpanded && (
+          <div className="expanded-info">
+            <div className="info-item">
+              <h3>Cartón biodegradable</h3>
+              <p>Una opción natural y responsable para el cuidado diario.</p>
+            </div>
+            <div className="info-item">
+              <h3>Práctico</h3>
+              <p>Cada recarga dura de 1 a 2 meses, adaptándose a tus necesidades.</p>
+            </div>
+            <div className="info-item">
+              <h3>Fácil de reemplazar</h3>
+              <p>Pensado para que cualquier usuario pueda cambiarlo sin esfuerzo.</p>
+            </div>
+          </div>
+        )}
+
         <button className="buy-button">Comprar</button>
       </div>
     </section>

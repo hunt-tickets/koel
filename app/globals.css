@@ -159,6 +159,44 @@ body {
   width: 90%;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.content.expanded {
+  max-height: 900px;
+}
+
+.expand-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 20;
+}
+
+.expand-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.expand-button:active {
+  transform: scale(0.95);
+}
+
+.expand-button svg {
+  display: block;
 }
 
 h1 {
@@ -175,6 +213,49 @@ h1 {
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.6;
   text-align: center;
+}
+
+.expanded-info {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.info-item {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-item h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+.info-item p {
+  font-size: 0.825rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+  margin: 0;
 }
 
 .content > p {
@@ -328,6 +409,40 @@ button:active {
   .content {
     padding: 1.75rem 1.75rem;
     max-width: 380px;
+    max-height: 550px;
+  }
+
+  .content.expanded {
+    max-height: 850px;
+  }
+
+  .expand-button {
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.4rem;
+  }
+
+  .expand-button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .expanded-info {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    padding-top: 1.25rem;
+  }
+
+  .info-item {
+    margin-bottom: 1rem;
+  }
+
+  .info-item h3 {
+    font-size: 0.875rem;
+  }
+
+  .info-item p {
+    font-size: 0.775rem;
   }
 
   .buy-button {
