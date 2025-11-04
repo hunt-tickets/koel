@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, FormEvent } from 'react'
+import React, { useState, useEffect, FormEvent } from 'react'
 import Image from 'next/image'
 
 // Declare model-viewer web component for TypeScript
@@ -43,6 +43,7 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
   const [currentImage, setCurrentImage] = useState(1)
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState({ text: '', type: '' })
+  const videoRef = React.useRef<HTMLVideoElement>(null)
 
   // Hero image rotation (only for image-based heroes)
   useEffect(() => {
@@ -53,6 +54,24 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
     }, 5000)
 
     return () => clearInterval(interval)
+  }, [video])
+
+  // Force video playback
+  useEffect(() => {
+    if (video && videoRef.current) {
+      const playVideo = async () => {
+        try {
+          videoRef.current!.muted = false
+          await videoRef.current!.play()
+        } catch (error) {
+          // If autoplay with sound fails, try muted
+          console.log('Autoplay with sound blocked, playing muted')
+          videoRef.current!.muted = true
+          await videoRef.current!.play()
+        }
+      }
+      playVideo()
+    }
   }, [video])
 
   // Show message with auto-hide
@@ -110,10 +129,12 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
       <div className="hero-container">
         {video ? (
           <video
+            ref={videoRef}
             className="hero-video"
             autoPlay
             loop
             playsInline
+            muted
           >
             <source src={video} type="video/mp4" />
           </video>
