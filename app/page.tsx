@@ -113,7 +113,6 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
             className="hero-video"
             autoPlay
             loop
-            muted
             playsInline
           >
             <source src={video} type="video/mp4" />
