@@ -105,6 +105,7 @@ body {
   height: 100%;
   display: block;
   --poster-color: transparent;
+  filter: hue-rotate(200deg) saturate(1.5) brightness(1.1);
 }
 
 .model-container model-viewer::part(default-progress-bar) {

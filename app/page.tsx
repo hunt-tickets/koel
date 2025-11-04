@@ -149,19 +149,20 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
           rotation-per-second="30deg"
           camera-controls
           disable-zoom
-          shadow-intensity="1"
+          shadow-intensity="2"
           loading="eager"
           touch-action="pan-y"
           min-camera-orbit="auto auto auto"
           max-camera-orbit="auto auto auto"
           camera-orbit="0deg 75deg 10m"
           interaction-prompt="none"
-          environment-image="neutral"
-          exposure="1"
+          environment-image="legacy"
+          exposure="1.2"
           style={{
             width: '100%',
             height: '100%',
-            backgroundColor: 'transparent'
+            backgroundColor: 'transparent',
+            '--progress-bar-color': '#0066cc'
           }}
         />
       </div>
