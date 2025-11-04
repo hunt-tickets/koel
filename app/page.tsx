@@ -253,21 +253,7 @@ function HeroSection({ title, description, video, hero1, hero2, isMuted }: HeroS
 
       <div className="content">
         <h1>{title}</h1>
-        <p>{description}</p>
-        <form onSubmit={handleSubmit} className="email-form">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="tu@email.com"
-            required
-            autoComplete="email"
-          />
-          <button type="submit">Notificarme</button>
-        </form>
-        <p className={`message ${message.text ? 'show' : ''} ${message.type}`}>
-          {message.text}
-        </p>
+        <button className="buy-button">Comprar</button>
       </div>
     </section>
   )
@@ -309,8 +295,8 @@ export default function Home() {
       </header>
 
       <HeroSection
-        title="Próximamente"
-        description="Déjanos tu correo para ser el primero en enterarte"
+        title="Coco Summer"
+        description=""
         video="/hero-video.mp4"
         isMuted={isMuted}
       />
