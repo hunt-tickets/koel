@@ -15,6 +15,8 @@ declare global {
         'shadow-intensity'?: string
         loading?: string
         'ar'?: boolean
+        'disable-zoom'?: boolean
+        'touch-action'?: string
       }
     }
   }
@@ -135,8 +137,10 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
           alt="Lata 3D"
           auto-rotate
           camera-controls
+          disable-zoom
           shadow-intensity="1"
           loading="eager"
+          touch-action="pan-y"
         />
       </div>
 
