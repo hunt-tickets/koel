@@ -2,12 +2,7 @@
 
 import { useState, useEffect, FormEvent } from 'react'
 import Image from 'next/image'
-import dynamic from 'next/dynamic'
-
-const Spline = dynamic(() => import('@splinetool/react-spline'), {
-  ssr: false,
-  loading: () => <div className="spline-loading">Cargando...</div>
-})
+import Spline from '@splinetool/react-spline/next'
 
 interface HeroSectionProps {
   title: string
