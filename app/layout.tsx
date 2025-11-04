@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -13,7 +14,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Script
+          type="module"
+          src="https://unpkg.com/@splinetool/viewer@1.10.93/build/spline-viewer.js"
+          strategy="afterInteractive"
+        />
+      </body>
     </html>
   )
 }
