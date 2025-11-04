@@ -18,7 +18,7 @@ export default function RootLayout({
         {children}
         <Script
           type="module"
-          src="https://unpkg.com/@splinetool/viewer@1.10.93/build/spline-viewer.js"
+          src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
           strategy="afterInteractive"
         />
       </body>

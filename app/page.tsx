@@ -3,14 +3,18 @@
 import { useState, useEffect, FormEvent } from 'react'
 import Image from 'next/image'
 
-// Declare spline-viewer web component for TypeScript
+// Declare model-viewer web component for TypeScript
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'spline-viewer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        url?: string
-        hint?: boolean
-        'loading-anim-type'?: string
+      'model-viewer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        src?: string
+        alt?: string
+        'auto-rotate'?: boolean
+        'camera-controls'?: boolean
+        'shadow-intensity'?: string
+        loading?: string
+        'ar'?: boolean
       }
     }
   }
@@ -125,10 +129,14 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
         )}
       </div>
 
-      <div className="spline-container">
-        <spline-viewer
-          url="https://prod.spline.design/ylvbmrXt8B5RdSwU/scene.splinecode"
-          loading-anim-type="spinner-big-light"
+      <div className="model-container">
+        <model-viewer
+          src="/models/tall_can_copy.gltf"
+          alt="Lata 3D"
+          auto-rotate
+          camera-controls
+          shadow-intensity="1"
+          loading="eager"
         />
       </div>
 
