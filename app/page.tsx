@@ -161,9 +161,8 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
           style={{
             width: '100%',
             height: '100%',
-            backgroundColor: 'transparent',
-            '--progress-bar-color': '#0066cc'
-          }}
+            backgroundColor: 'transparent'
+          } as React.CSSProperties}
         />
       </div>
 
