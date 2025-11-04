@@ -251,7 +251,7 @@ function HeroSection({ title, description, video, hero1, hero2, isMuted }: HeroS
         />
       </div>
 
-      <div className="content" style={{ display: 'none' }}>
+      <div className="content">
         <h1>{title}</h1>
         <p>{description}</p>
         <form onSubmit={handleSubmit} className="email-form">
