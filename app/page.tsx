@@ -37,9 +37,10 @@ interface HeroSectionProps {
   video?: string
   hero1?: string
   hero2?: string
+  isMuted: boolean
 }
 
-function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionProps) {
+function HeroSection({ title, description, video, hero1, hero2, isMuted }: HeroSectionProps) {
   const [currentImage, setCurrentImage] = useState(1)
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState({ text: '', type: '' })
@@ -95,7 +96,7 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
     const playAudio = async () => {
       if (audioRef.current) {
         try {
-          audioRef.current.muted = false
+          audioRef.current.muted = isMuted
           await audioRef.current.play()
           console.log('Audio playing automatically')
         } catch (error) {
@@ -119,6 +120,13 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
     // Delay to ensure DOM is ready
     setTimeout(playAudio, 500)
   }, [])
+
+  // Control audio mute state
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.muted = isMuted
+    }
+  }, [isMuted])
 
   // Show message with auto-hide
   const showMessage = (text: string, type: 'success' | 'error') => {
@@ -266,6 +274,12 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
 }
 
 export default function Home() {
+  const [isMuted, setIsMuted] = useState(false)
+
+  const toggleMute = () => {
+    setIsMuted(!isMuted)
+  }
+
   return (
     <>
       <header className="header">
@@ -277,12 +291,28 @@ export default function Home() {
           height={40}
           priority
         />
+        <button onClick={toggleMute} className="mute-button" aria-label={isMuted ? 'Unmute' : 'Mute'}>
+          {isMuted ? (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+          ) : (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+          )}
+        </button>
       </header>
 
       <HeroSection
         title="Próximamente"
         description="Déjanos tu correo para ser el primero en enterarte"
         video="/hero-video.mp4"
+        isMuted={isMuted}
       />
     </>
   )
