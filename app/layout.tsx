@@ -3,8 +3,8 @@ import Script from 'next/script'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Coco Summer',
-  description: 'La bebida refrescante del verano',
+  title: 'KOEL ZEN',
+  description: 'La bebida energética que calma tu mente',
 }
 
 export default function RootLayout({

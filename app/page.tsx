@@ -318,7 +318,7 @@ export default function Home() {
       </header>
 
       <HeroSection
-        title="Coco Summer"
+        title="KOEL ZEN"
         description=""
         video="/hero-video.mp4"
         isMuted={isMuted}
