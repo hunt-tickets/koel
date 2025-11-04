@@ -154,7 +154,7 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
           touch-action="pan-y"
           min-camera-orbit="auto auto auto"
           max-camera-orbit="auto auto auto"
-          camera-orbit="0deg 75deg 2.5m"
+          camera-orbit="0deg 75deg 5m"
           interaction-prompt="none"
           environment-image="neutral"
           exposure="1"
@@ -166,7 +166,7 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
         />
       </div>
 
-      <div className="content">
+      <div className="content" style={{ display: 'none' }}>
         <h1>{title}</h1>
         <p>{description}</p>
         <form onSubmit={handleSubmit} className="email-form">
