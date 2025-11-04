@@ -277,11 +277,7 @@ export default function Home() {
         {sections.map((section, index) => (
           <HeroSection
             key={index}
-            title={section.title}
-            description={section.description}
-            video={section.video}
-            hero1={section.hero1}
-            hero2={section.hero2}
+            {...section}
           />
         ))}
       </div>
