@@ -2,6 +2,7 @@
 
 import { useState, useEffect, FormEvent } from 'react'
 import Image from 'next/image'
+import Spline from '@splinetool/react-spline/next'
 
 interface HeroSectionProps {
   title: string
@@ -110,6 +111,12 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
             />
           </>
         )}
+      </div>
+
+      <div className="spline-container">
+        <Spline
+          scene="https://prod.spline.design/ylvbmrXt8B5RdSwU/scene.splinecode"
+        />
       </div>
 
       <div className="content">
