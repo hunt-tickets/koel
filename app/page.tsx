@@ -17,6 +17,10 @@ declare global {
         'ar'?: boolean
         'disable-zoom'?: boolean
         'touch-action'?: string
+        'min-camera-orbit'?: string
+        'max-camera-orbit'?: string
+        'camera-orbit'?: string
+        'interaction-prompt'?: string
       }
     }
   }
@@ -141,6 +145,10 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
           shadow-intensity="1"
           loading="eager"
           touch-action="pan-y"
+          min-camera-orbit="auto auto auto"
+          max-camera-orbit="auto auto auto"
+          camera-orbit="0deg 75deg 105%"
+          interaction-prompt="none"
         />
       </div>
 
