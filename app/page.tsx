@@ -154,7 +154,7 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
           touch-action="pan-y"
           min-camera-orbit="auto auto auto"
           max-camera-orbit="auto auto auto"
-          camera-orbit="0deg 75deg 5m"
+          camera-orbit="0deg 75deg 10m"
           interaction-prompt="none"
           environment-image="neutral"
           exposure="1"
