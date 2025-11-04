@@ -63,21 +63,46 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
     if (video && videoRef.current) {
       const playVideo = async () => {
         try {
-          videoRef.current!.muted = false
-          await videoRef.current!.play()
-        } catch (error) {
-          // If autoplay with sound fails, try muted
-          console.log('Autoplay with sound blocked, playing muted')
+          // Ensure muted for autoplay compatibility
           videoRef.current!.muted = true
+          videoRef.current!.setAttribute('playsinline', 'true')
+          videoRef.current!.setAttribute('webkit-playsinline', 'true')
           await videoRef.current!.play()
+          console.log('Video playing')
+        } catch (error) {
+          console.error('Video play failed:', error)
+          // Retry on user interaction
+          const retryPlay = async () => {
+            try {
+              await videoRef.current!.play()
+              document.removeEventListener('touchstart', retryPlay)
+              document.removeEventListener('click', retryPlay)
+            } catch (e) {
+              console.error('Retry failed:', e)
+            }
+          }
+          document.addEventListener('touchstart', retryPlay, { once: true })
+          document.addEventListener('click', retryPlay, { once: true })
         }
       }
-      playVideo()
+
+      // Delay to ensure DOM is ready
+      setTimeout(playVideo, 100)
     }
   }, [video])
 
   // Handle audio activation
   const activateAudio = async () => {
+    // Force video play on mobile
+    if (videoRef.current) {
+      try {
+        await videoRef.current.play()
+      } catch (error) {
+        console.error('Failed to play video:', error)
+      }
+    }
+
+    // Play audio
     if (audioRef.current) {
       try {
         await audioRef.current.play()
@@ -172,6 +197,8 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
             loop
             playsInline
             muted
+            preload="auto"
+            webkit-playsinline="true"
           >
             <source src={video} type="video/mp4" />
           </video>
