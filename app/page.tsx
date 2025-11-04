@@ -199,12 +199,6 @@ export default function Home() {
       title: "Próximamente",
       description: "Déjanos tu correo para ser el primero en enterarte",
       video: "/hero-video.mp4"
-    },
-    {
-      title: "Próximamente",
-      description: "Déjanos tu correo para ser el primero en enterarte",
-      hero1: "/hero1.jpg",
-      hero2: "/hero2.jpg"
     }
   ]
 
