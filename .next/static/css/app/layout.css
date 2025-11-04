@@ -22,18 +22,10 @@ body {
   overflow: hidden;
 }
 
-.swipe-container {
+.hero-section {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: auto;
-  will-change: transform;
-  touch-action: pan-y;
-}
-
-.hero-section {
-  position: relative;
   width: 100vw;
   height: 100vh;
   display: flex;
