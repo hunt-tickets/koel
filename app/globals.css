@@ -97,12 +97,18 @@ body {
   max-width: 600px;
   max-height: 600px;
   z-index: 5;
+  pointer-events: auto;
 }
 
 .model-container model-viewer {
   width: 100%;
   height: 100%;
   display: block;
+  --poster-color: transparent;
+}
+
+.model-container model-viewer::part(default-progress-bar) {
+  display: none;
 }
 
 @media (max-width: 768px) {

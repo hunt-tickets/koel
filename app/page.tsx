@@ -11,6 +11,8 @@ declare global {
         src?: string
         alt?: string
         'auto-rotate'?: boolean
+        'auto-rotate-delay'?: string
+        'rotation-per-second'?: string
         'camera-controls'?: boolean
         'shadow-intensity'?: string
         loading?: string
@@ -21,6 +23,9 @@ declare global {
         'max-camera-orbit'?: string
         'camera-orbit'?: string
         'interaction-prompt'?: string
+        'environment-image'?: string
+        'exposure'?: string
+        style?: React.CSSProperties
       }
     }
   }
@@ -140,6 +145,8 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
           src="/models/tall_can_copy.gltf"
           alt="Lata 3D"
           auto-rotate
+          auto-rotate-delay="0"
+          rotation-per-second="30deg"
           camera-controls
           disable-zoom
           shadow-intensity="1"
@@ -147,8 +154,15 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
           touch-action="pan-y"
           min-camera-orbit="auto auto auto"
           max-camera-orbit="auto auto auto"
-          camera-orbit="0deg 75deg 105%"
+          camera-orbit="0deg 75deg 2.5m"
           interaction-prompt="none"
+          environment-image="neutral"
+          exposure="1"
+          style={{
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'transparent'
+          }}
         />
       </div>
 
