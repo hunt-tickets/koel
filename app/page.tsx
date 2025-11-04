@@ -43,6 +43,7 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
   const [currentImage, setCurrentImage] = useState(1)
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState({ text: '', type: '' })
+  const [showAudioPrompt, setShowAudioPrompt] = useState(true)
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const audioRef = React.useRef<HTMLAudioElement>(null)
 
@@ -75,31 +76,17 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
     }
   }, [video])
 
-  // Force audio playback
-  useEffect(() => {
+  // Handle audio activation
+  const activateAudio = async () => {
     if (audioRef.current) {
-      const playAudio = async () => {
-        try {
-          await audioRef.current!.play()
-        } catch (error) {
-          console.log('Autoplay audio blocked, will play on user interaction')
-          // Try again on first user interaction
-          const playOnInteraction = async () => {
-            try {
-              await audioRef.current!.play()
-              document.removeEventListener('click', playOnInteraction)
-              document.removeEventListener('touchstart', playOnInteraction)
-            } catch (e) {
-              console.log('Audio play failed')
-            }
-          }
-          document.addEventListener('click', playOnInteraction, { once: true })
-          document.addEventListener('touchstart', playOnInteraction, { once: true })
-        }
+      try {
+        await audioRef.current.play()
+        setShowAudioPrompt(false)
+      } catch (error) {
+        console.error('Failed to play audio:', error)
       }
-      playAudio()
     }
-  }, [])
+  }
 
   // Show message with auto-hide
   const showMessage = (text: string, type: 'success' | 'error') => {
@@ -161,6 +148,20 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
       >
         <source src="https://3gnijedbgl.ufs.sh/f/rPRCeRt0Tyln98jynzWGwrQ7Wt0zxZpC4mdlK1YfD8eqSh5J" type="audio/mpeg" />
       </audio>
+
+      {/* Audio activation prompt */}
+      {showAudioPrompt && (
+        <div className="audio-prompt-overlay" onClick={activateAudio}>
+          <button className="audio-activate-btn">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <span>Activar sonido</span>
+          </button>
+        </div>
+      )}
 
       <div className="hero-container">
         {video ? (
