@@ -4,7 +4,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'KOEL ZEN',
-  description: 'Desodorante medioambiental - Frescura natural para tu hogar',
+  description: 'Un aroma fresco y natural inspirado en la tranquilidad de un bosque de bambú. Desodorante medioambiental para conectarte con la naturaleza.',
 }
 
 export default function RootLayout({

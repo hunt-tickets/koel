@@ -163,10 +163,18 @@ body {
 
 h1 {
   font-size: 2rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
   font-weight: 700;
   letter-spacing: -0.5px;
   text-transform: uppercase;
+}
+
+.product-description {
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  text-align: center;
 }
 
 .content > p {
@@ -308,6 +316,13 @@ button:active {
 
   h1 {
     font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .product-description {
+    font-size: 0.8rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
   }
 
   .content {

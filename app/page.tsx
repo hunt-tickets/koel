@@ -276,6 +276,7 @@ function HeroSection({ title, description, video, hero1, hero2, isMuted }: HeroS
 
       <div className="content">
         <h1>{title}</h1>
+        {description && <p className="product-description">{description}</p>}
         <button className="buy-button">Comprar</button>
       </div>
     </section>
@@ -319,7 +320,7 @@ export default function Home() {
 
       <HeroSection
         title="KOEL ZEN"
-        description=""
+        description="Un aroma fresco y natural inspirado en la tranquilidad de un bosque de bambú. Perfecto para quienes buscan una fragancia ligera y revitalizante que te conecte con la naturaleza."
         video="/hero-video.mp4"
         isMuted={isMuted}
       />
