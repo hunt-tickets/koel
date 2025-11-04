@@ -44,6 +44,7 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState({ text: '', type: '' })
   const videoRef = React.useRef<HTMLVideoElement>(null)
+  const audioRef = React.useRef<HTMLAudioElement>(null)
 
   // Hero image rotation (only for image-based heroes)
   useEffect(() => {
@@ -73,6 +74,32 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
       playVideo()
     }
   }, [video])
+
+  // Force audio playback
+  useEffect(() => {
+    if (audioRef.current) {
+      const playAudio = async () => {
+        try {
+          await audioRef.current!.play()
+        } catch (error) {
+          console.log('Autoplay audio blocked, will play on user interaction')
+          // Try again on first user interaction
+          const playOnInteraction = async () => {
+            try {
+              await audioRef.current!.play()
+              document.removeEventListener('click', playOnInteraction)
+              document.removeEventListener('touchstart', playOnInteraction)
+            } catch (e) {
+              console.log('Audio play failed')
+            }
+          }
+          document.addEventListener('click', playOnInteraction, { once: true })
+          document.addEventListener('touchstart', playOnInteraction, { once: true })
+        }
+      }
+      playAudio()
+    }
+  }, [])
 
   // Show message with auto-hide
   const showMessage = (text: string, type: 'success' | 'error') => {
@@ -126,6 +153,15 @@ function HeroSection({ title, description, video, hero1, hero2 }: HeroSectionPro
 
   return (
     <section className="hero-section">
+      {/* Background audio */}
+      <audio
+        ref={audioRef}
+        loop
+        preload="auto"
+      >
+        <source src="https://3gnijedbgl.ufs.sh/f/rPRCeRt0Tyln98jynzWGwrQ7Wt0zxZpC4mdlK1YfD8eqSh5J" type="audio/mpeg" />
+      </audio>
+
       <div className="hero-container">
         {video ? (
           <video
