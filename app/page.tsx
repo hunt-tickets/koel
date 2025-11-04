@@ -128,6 +128,29 @@ function HeroSection({ title, description, video, hero1, hero2, isMuted }: HeroS
     }
   }, [isMuted])
 
+  // Pause audio when page is hidden (tab change, lock screen, etc)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (audioRef.current) {
+        if (document.hidden) {
+          audioRef.current.pause()
+          console.log('Audio paused - page hidden')
+        } else {
+          audioRef.current.play().catch(err => {
+            console.log('Failed to resume audio:', err)
+          })
+          console.log('Audio resumed - page visible')
+        }
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+  }, [])
+
   // Show message with auto-hide
   const showMessage = (text: string, type: 'success' | 'error') => {
     setMessage({ text, type })
