@@ -4,7 +4,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'KOEL ZEN',
-  description: 'La bebida energética que calma tu mente',
+  description: 'Desodorante medioambiental - Frescura natural para tu hogar',
 }
 
 export default function RootLayout({
