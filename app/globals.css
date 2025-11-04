@@ -114,13 +114,13 @@ body {
 
 .model-container {
   position: absolute;
-  top: 50%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80vw;
-  height: 80vh;
-  max-width: 600px;
-  max-height: 600px;
+  width: 60vw;
+  height: 50vh;
+  max-width: 400px;
+  max-height: 400px;
   z-index: 5;
   pointer-events: auto;
 }
@@ -139,8 +139,9 @@ body {
 
 @media (max-width: 768px) {
   .model-container {
-    width: 90vw;
-    height: 60vh;
+    width: 70vw;
+    height: 40vh;
+    top: 30%;
   }
 }
 
@@ -148,28 +149,29 @@ body {
   position: relative;
   z-index: 10;
   text-align: center;
-  padding: 2.5rem 2rem;
+  padding: 1.75rem 1.5rem;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
-  border-radius: 24px;
+  border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
-  max-width: 420px;
+  max-width: 380px;
   width: 90%;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.4rem;
   font-weight: 600;
   letter-spacing: -0.5px;
 }
 
 .content > p {
-  font-size: 0.95rem;
-  margin-bottom: 1.5rem;
-  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.875rem;
+  margin-bottom: 1.25rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
 }
 
 .email-form {
@@ -180,10 +182,10 @@ h1 {
 }
 
 input[type="email"] {
-  padding: 0.875rem 1rem;
+  padding: 0.75rem 0.875rem;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
-  font-size: 0.95rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
   background: rgba(255, 255, 255, 0.2);
   color: white;
   outline: none;
@@ -200,10 +202,10 @@ input[type="email"]:focus {
 }
 
 button {
-  padding: 0.875rem 1.5rem;
+  padding: 0.75rem 1.25rem;
   border: none;
-  border-radius: 12px;
-  font-size: 0.95rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
   font-weight: 500;
   background: white;
   color: #1a1a1a;
@@ -221,9 +223,9 @@ button:active {
 }
 
 .message {
-  font-size: 0.9rem;
-  min-height: 20px;
-  margin-top: 1rem;
+  font-size: 0.8rem;
+  min-height: 18px;
+  margin-top: 0.75rem;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -256,7 +258,7 @@ button:active {
 
 @media (max-width: 640px) {
   .hero-section {
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
   }
 
   .header {
@@ -277,14 +279,30 @@ button:active {
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 
   .content {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1.25rem;
+    max-width: 340px;
   }
 
   .content > p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  input[type="email"] {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  button {
+    padding: 0.65rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .message {
+    font-size: 0.75rem;
   }
 }
