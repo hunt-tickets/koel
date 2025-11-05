@@ -246,7 +246,9 @@ function HeroSection({ products, isMuted }: HeroSectionProps) {
         {products.map((product, index) => (
           <video
             key={product.video}
-            ref={(el) => (videoRefs.current[index] = el)}
+            ref={(el) => {
+              videoRefs.current[index] = el
+            }}
             className={`hero-video ${index === currentProductIndex ? 'active' : ''}`}
             autoPlay
             loop
