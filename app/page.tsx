@@ -31,39 +31,64 @@ declare global {
   }
 }
 
-interface HeroSectionProps {
+interface Product {
   title: string
   description: string
-  video?: string
-  hero1?: string
-  hero2?: string
+  video: string
+}
+
+interface HeroSectionProps {
+  products: Product[]
   isMuted: boolean
 }
 
-function HeroSection({ title, description, video, hero1, hero2, isMuted }: HeroSectionProps) {
-  const [currentImage, setCurrentImage] = useState(1)
+function HeroSection({ products, isMuted }: HeroSectionProps) {
+  const [currentProductIndex, setCurrentProductIndex] = useState(0)
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState({ text: '', type: '' })
   const [isExpanded, setIsExpanded] = useState(false)
+  const [touchStart, setTouchStart] = useState(0)
+  const [touchEnd, setTouchEnd] = useState(0)
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const audioRef = React.useRef<HTMLAudioElement>(null)
 
-  // Hero image rotation (only for image-based heroes)
+  const currentProduct = products[currentProductIndex]
+
+  // Swipe detection
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientY)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientY)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+
+    const distance = touchStart - touchEnd
+    const isUpSwipe = distance > 50
+    const isDownSwipe = distance < -50
+
+    if (isUpSwipe && currentProductIndex < products.length - 1) {
+      setCurrentProductIndex(prev => prev + 1)
+    }
+
+    if (isDownSwipe && currentProductIndex > 0) {
+      setCurrentProductIndex(prev => prev - 1)
+    }
+
+    setTouchStart(0)
+    setTouchEnd(0)
+  }
+
+  // Force video playback and update when product changes
   useEffect(() => {
-    if (video) return // Don't rotate if using video
-
-    const interval = setInterval(() => {
-      setCurrentImage(prev => prev === 1 ? 2 : 1)
-    }, 5000)
-
-    return () => clearInterval(interval)
-  }, [video])
-
-  // Force video playback
-  useEffect(() => {
-    if (video && videoRef.current) {
+    if (videoRef.current) {
       const playVideo = async () => {
         try {
+          // Load new video source
+          videoRef.current!.load()
           // Ensure muted for autoplay compatibility
           videoRef.current!.muted = true
           videoRef.current!.setAttribute('playsinline', 'true')
@@ -90,7 +115,7 @@ function HeroSection({ title, description, video, hero1, hero2, isMuted }: HeroS
       // Delay to ensure DOM is ready
       setTimeout(playVideo, 100)
     }
-  }, [video])
+  }, [currentProductIndex])
 
   // Automatic audio playback
   useEffect(() => {
@@ -203,7 +228,12 @@ function HeroSection({ title, description, video, hero1, hero2, isMuted }: HeroS
   }
 
   return (
-    <section className="hero-section">
+    <section
+      className="hero-section"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Background audio */}
       <audio
         ref={audioRef}
@@ -214,39 +244,19 @@ function HeroSection({ title, description, video, hero1, hero2, isMuted }: HeroS
       </audio>
 
       <div className="hero-container">
-        {video ? (
-          <video
-            ref={videoRef}
-            className="hero-video"
-            autoPlay
-            loop
-            playsInline
-            muted
-            preload="auto"
-            webkit-playsinline="true"
-          >
-            <source src={video} type="video/mp4" />
-          </video>
-        ) : (
-          <>
-            <Image
-              src={hero1!}
-              alt="Hero"
-              className={`hero-image ${currentImage === 1 ? 'active' : ''}`}
-              fill
-              priority
-              style={{ objectFit: 'cover' }}
-            />
-            <Image
-              src={hero2!}
-              alt="Hero"
-              className={`hero-image ${currentImage === 2 ? 'active' : ''}`}
-              fill
-              priority
-              style={{ objectFit: 'cover' }}
-            />
-          </>
-        )}
+        <video
+          ref={videoRef}
+          className="hero-video"
+          autoPlay
+          loop
+          playsInline
+          muted
+          preload="auto"
+          webkit-playsinline="true"
+          key={currentProduct.video}
+        >
+          <source src={currentProduct.video} type="video/mp4" />
+        </video>
       </div>
 
       <div className="model-container">
@@ -294,8 +304,8 @@ function HeroSection({ title, description, video, hero1, hero2, isMuted }: HeroS
           )}
         </button>
 
-        <h1>{title}</h1>
-        {description && <p className="product-description">{description}</p>}
+        <h1>{currentProduct.title}</h1>
+        {currentProduct.description && <p className="product-description">{currentProduct.description}</p>}
 
         {isExpanded && (
           <div className="expanded-info">
@@ -315,6 +325,16 @@ function HeroSection({ title, description, video, hero1, hero2, isMuted }: HeroS
         )}
 
         <button className="buy-button">Comprar</button>
+      </div>
+
+      {/* Swipe indicators */}
+      <div className="swipe-indicators">
+        {products.map((_, index) => (
+          <div
+            key={index}
+            className={`swipe-dot ${index === currentProductIndex ? 'active' : ''}`}
+          />
+        ))}
       </div>
     </section>
   )
@@ -337,6 +357,19 @@ export default function Home() {
     setActiveSection(section)
     setIsMenuOpen(false)
   }
+
+  const products: Product[] = [
+    {
+      title: "KOEL ZEN",
+      description: "Un aroma fresco y natural inspirado en la tranquilidad de un bosque de bambú. Perfecto para quienes buscan una fragancia ligera y revitalizante que te conecte con la naturaleza.",
+      video: "/hero-video.mp4"
+    },
+    {
+      title: "KOEL GARDEN",
+      description: "Una fragancia envolvente que evoca la serenidad de un jardín místico. Ideal para crear un ambiente de paz y armonía en tu espacio.",
+      video: "/hero-video-2.mp4"
+    }
+  ]
 
   return (
     <>
@@ -405,9 +438,7 @@ export default function Home() {
 
       {activeSection === 'home' ? (
         <HeroSection
-          title="KOEL ZEN"
-          description="Un aroma fresco y natural inspirado en la tranquilidad de un bosque de bambú. Perfecto para quienes buscan una fragancia ligera y revitalizante que te conecte con la naturaleza."
-          video="/hero-video.mp4"
+          products={products}
           isMuted={isMuted}
         />
       ) : (
