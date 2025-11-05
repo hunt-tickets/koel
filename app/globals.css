@@ -29,7 +29,7 @@ body {
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 5rem;
-  touch-action: pan-y;
+  touch-action: pan-x;
 }
 
 .header {
@@ -196,6 +196,14 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
+}
+
+.hero-video.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .model-container {
@@ -225,11 +233,11 @@ body {
 
 .swipe-indicators {
   position: fixed;
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 9rem;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.75rem;
   z-index: 15;
 }
@@ -246,7 +254,7 @@ body {
 
 .swipe-dot.active {
   background: white;
-  height: 30px;
+  width: 30px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
@@ -626,7 +634,7 @@ button:active {
   }
 
   .swipe-indicators {
-    right: 1rem;
+    bottom: 7rem;
     gap: 0.5rem;
   }
 
@@ -636,7 +644,7 @@ button:active {
   }
 
   .swipe-dot.active {
-    height: 24px;
+    width: 24px;
   }
 
   h1 {

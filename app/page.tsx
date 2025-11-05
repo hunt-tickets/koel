@@ -49,32 +49,32 @@ function HeroSection({ products, isMuted }: HeroSectionProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
-  const videoRef = React.useRef<HTMLVideoElement>(null)
+  const videoRefs = React.useRef<(HTMLVideoElement | null)[]>([])
   const audioRef = React.useRef<HTMLAudioElement>(null)
 
   const currentProduct = products[currentProductIndex]
 
-  // Swipe detection
+  // Swipe detection (horizontal)
   const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientY)
+    setTouchStart(e.targetTouches[0].clientX)
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientY)
+    setTouchEnd(e.targetTouches[0].clientX)
   }
 
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return
 
     const distance = touchStart - touchEnd
-    const isUpSwipe = distance > 50
-    const isDownSwipe = distance < -50
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
 
-    if (isUpSwipe && currentProductIndex < products.length - 1) {
+    if (isLeftSwipe && currentProductIndex < products.length - 1) {
       setCurrentProductIndex(prev => prev + 1)
     }
 
-    if (isDownSwipe && currentProductIndex > 0) {
+    if (isRightSwipe && currentProductIndex > 0) {
       setCurrentProductIndex(prev => prev - 1)
     }
 
@@ -82,40 +82,39 @@ function HeroSection({ products, isMuted }: HeroSectionProps) {
     setTouchEnd(0)
   }
 
-  // Force video playback and update when product changes
+  // Preload and play all videos, show current one
   useEffect(() => {
-    if (videoRef.current) {
-      const playVideo = async () => {
-        try {
-          // Load new video source
-          videoRef.current!.load()
-          // Ensure muted for autoplay compatibility
-          videoRef.current!.muted = true
-          videoRef.current!.setAttribute('playsinline', 'true')
-          videoRef.current!.setAttribute('webkit-playsinline', 'true')
-          await videoRef.current!.play()
-          console.log('Video playing')
-        } catch (error) {
-          console.error('Video play failed:', error)
-          // Retry on user interaction
-          const retryPlay = async () => {
-            try {
-              await videoRef.current!.play()
-              document.removeEventListener('touchstart', retryPlay)
-              document.removeEventListener('click', retryPlay)
-            } catch (e) {
-              console.error('Retry failed:', e)
-            }
-          }
-          document.addEventListener('touchstart', retryPlay, { once: true })
-          document.addEventListener('click', retryPlay, { once: true })
-        }
-      }
+    videoRefs.current.forEach((video, index) => {
+      if (video) {
+        video.muted = true
+        video.setAttribute('playsinline', 'true')
+        video.setAttribute('webkit-playsinline', 'true')
 
-      // Delay to ensure DOM is ready
-      setTimeout(playVideo, 100)
-    }
-  }, [currentProductIndex])
+        const playVideo = async () => {
+          try {
+            await video.play()
+            console.log(`Video ${index} playing`)
+          } catch (error) {
+            console.error(`Video ${index} play failed:`, error)
+            // Retry on user interaction
+            const retryPlay = async () => {
+              try {
+                await video.play()
+                document.removeEventListener('touchstart', retryPlay)
+                document.removeEventListener('click', retryPlay)
+              } catch (e) {
+                console.error(`Retry failed for video ${index}:`, e)
+              }
+            }
+            document.addEventListener('touchstart', retryPlay, { once: true })
+            document.addEventListener('click', retryPlay, { once: true })
+          }
+        }
+
+        setTimeout(playVideo, 100)
+      }
+    })
+  }, [])
 
   // Automatic audio playback
   useEffect(() => {
@@ -244,19 +243,21 @@ function HeroSection({ products, isMuted }: HeroSectionProps) {
       </audio>
 
       <div className="hero-container">
-        <video
-          ref={videoRef}
-          className="hero-video"
-          autoPlay
-          loop
-          playsInline
-          muted
-          preload="auto"
-          webkit-playsinline="true"
-          key={currentProduct.video}
-        >
-          <source src={currentProduct.video} type="video/mp4" />
-        </video>
+        {products.map((product, index) => (
+          <video
+            key={product.video}
+            ref={(el) => (videoRefs.current[index] = el)}
+            className={`hero-video ${index === currentProductIndex ? 'active' : ''}`}
+            autoPlay
+            loop
+            playsInline
+            muted
+            preload="auto"
+            webkit-playsinline="true"
+          >
+            <source src={product.video} type="video/mp4" />
+          </video>
+        ))}
       </div>
 
       <div className="model-container">
