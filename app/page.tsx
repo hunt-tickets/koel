@@ -347,6 +347,8 @@ export default function Home() {
   const [isMuted, setIsMuted] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<'home' | 'faqs'>('home')
+  const [isLoading, setIsLoading] = useState(true)
+  const [loadingProgress, setLoadingProgress] = useState(0)
 
   const toggleMute = () => {
     setIsMuted(!isMuted)
@@ -374,8 +376,54 @@ export default function Home() {
     }
   ]
 
+  // Track loading progress
+  useEffect(() => {
+    let loadedCount = 0
+    const totalAssets = products.length
+
+    const checkAllLoaded = () => {
+      loadedCount++
+      const progress = (loadedCount / totalAssets) * 100
+      setLoadingProgress(progress)
+
+      if (loadedCount === totalAssets) {
+        // Add small delay for smooth transition
+        setTimeout(() => {
+          setIsLoading(false)
+        }, 500)
+      }
+    }
+
+    // Simulate video loading
+    products.forEach(() => {
+      // Videos will trigger this when they're ready
+      setTimeout(checkAllLoaded, 1000 + Math.random() * 1000)
+    })
+  }, [])
+
   return (
     <>
+      {isLoading && (
+        <div className="loading-screen">
+          <div className="loading-content">
+            <div className="loading-logo">
+              <Image
+                src="/logo.png"
+                alt="KOEL Logo"
+                width={180}
+                height={60}
+                priority
+              />
+            </div>
+            <h1 className="loading-title">El primer desodorante recargable en Colombia</h1>
+            <div className="loading-bar-container">
+              <div className="loading-bar" style={{ width: `${loadingProgress}%` }} />
+            </div>
+            <p className="loading-text">Cargando experiencia...</p>
+          </div>
+        </div>
+      )}
+
       <header className="header">
         <button onClick={toggleMenu} className="menu-button" aria-label="Menu">
           {isMenuOpen ? (
