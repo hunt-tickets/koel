@@ -1,13 +1,22 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
 import Button from '../ui/Button';
 import VideoPlayer from '../ui/VideoPlayer';
 
 export default function HeroSection() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const words = ['CIBE', 'CARGA', 'USA'];
+  const ref = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -18,9 +27,9 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0">
+    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Video Background with Parallax */}
+      <motion.div style={{ y }} className="absolute inset-0 z-0">
         <VideoPlayer
           src="/hero-video.mp4"
           className="w-full h-full"
@@ -28,12 +37,13 @@ export default function HeroSection() {
           loop
           muted
           showMuteButton={false}
+          playbackRate={0.75}
         />
         <div className="video-overlay" />
-      </div>
+      </motion.div>
 
-      {/* Content */}
-      <div className="relative z-10 section-container">
+      {/* Content with Parallax Opacity */}
+      <motion.div style={{ opacity }} className="relative z-10 section-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left: Animated Text */}
           <motion.div
@@ -61,42 +71,34 @@ export default function HeroSection() {
               </h1>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
-              El primer desodorante recargable de Colombia.
-            </h2>
-
             <p className="text-xl md:text-2xl text-white/90 mb-8 font-light">
               El desodorante que cambia las reglas.<br />
               Simple. Elegante. Diferente.
             </p>
 
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={() => {
-                document.getElementById('producto')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Pre-order now
-            </Button>
+            <div className="space-y-4">
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={() => {
+                  document.getElementById('producto')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Pre-order now
+              </Button>
 
-            {/* Price Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="mt-8 inline-flex items-center gap-4"
-            >
-              <span className="text-3xl font-bold text-white">
-                $35,000
-              </span>
-              <span className="text-lg text-white/60 line-through">
-                $50,000
-              </span>
-              <span className="px-4 py-2 bg-accent-gold/20 text-accent-gold rounded-full text-sm font-bold">
-                30% OFF
-              </span>
-            </motion.div>
+              {/* Price Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="flex items-center"
+              >
+                <span className="text-3xl font-bold text-white">
+                  $35,000
+                </span>
+              </motion.div>
+            </div>
           </motion.div>
 
           {/* Right: Product Image/3D Model */}
@@ -148,7 +150,7 @@ export default function HeroSection() {
             </motion.div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Scroll Indicator */}
       <motion.div

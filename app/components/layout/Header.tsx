@@ -44,7 +44,7 @@ export default function Header() {
             <Link href="/" className="flex items-center">
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="relative w-32 h-12"
+                className="relative w-24 h-10"
               >
                 <Image
                   src="/logo.png"

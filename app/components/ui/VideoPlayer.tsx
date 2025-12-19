@@ -12,6 +12,7 @@ interface VideoPlayerProps {
   muted?: boolean;
   controls?: boolean;
   showMuteButton?: boolean;
+  playbackRate?: number;
 }
 
 export default function VideoPlayer({
@@ -23,6 +24,7 @@ export default function VideoPlayer({
   muted: initialMuted = true,
   controls = false,
   showMuteButton = true,
+  playbackRate = 1,
 }: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(initialMuted);
@@ -31,6 +33,9 @@ export default function VideoPlayer({
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+
+    // Set playback rate
+    video.playbackRate = playbackRate;
 
     const handlePlay = () => setIsPlaying(true);
     const handlePause = () => setIsPlaying(false);
@@ -57,7 +62,7 @@ export default function VideoPlayer({
       video.removeEventListener('pause', handlePause);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, [autoPlay]);
+  }, [autoPlay, playbackRate]);
 
   const toggleMute = () => {
     if (videoRef.current) {

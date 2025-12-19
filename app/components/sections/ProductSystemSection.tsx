@@ -98,6 +98,10 @@ export default function ProductSystemSection() {
     {
       title: "Elimina los plásticos de un solo uso",
       description: "Una solución pionera para cuidar el futuro sin comprometer el presente."
+    },
+    {
+      title: "Materiales premium",
+      description: "Construcción de alta calidad con acabados sofisticados que reflejan tu estilo de vida consciente."
     }
   ];
 

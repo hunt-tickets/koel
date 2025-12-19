@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface FragranceCardProps {
   name: string;
@@ -9,7 +10,7 @@ interface FragranceCardProps {
   description: string;
   bgColor: string;
   accentColor: string;
-  illustrationPlaceholder: string;
+  illustrationPath: string;
 }
 
 function FragranceCard({
@@ -18,7 +19,7 @@ function FragranceCard({
   description,
   bgColor,
   accentColor,
-  illustrationPlaceholder,
+  illustrationPath,
 }: FragranceCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -34,7 +35,7 @@ function FragranceCard({
       className={`${bgColor} rounded-3xl overflow-hidden shadow-premium hover:shadow-premium-lg transition-all duration-300 h-full`}
     >
       <div className="p-8 md:p-12 flex flex-col h-full">
-        {/* Illustration Placeholder */}
+        {/* Illustration */}
         <div className="relative w-full aspect-square mb-8 rounded-2xl overflow-hidden flex items-center justify-center">
           <motion.div
             animate={{
@@ -42,11 +43,15 @@ function FragranceCard({
               rotate: isHovered ? 5 : 0,
             }}
             transition={{ duration: 0.3 }}
-            className={`w-full h-full flex items-center justify-center ${accentColor} bg-opacity-10`}
+            className="w-full h-full flex items-center justify-center"
           >
-            <p className="text-center px-4 text-koel-neutral-500">
-              {illustrationPlaceholder}
-            </p>
+            <Image
+              src={illustrationPath}
+              alt={`${name} illustration`}
+              width={400}
+              height={400}
+              className="w-full h-full object-contain p-8"
+            />
           </motion.div>
         </div>
 
@@ -90,16 +95,16 @@ export default function FragrancesSection() {
         "Un aroma fresco y natural inspirado en la tranquilidad de un bosque de bambú. Perfecto para quienes buscan una fragancia ligera y revitalizante que te conecte con la naturaleza.",
       bgColor: "bg-gradient-to-br from-koel-bamboo/20 to-koel-bamboo/5",
       accentColor: "text-koel-bamboo",
-      illustrationPlaceholder: "[Ilustración SVG minimalista de hojas de bambú]",
+      illustrationPath: "/images/fragrances/bamboo-whisper.svg",
     },
     {
-      name: "Ginger Grap",
+      name: "Ginger Grape",
       subtitle: "Calidez Vibrante",
       description:
         "Una fragancia cálida y especiada que evoca energía y vitalidad. Jengibre fresco combinado con notas sutiles que te acompañan durante todo el día con elegancia y distinción.",
       bgColor: "bg-gradient-to-br from-koel-ginger/20 to-koel-ginger/5",
       accentColor: "text-koel-ginger",
-      illustrationPlaceholder: "[Ilustración SVG minimalista de jengibre]",
+      illustrationPath: "/images/fragrances/ginger-grape.svg",
     },
   ];
 
