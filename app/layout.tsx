@@ -3,8 +3,17 @@ import Script from 'next/script'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'KOEL ZEN',
-  description: 'Un aroma fresco y natural inspirado en la tranquilidad de un bosque de bambú. Desodorante medioambiental para conectarte con la naturaleza.',
+  title: 'KOEL - El Primer Desodorante Recargable de Colombia',
+  description: 'Innovación y diseño premium se unen en KOEL. Recarga en segundos, cuida tu piel con ingredientes naturales y marca la diferencia. 100% colombiano.',
+  keywords: ['desodorante recargable', 'desodorante natural', 'KOEL Colombia', 'innovación sostenible', 'cuidado personal'],
+  authors: [{ name: 'KOEL' }],
+  openGraph: {
+    title: 'KOEL - El Primer Desodorante Recargable de Colombia',
+    description: 'Recarga en segundos. Diseño premium. 100% natural.',
+    type: 'website',
+    locale: 'es_CO',
+    siteName: 'KOEL',
+  },
 }
 
 export default function RootLayout({
