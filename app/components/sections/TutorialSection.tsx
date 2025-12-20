@@ -13,6 +13,35 @@ interface TutorialStepProps {
   delay: number;
 }
 
+// Compact Mobile Step Component
+function MobileStep({ number, title, icon, delay }: Omit<TutorialStepProps, 'description'>) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay }}
+      className="flex flex-col items-center relative"
+    >
+      {/* Number Badge with Icon */}
+      <div className="w-16 h-16 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-full flex items-center justify-center text-white shadow-premium mb-2">
+        <div className="text-2xl">{icon}</div>
+      </div>
+
+      {/* Step Number */}
+      <div className="absolute -top-1 -right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center text-koel-blue text-xs font-bold shadow-md border-2 border-koel-blue">
+        {number}
+      </div>
+
+      {/* Title */}
+      <h3 className="text-sm font-bold text-koel-neutral-900 text-center">
+        {title}
+      </h3>
+    </motion.div>
+  );
+}
+
+// Desktop Step Card Component
 function TutorialStep({ number, title, description, icon, delay }: TutorialStepProps) {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -25,17 +54,17 @@ function TutorialStep({ number, title, description, icon, delay }: TutorialStepP
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay }}
-      className="relative pt-6 sm:pt-0"
+      className="relative"
     >
       {/* Step Card */}
-      <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-premium hover:shadow-premium-lg transition-all duration-300">
+      <div className="bg-white rounded-3xl p-8 shadow-premium hover:shadow-premium-lg transition-all duration-300">
         {/* Number Badge */}
-        <div className="absolute top-0 left-4 sm:-top-6 sm:-left-6 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-full flex items-center justify-center text-white text-xl sm:text-2xl font-bold shadow-premium z-10">
+        <div className="absolute -top-6 -left-6 w-16 h-16 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-premium z-10">
           {number}
         </div>
 
         {/* Icon Animation Container */}
-        <div className="mb-4 sm:mb-6 flex justify-center mt-4 sm:mt-0">
+        <div className="mb-6 flex justify-center">
           <motion.div
             animate={inView ? {
               rotate: number === 1 ? [0, 360, 360] : 0,
@@ -48,19 +77,19 @@ function TutorialStep({ number, title, description, icon, delay }: TutorialStepP
               repeat: Infinity,
               repeatDelay: 3,
             }}
-            className="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-koel-blue/10 to-koel-bamboo/10 rounded-full flex items-center justify-center"
+            className="w-32 h-32 bg-gradient-to-br from-koel-blue/10 to-koel-bamboo/10 rounded-full flex items-center justify-center"
           >
-            <div className="text-koel-blue text-5xl sm:text-6xl">
+            <div className="text-koel-blue text-6xl">
               {icon}
             </div>
           </motion.div>
         </div>
 
         {/* Title & Description */}
-        <h3 className="text-xl sm:text-2xl font-bold text-koel-neutral-900 mb-2 sm:mb-3 text-center">
+        <h3 className="text-2xl font-bold text-koel-neutral-900 mb-3 text-center">
           {title}
         </h3>
-        <p className="text-sm sm:text-base text-koel-neutral-600 text-center leading-relaxed">
+        <p className="text-base text-koel-neutral-600 text-center leading-relaxed">
           {description}
         </p>
       </div>
@@ -71,7 +100,7 @@ function TutorialStep({ number, title, description, icon, delay }: TutorialStepP
           initial={{ opacity: 0, x: -20 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: delay + 0.3 }}
-          className="hidden lg:block absolute top-1/2 -right-8 transform -translate-y-1/2 text-koel-blue"
+          className="absolute top-1/2 -right-8 transform -translate-y-1/2 text-koel-blue"
         >
           <HiArrowRight className="w-8 h-8" />
         </motion.div>
@@ -111,18 +140,55 @@ export default function TutorialSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10 sm:mb-16 px-4 sm:px-0"
+          className="text-center mb-8 lg:mb-16 px-4 sm:px-0"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-koel-neutral-900 mb-3 sm:mb-4">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-koel-neutral-900 mb-2 sm:mb-4">
             Recargar es tan simple como <span className="text-gradient-koel">1, 2, 3.</span>
           </h2>
-          <p className="text-base sm:text-xl text-koel-neutral-600 max-w-3xl mx-auto">
-            Olvídate de lo complicado. En solo tres simples pasos, tu desodorante está listo de nuevo. Dale un giro, encaja y listo.
+          <p className="text-sm sm:text-xl text-koel-neutral-600 max-w-3xl mx-auto">
+            Olvídate de lo complicado. En solo tres simples pasos, tu desodorante está listo de nuevo.
           </p>
         </motion.div>
 
-        {/* Tutorial Steps */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-8 mb-10 sm:mb-12 relative px-4 sm:px-0">
+        {/* Mobile Compact Timeline - Only visible on mobile */}
+        <div className="lg:hidden mb-8 px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-koel-neutral-50 to-koel-neutral-100 rounded-2xl p-6 shadow-premium"
+          >
+            {/* Horizontal Steps */}
+            <div className="flex justify-between items-start mb-6 relative">
+              {/* Connecting Line */}
+              <div className="absolute top-8 left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-koel-blue via-koel-bamboo to-koel-blue opacity-30" />
+
+              {steps.map((step, index) => (
+                <MobileStep
+                  key={step.number}
+                  number={step.number}
+                  title={step.title}
+                  icon={step.icon}
+                  delay={index * 0.1}
+                />
+              ))}
+            </div>
+
+            {/* Combined Description */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-xs text-koel-neutral-600 text-center leading-relaxed"
+            >
+              Gira la tapa, encaja el pod y empuja hasta escuchar un clic. ¡Listo!
+            </motion.p>
+          </motion.div>
+        </div>
+
+        {/* Desktop Tutorial Steps - Hidden on mobile */}
+        <div className="hidden lg:grid lg:grid-cols-3 gap-8 mb-12 relative px-4 sm:px-0">
           {steps.map((step, index) => (
             <TutorialStep
               key={step.number}
@@ -138,7 +204,7 @@ export default function TutorialSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-gradient-to-br from-koel-neutral-100 to-koel-neutral-200 rounded-2xl sm:rounded-3xl overflow-hidden aspect-video max-w-4xl mx-4 sm:mx-auto mb-10 sm:mb-12 flex items-center justify-center"
+          className="bg-gradient-to-br from-koel-neutral-100 to-koel-neutral-200 rounded-2xl sm:rounded-3xl overflow-hidden aspect-video max-w-4xl mx-4 sm:mx-auto mb-8 sm:mb-12 flex items-center justify-center"
         >
           <div className="text-center px-4 sm:px-8">
             <p className="text-sm sm:text-base text-koel-neutral-500 mb-2 sm:mb-4">
@@ -156,9 +222,9 @@ export default function TutorialSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center mb-8 px-4 sm:px-0"
+          className="text-center mb-6 sm:mb-8 px-4 sm:px-0"
         >
-          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-koel-neutral-900 mb-6 sm:mb-8">
+          <p className="text-lg sm:text-2xl md:text-3xl font-bold text-koel-neutral-900 mb-4 sm:mb-8">
             ¡Tu KOEL siempre está contigo!
           </p>
           <Button variant="primary" size="lg">
