@@ -22,18 +22,18 @@ export default function PioneerSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16 px-4 sm:px-0"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-koel-neutral-900 mb-6">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-koel-neutral-900 mb-4 sm:mb-6">
             Ser Pionero: <span className="text-gradient-koel">Redefinir lo común</span>
           </h2>
-          <p className="text-xl text-koel-neutral-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-xl text-koel-neutral-700 max-w-3xl mx-auto leading-relaxed">
             En KOEL redefinimos lo cotidiano con innovación y estilo. Ser pionero significa romper barreras, marcar tendencias y elegir lo extraordinario en cada detalle de tu vida.
           </p>
         </motion.div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 sm:mb-12 px-4 sm:px-0">
           {galleryImages.map((image, index) => (
             <motion.div
               key={image.id}
@@ -42,10 +42,10 @@ export default function PioneerSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
-              className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-koel-neutral-200 to-koel-neutral-300 shadow-md hover:shadow-xl transition-shadow duration-300"
+              className="relative aspect-square rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-koel-neutral-200 to-koel-neutral-300 shadow-md hover:shadow-xl transition-shadow duration-300"
             >
               <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-koel-neutral-500 text-center px-4 text-sm">
+                <p className="text-koel-neutral-500 text-center px-2 sm:px-4 text-xs sm:text-sm">
                   [Foto lifestyle {index + 1}]
                 </p>
               </div>
@@ -54,22 +54,22 @@ export default function PioneerSection() {
         </div>
 
         {/* Testimonial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 mb-10 sm:mb-12 px-4 sm:px-0">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="glass rounded-3xl p-8"
+            className="glass rounded-2xl sm:rounded-3xl p-5 sm:p-8"
           >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-koel-blue to-koel-bamboo flex-shrink-0" />
+            <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-koel-blue to-koel-bamboo flex-shrink-0" />
               <div>
-                <h4 className="font-bold text-lg text-koel-neutral-900">María González</h4>
-                <p className="text-sm text-koel-neutral-600">Pionera KOEL</p>
+                <h4 className="font-bold text-base sm:text-lg text-koel-neutral-900">María González</h4>
+                <p className="text-xs sm:text-sm text-koel-neutral-600">Pionera KOEL</p>
               </div>
             </div>
-            <p className="text-koel-neutral-700 leading-relaxed italic">
+            <p className="text-sm sm:text-base text-koel-neutral-700 leading-relaxed italic">
               "Cambiar a KOEL fue una de las mejores decisiones. No solo cuido mi piel, sino que también siento que estoy haciendo algo positivo. El diseño es increíble."
             </p>
           </motion.div>
@@ -79,16 +79,16 @@ export default function PioneerSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="glass rounded-3xl p-8"
+            className="glass rounded-2xl sm:rounded-3xl p-5 sm:p-8"
           >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-koel-ginger to-koel-blue flex-shrink-0" />
+            <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-koel-ginger to-koel-blue flex-shrink-0" />
               <div>
-                <h4 className="font-bold text-lg text-koel-neutral-900">Carlos Ramírez</h4>
-                <p className="text-sm text-koel-neutral-600">Pionero KOEL</p>
+                <h4 className="font-bold text-base sm:text-lg text-koel-neutral-900">Carlos Ramírez</h4>
+                <p className="text-xs sm:text-sm text-koel-neutral-600">Pionero KOEL</p>
               </div>
             </div>
-            <p className="text-koel-neutral-700 leading-relaxed italic">
+            <p className="text-sm sm:text-base text-koel-neutral-700 leading-relaxed italic">
               "La recarga es tan fácil que no puedo creer que nadie lo haya hecho antes. KOEL es innovación pura y funcional. 100% recomendado."
             </p>
           </motion.div>
@@ -100,7 +100,7 @@ export default function PioneerSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center"
+          className="text-center px-4 sm:px-0"
         >
           <Link href="/pioneros">
             <Button variant="outline" size="lg">
@@ -115,25 +115,25 @@ export default function PioneerSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="mt-12 sm:mt-16 grid grid-cols-3 gap-4 sm:gap-8 px-4 sm:px-0"
         >
           <div className="text-center">
-            <div className="text-4xl md:text-5xl font-bold text-gradient-koel mb-2">
+            <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-gradient-koel mb-1 sm:mb-2">
               4 años
             </div>
-            <p className="text-koel-neutral-600">De investigación y desarrollo</p>
+            <p className="text-xs sm:text-base text-koel-neutral-600">De investigación y desarrollo</p>
           </div>
           <div className="text-center">
-            <div className="text-4xl md:text-5xl font-bold text-gradient-koel mb-2">
+            <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-gradient-koel mb-1 sm:mb-2">
               100%
             </div>
-            <p className="text-koel-neutral-600">Colombiano e innovador</p>
+            <p className="text-xs sm:text-base text-koel-neutral-600">Colombiano e innovador</p>
           </div>
           <div className="text-center">
-            <div className="text-4xl md:text-5xl font-bold text-gradient-koel mb-2">
+            <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-gradient-koel mb-1 sm:mb-2">
               #1
             </div>
-            <p className="text-koel-neutral-600">Desodorante recargable del país</p>
+            <p className="text-xs sm:text-base text-koel-neutral-600">Desodorante recargable del país</p>
           </div>
         </motion.div>
       </div>

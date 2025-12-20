@@ -24,32 +24,32 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, bgColor }: P
   return (
     <Card className={`${bgColor} border border-koel-neutral-200`}>
       {/* Product Image */}
-      <div className="relative w-full aspect-square mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-koel-neutral-100 to-koel-neutral-200 flex items-center justify-center">
-        <p className="text-koel-neutral-400 text-center px-4">
+      <div className="relative w-full aspect-square mb-4 sm:mb-6 rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-koel-neutral-100 to-koel-neutral-200 flex items-center justify-center">
+        <p className="text-koel-neutral-400 text-center px-4 text-sm sm:text-base">
           {imagePlaceholder}
         </p>
       </div>
 
       {/* Title */}
-      <h3 className="text-2xl font-bold text-koel-neutral-900 mb-2">
+      <h3 className="text-xl sm:text-2xl font-bold text-koel-neutral-900 mb-1 sm:mb-2">
         {title}
       </h3>
-      <p className="text-koel-neutral-600 mb-6">
+      <p className="text-sm sm:text-base text-koel-neutral-600 mb-4 sm:mb-6">
         {subtitle}
       </p>
 
       {/* Expandable Features */}
-      <div className="space-y-3">
+      <div className="space-y-2 sm:space-y-3">
         {features.map((feature, index) => (
           <div
             key={index}
-            className="border border-koel-neutral-200 rounded-xl overflow-hidden"
+            className="border border-koel-neutral-200 rounded-lg sm:rounded-xl overflow-hidden"
           >
             <button
               onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-              className="w-full flex items-center justify-between p-4 text-left hover:bg-koel-neutral-50 transition-colors duration-300"
+              className="w-full flex items-center justify-between p-3 sm:p-4 text-left hover:bg-koel-neutral-50 transition-colors duration-300"
             >
-              <span className="font-semibold text-koel-neutral-900">
+              <span className="font-semibold text-koel-neutral-900 text-sm sm:text-base">
                 {feature.title}
               </span>
               <motion.div
@@ -58,9 +58,9 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, bgColor }: P
                 className="text-koel-blue flex-shrink-0 ml-2"
               >
                 {expandedIndex === index ? (
-                  <HiX className="w-5 h-5" />
+                  <HiX className="w-4 h-4 sm:w-5 sm:h-5" />
                 ) : (
-                  <HiPlus className="w-5 h-5" />
+                  <HiPlus className="w-4 h-4 sm:w-5 sm:h-5" />
                 )}
               </motion.div>
             </button>
@@ -74,7 +74,7 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, bgColor }: P
               transition={{ duration: 0.3 }}
               className="overflow-hidden"
             >
-              <div className="px-4 pb-4 text-koel-neutral-600 leading-relaxed">
+              <div className="px-3 sm:px-4 pb-3 sm:pb-4 text-sm sm:text-base text-koel-neutral-600 leading-relaxed">
                 {feature.description}
               </div>
             </motion.div>
@@ -133,19 +133,19 @@ export default function ProductSystemSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16 px-4 sm:px-0"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-koel-neutral-900 mb-4">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-koel-neutral-900 mb-3 sm:mb-4">
             Diseño que cambia las reglas.<br />
             <span className="text-gradient-koel">Innovación que simplifica tu día.</span>
           </h2>
-          <p className="text-xl text-koel-neutral-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl text-koel-neutral-600 max-w-3xl mx-auto">
             Cada detalle de KOEL combina funcionalidad y diseño. Utiliza nuestro sistema de recarga Deodorant Case y Deodorant Pod.
           </p>
         </motion.div>
 
         {/* Product Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 px-4 sm:px-0">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
