@@ -16,8 +16,8 @@ import VideoPlayer from './components/ui/VideoPlayer';
 export default function Home() {
   return (
     <main className="min-h-screen relative">
-      {/* Fixed Full-Page Video Background */}
-      <div className="fixed inset-0 z-0">
+      {/* Fixed Full-Page Video Background - No zoom/parallax */}
+      <div className="video-background-fixed z-0">
         <VideoPlayer
           src="/hero-video.mp4"
           className="w-full h-full"
@@ -27,7 +27,7 @@ export default function Home() {
           showMuteButton={false}
           playbackRate={0.75}
         />
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-black/30 pointer-events-none" />
       </div>
 
       {/* Content Container */}
