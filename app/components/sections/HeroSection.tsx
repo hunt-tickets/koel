@@ -3,7 +3,6 @@
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import Button from '../ui/Button';
-import VideoPlayer from '../ui/VideoPlayer';
 
 export default function HeroSection() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -15,7 +14,6 @@ export default function HeroSection() {
     offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0]);
 
   useEffect(() => {
@@ -28,20 +26,6 @@ export default function HeroSection() {
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background with Parallax */}
-      <motion.div style={{ y }} className="absolute inset-0 z-0">
-        <VideoPlayer
-          src="/hero-video.mp4"
-          className="w-full h-full"
-          autoPlay
-          loop
-          muted
-          showMuteButton={false}
-          playbackRate={0.75}
-        />
-        <div className="video-overlay" />
-      </motion.div>
-
       {/* Content with Parallax Opacity */}
       <motion.div style={{ opacity }} className="relative z-10 section-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
