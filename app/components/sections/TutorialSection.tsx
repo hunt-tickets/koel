@@ -13,8 +13,78 @@ interface TutorialStepProps {
   delay: number;
 }
 
+// Animated Mobile Icons
+function RotateIcon() {
+  return (
+    <motion.svg
+      animate={{ rotate: 360 }}
+      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M21 12a9 9 0 1 1-9-9" />
+      <polyline points="21 3 21 9 15 9" />
+    </motion.svg>
+  );
+}
+
+function InsertIcon() {
+  return (
+    <motion.svg
+      animate={{ y: [0, 4, 0] }}
+      transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="12" y1="5" x2="12" y2="19" />
+      <polyline points="19 12 12 19 5 12" />
+    </motion.svg>
+  );
+}
+
+function ClickIcon() {
+  return (
+    <motion.svg
+      animate={{ scale: [1, 0.85, 1] }}
+      transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="8 12 11 15 16 9" />
+    </motion.svg>
+  );
+}
+
 // Compact Mobile Step Component
-function MobileStep({ number, title, icon, delay }: Omit<TutorialStepProps, 'description'>) {
+function MobileStep({ number, title, delay }: Omit<TutorialStepProps, 'description' | 'icon'> & { icon?: React.ReactNode }) {
+  const getMobileIcon = () => {
+    switch (number) {
+      case 1: return <RotateIcon />;
+      case 2: return <InsertIcon />;
+      case 3: return <ClickIcon />;
+      default: return null;
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -23,9 +93,9 @@ function MobileStep({ number, title, icon, delay }: Omit<TutorialStepProps, 'des
       transition={{ duration: 0.4, delay }}
       className="flex flex-col items-center relative"
     >
-      {/* Number Badge with Icon */}
+      {/* Number Badge with Animated Icon */}
       <div className="w-16 h-16 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-full flex items-center justify-center text-white shadow-premium mb-2">
-        <div className="text-2xl">{icon}</div>
+        {getMobileIcon()}
       </div>
 
       {/* Step Number */}
