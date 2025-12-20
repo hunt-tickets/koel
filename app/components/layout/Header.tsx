@@ -50,7 +50,9 @@ export default function Header() {
                   src="/logo.png"
                   alt="KOEL Logo"
                   fill
-                  className="object-contain"
+                  className={`object-contain transition-all duration-300 ${
+                    isScrolled ? 'brightness-0 invert' : ''
+                  }`}
                   priority
                 />
               </motion.div>
