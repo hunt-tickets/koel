@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Sparkles, Shield, Leaf, Gem, CalendarRange, RotateCw, Flower2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { Sparkles, Shield, Leaf, Gem, CalendarRange, RotateCw, Flower2, ChevronDown } from 'lucide-react';
 import TiltCard from '../ui/TiltCard';
 import { MagneticPrimaryButton } from '../ui/MagneticButton';
 import { MaskText } from '../ui/TextReveal';
@@ -22,6 +23,8 @@ interface ProductCardProps {
 }
 
 function ProductCard({ title, subtitle, imagePlaceholder, features, price, accentColor }: ProductCardProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <TiltCard
       tiltStrength={6}
@@ -71,65 +74,85 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
       >
         {title}
       </motion.h3>
-      <p className="text-base sm:text-lg text-koel-neutral-600 mb-8 sm:mb-10">
+      <p className="text-base sm:text-lg text-koel-neutral-600 mb-6 sm:mb-8">
         {subtitle}
       </p>
 
-      {/* Features Grid with staggered animation */}
-      <div className="grid grid-cols-1 gap-5 sm:gap-6 mb-8 sm:mb-12 flex-1">
-        {features.map((feature, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-            whileHover={{ x: 5 }}
-            className="flex items-start gap-4 sm:gap-5 group cursor-default"
-          >
-            {/* Icon with hover scale */}
-            <motion.div
-              whileHover={{ scale: 1.15, rotate: 5 }}
-              transition={{ duration: 0.2 }}
-              className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-koel-blue/10 to-koel-bamboo/10 rounded-xl sm:rounded-2xl flex items-center justify-center text-koel-blue"
-            >
-              {feature.icon}
-            </motion.div>
+      {/* Expandir/Colapsar Button */}
+      <motion.button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="flex items-center gap-2 text-koel-aqua hover:text-koel-teal transition-colors mb-6 group"
+        whileHover={{ x: 5 }}
+      >
+        <span className="text-sm sm:text-base font-medium">
+          {isExpanded ? 'Ocultar detalles' : 'Ver detalles del producto'}
+        </span>
+        <motion.div
+          animate={{ rotate: isExpanded ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <ChevronDown className="w-5 h-5" strokeWidth={2} />
+        </motion.div>
+      </motion.button>
 
-            {/* Content */}
-            <div className="flex-1 pt-1">
-              <h4 className="text-base sm:text-lg font-semibold text-koel-neutral-900 mb-1.5 group-hover:text-koel-blue transition-colors">
-                {feature.title}
-              </h4>
-              <p className="text-sm sm:text-base text-koel-neutral-600 leading-relaxed">
-                {feature.description}
-              </p>
+      {/* Features Grid - Expandible */}
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <div className="grid grid-cols-1 gap-5 sm:gap-6 mb-8 pb-8 border-b border-koel-neutral-200">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  whileHover={{ x: 5 }}
+                  className="flex items-start gap-4 sm:gap-5 group cursor-default"
+                >
+                  {/* Icon with hover scale */}
+                  <motion.div
+                    whileHover={{ scale: 1.15, rotate: 5 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-koel-aqua/10 to-koel-olive/10 rounded-xl sm:rounded-2xl flex items-center justify-center text-koel-aqua"
+                  >
+                    {feature.icon}
+                  </motion.div>
+
+                  {/* Content */}
+                  <div className="flex-1 pt-1">
+                    <h4 className="text-base sm:text-lg font-semibold text-koel-neutral-900 mb-1.5 group-hover:text-koel-aqua transition-colors">
+                      {feature.title}
+                    </h4>
+                    <p className="text-sm sm:text-base text-koel-neutral-600 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
-        ))}
-      </div>
+        )}
+      </AnimatePresence>
 
-      {/* Price and Buy Button */}
-      <div className="mt-auto border-t border-koel-neutral-200 pt-8">
-        <div className="flex items-center justify-between gap-4 mb-5">
-          <div>
-            <p className="text-sm sm:text-base text-koel-neutral-600 mb-1">Precio</p>
-            <motion.p
-              className="text-3xl sm:text-4xl font-bold font-display tracking-wide text-koel-neutral-900"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              {price}
-            </motion.p>
-          </div>
-        </div>
+      {/* Buy Button with Price */}
+      <div className="mt-auto pt-6">
         <MagneticPrimaryButton
           variant="primary"
           size="lg"
           className="w-full justify-center"
           strength={0.15}
         >
-          Comprar ahora
+          <span className="flex items-center gap-3">
+            <span>Comprar ahora</span>
+            <span className="text-lg sm:text-xl font-bold">·</span>
+            <span className="font-bold">{price}</span>
+          </span>
         </MagneticPrimaryButton>
       </div>
     </TiltCard>
