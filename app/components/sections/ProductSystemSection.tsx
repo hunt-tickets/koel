@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { useState, useRef } from 'react';
 import { Sparkles, Shield, Leaf, Gem, CalendarRange, RotateCw, Flower2, ChevronDown } from 'lucide-react';
 import { MagneticPrimaryButton } from '../ui/MagneticButton';
 import { MaskText } from '../ui/TextReveal';
@@ -150,6 +150,18 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
 }
 
 export default function ProductSystemSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Transform vertical scroll to horizontal movement
+  const x = useTransform(scrollYProgress, [0, 1], ["5%", "-55%"]);
+
+  // Progress bar
+  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   const caseFeatures: ProductFeature[] = [
     {
       icon: <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
@@ -197,56 +209,71 @@ export default function ProductSystemSection() {
   ];
 
   return (
-    <section id="producto" className="section-container bg-koel-neutral-50 overflow-hidden">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header with reveal animation */}
-        <div className="text-center mb-16 sm:mb-24 lg:mb-32">
-          <MaskText delay={0.1}>
-            <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-koel-neutral-500 mb-4 sm:mb-6 font-light">
-              Nuestro sistema
+    <section
+      ref={containerRef}
+      id="producto"
+      className="relative bg-koel-neutral-50"
+    >
+      {/* Sticky container for horizontal scroll effect */}
+      <div className="h-[200vh]">
+        <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
+          {/* Section Header - Fixed */}
+          <div className="px-6 sm:px-8 md:px-16 lg:px-20 pt-16 sm:pt-20 pb-8 sm:pb-12">
+            <div className="max-w-6xl mx-auto">
+              <MaskText delay={0.1}>
+                <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-koel-neutral-500 mb-4 sm:mb-6 font-light text-center">
+                  Nuestro sistema
+                </p>
+              </MaskText>
+
+              <MaskText delay={0.2}>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-display tracking-wide text-koel-neutral-900 mb-4 sm:mb-6 text-center">
+                  Diseño que cambia las reglas.
+                </h2>
+              </MaskText>
+            </div>
+          </div>
+
+          {/* Horizontal Scrolling Cards */}
+          <motion.div
+            style={{ x }}
+            className="flex gap-8 sm:gap-12 lg:gap-16 px-6 sm:px-8 lg:px-20 py-8"
+          >
+            <div className="w-[85vw] sm:w-[70vw] lg:w-[45vw] xl:w-[40vw] flex-shrink-0">
+              <ProductCard
+                title="Deodorant Case"
+                subtitle="Tu compañero duradero"
+                imagePlaceholder="[Render 3D del Case azul claro]"
+                features={caseFeatures}
+                price="$35,000"
+                accentColor="bg-gradient-to-br from-koel-blue/30 to-koel-bamboo/30"
+              />
+            </div>
+
+            <div className="w-[85vw] sm:w-[70vw] lg:w-[45vw] xl:w-[40vw] flex-shrink-0">
+              <ProductCard
+                title="Deodorant Pod"
+                subtitle="Recarga biodegradable"
+                imagePlaceholder="[Render del Pod con cartón biodegradable]"
+                features={podFeatures}
+                price="$15,000"
+                accentColor="bg-gradient-to-br from-koel-bamboo/30 to-koel-ginger/30"
+              />
+            </div>
+          </motion.div>
+
+          {/* Progress Bar */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-48 sm:w-64">
+            <div className="h-1 bg-koel-neutral-200 rounded-full overflow-hidden">
+              <motion.div
+                style={{ width: progressWidth }}
+                className="h-full bg-gradient-to-r from-koel-blue to-koel-bamboo"
+              />
+            </div>
+            <p className="text-center text-xs text-koel-neutral-500 mt-2 tracking-wider uppercase">
+              Desliza para explorar
             </p>
-          </MaskText>
-
-          <MaskText delay={0.2}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-display tracking-wide text-koel-neutral-900">
-              Diseño que cambia las reglas.
-            </h2>
-          </MaskText>
-        </div>
-
-        {/* Product Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <ProductCard
-              title="Deodorant Case"
-              subtitle="Tu compañero duradero"
-              imagePlaceholder="[Render 3D del Case azul claro]"
-              features={caseFeatures}
-              price="$35,000"
-              accentColor="bg-gradient-to-br from-koel-blue/30 to-koel-bamboo/30"
-            />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <ProductCard
-              title="Deodorant Pod"
-              subtitle="Recarga biodegradable"
-              imagePlaceholder="[Render del Pod con cartón biodegradable]"
-              features={podFeatures}
-              price="$15,000"
-              accentColor="bg-gradient-to-br from-koel-bamboo/30 to-koel-ginger/30"
-            />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
