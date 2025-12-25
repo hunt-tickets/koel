@@ -218,26 +218,10 @@ export default function ProductSystemSection() {
           </MaskText>
 
           <MaskText delay={0.2}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-display tracking-wide text-koel-neutral-900 mb-4 sm:mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-display tracking-wide text-koel-neutral-900">
               Diseño que cambia las reglas.
             </h2>
           </MaskText>
-
-          <MaskText delay={0.3}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-display tracking-wide mb-6 sm:mb-8">
-              <span className="text-gradient-koel">Innovación que simplifica tu día.</span>
-            </h2>
-          </MaskText>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg sm:text-xl lg:text-2xl text-koel-neutral-600 max-w-4xl mx-auto leading-relaxed"
-          >
-            Cada detalle de KOEL combina funcionalidad y diseño. Utiliza nuestro sistema de recarga Deodorant Case y Deodorant Pod.
-          </motion.p>
         </div>
 
         {/* Product Cards Grid */}
