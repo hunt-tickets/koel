@@ -62,22 +62,6 @@ export default function Footer() {
             <ul className="space-y-2 sm:space-y-3">
               <li>
                 <Link
-                  href="/pioneros"
-                  className="text-xs sm:text-base text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
-                >
-                  Nuestra historia
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/pioneros#movimiento"
-                  className="text-xs sm:text-base text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
-                >
-                  Ser pionero
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/contacto"
                   className="text-xs sm:text-base text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
                 >

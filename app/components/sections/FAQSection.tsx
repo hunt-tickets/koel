@@ -39,7 +39,7 @@ export default function FAQSection() {
     },
     {
       question: "¿KOEL tendrá más productos en el futuro?",
-      answer: "¡Sí! Estamos planeando llevar nuestra revolución recargable a otras áreas del aseo personal. Queremos ofrecer más opciones sostenibles y prácticas que simplifiquen tu rutina diaria. Únete a nuestra comunidad de pioneros para conocer todas las novedades primero."
+      answer: "¡Sí! Estamos planeando llevar nuestra revolución recargable a otras áreas del aseo personal. Queremos ofrecer más opciones sostenibles y prácticas que simplifiquen tu rutina diaria. Únete a nuestra comunidad para conocer todas las novedades primero."
     },
   ];
 

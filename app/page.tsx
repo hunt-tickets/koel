@@ -7,7 +7,6 @@ import {
   TutorialSection,
   FragrancesSection,
   ValuePropositionSection,
-  PioneerSection,
   EmailCaptureSection,
   FAQSection,
 } from './components/sections';
@@ -49,9 +48,6 @@ export default function Home() {
 
         {/* Value Proposition Section */}
         <ValuePropositionSection />
-
-        {/* Pioneer Section */}
-        <PioneerSection />
 
         {/* Email Capture Section */}
         <EmailCaptureSection />

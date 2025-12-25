@@ -22,7 +22,6 @@ export default function Header() {
 
   const navLinks = [
     { href: '/', label: 'Shop' },
-    { href: '/pioneros', label: 'Pioneros' },
     { href: '/#faq', label: 'FAQ' },
   ];
 
