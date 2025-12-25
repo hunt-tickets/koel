@@ -44,6 +44,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Lexend", "system-ui", "sans-serif"],
+        display: ["Bebas Neue", "Arial", "sans-serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

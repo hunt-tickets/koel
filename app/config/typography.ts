@@ -11,20 +11,20 @@
 export const typography = {
   // Fuentes principales
   fonts: {
-    // Fuente para títulos (h1, h2, h3)
-    heading: 'Lexend',
-    // Fuente para el cuerpo del texto
+    // Fuente para títulos (h1, h2, h3) - Alta y delgada
+    heading: 'Bebas Neue',
+    // Fuente para el cuerpo del texto - Limpia y legible
     body: 'Lexend',
   },
 
   // Clases de Tailwind para títulos
   headingClasses: {
-    h1: 'font-sans font-bold',
-    h2: 'font-sans font-bold',
-    h3: 'font-sans font-bold',
-    h4: 'font-sans font-semibold',
-    h5: 'font-sans font-semibold',
-    h6: 'font-sans font-medium',
+    h1: 'font-display font-normal tracking-wide',
+    h2: 'font-display font-normal tracking-wide',
+    h3: 'font-display font-normal tracking-wide',
+    h4: 'font-display font-normal tracking-normal',
+    h5: 'font-display font-normal tracking-normal',
+    h6: 'font-display font-normal tracking-normal',
   },
 
   // Clases de Tailwind para texto
