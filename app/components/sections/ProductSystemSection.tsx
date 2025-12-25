@@ -3,7 +3,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { Sparkles, Shield, Leaf, Gem, CalendarRange, RotateCw, Flower2, ChevronDown } from 'lucide-react';
-import TiltCard from '../ui/TiltCard';
 import { MagneticPrimaryButton } from '../ui/MagneticButton';
 import { MaskText } from '../ui/TextReveal';
 
@@ -24,13 +23,13 @@ interface ProductCardProps {
 
 function ProductCard({ title, subtitle, imagePlaceholder, features, price, accentColor }: ProductCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <TiltCard
-      tiltStrength={6}
-      scaleOnHover={1.01}
-      glareEnabled={true}
-      className="bg-white border border-koel-neutral-200 rounded-3xl lg:rounded-[2rem] p-8 sm:p-10 lg:p-12 h-full flex flex-col shadow-premium"
+    <motion.div
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      className="bg-white border border-koel-neutral-200 rounded-3xl lg:rounded-[2rem] p-8 sm:p-10 lg:p-12 flex flex-col shadow-premium w-full"
     >
       {/* Product Image */}
       <div className="relative w-full aspect-square mb-8 sm:mb-10 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-koel-neutral-50 to-koel-neutral-100 flex items-center justify-center p-10 border border-koel-neutral-200">
@@ -68,9 +67,9 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
 
       {/* Title with hover effect */}
       <motion.h3
+        animate={{ x: isHovered ? 5 : 0 }}
+        transition={{ duration: 0.3 }}
         className="text-2xl sm:text-3xl font-bold text-koel-neutral-900 mb-2 sm:mb-3"
-        whileHover={{ x: 5 }}
-        transition={{ duration: 0.2 }}
       >
         {title}
       </motion.h3>
@@ -79,10 +78,9 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
       </p>
 
       {/* Expandir/Colapsar Button */}
-      <motion.button
+      <button
         onClick={() => setIsExpanded(!isExpanded)}
         className="flex items-center gap-2 text-koel-aqua hover:text-koel-teal transition-colors mb-6 group"
-        whileHover={{ x: 5 }}
       >
         <span className="text-sm sm:text-base font-medium">
           {isExpanded ? 'Ocultar detalles' : 'Ver detalles del producto'}
@@ -93,47 +91,39 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
         >
           <ChevronDown className="w-5 h-5" strokeWidth={2} />
         </motion.div>
-      </motion.button>
+      </button>
 
       {/* Features Grid - Expandible */}
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {isExpanded && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
             className="overflow-hidden"
           >
             <div className="grid grid-cols-1 gap-5 sm:gap-6 mb-8 pb-8 border-b border-koel-neutral-200">
               {features.map((feature, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  whileHover={{ x: 5 }}
                   className="flex items-start gap-4 sm:gap-5 group cursor-default"
                 >
-                  {/* Icon with hover scale */}
-                  <motion.div
-                    whileHover={{ scale: 1.15, rotate: 5 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-koel-aqua/10 to-koel-olive/10 rounded-xl sm:rounded-2xl flex items-center justify-center text-koel-aqua"
-                  >
+                  {/* Icon */}
+                  <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-koel-aqua/10 to-koel-olive/10 rounded-xl sm:rounded-2xl flex items-center justify-center text-koel-aqua">
                     {feature.icon}
-                  </motion.div>
+                  </div>
 
                   {/* Content */}
                   <div className="flex-1 pt-1">
-                    <h4 className="text-base sm:text-lg font-semibold text-koel-neutral-900 mb-1.5 group-hover:text-koel-aqua transition-colors">
+                    <h4 className="text-base sm:text-lg font-semibold text-koel-neutral-900 mb-1.5">
                       {feature.title}
                     </h4>
                     <p className="text-sm sm:text-base text-koel-neutral-600 leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </motion.div>
@@ -141,7 +131,7 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
       </AnimatePresence>
 
       {/* Buy Button with Price */}
-      <div className="mt-auto pt-6">
+      <div className="pt-6">
         <MagneticPrimaryButton
           variant="primary"
           size="lg"
@@ -155,7 +145,7 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
           </span>
         </MagneticPrimaryButton>
       </div>
-    </TiltCard>
+    </motion.div>
   );
 }
 
