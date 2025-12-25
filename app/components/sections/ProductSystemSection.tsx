@@ -217,57 +217,55 @@ export default function ProductSystemSection() {
       className="relative bg-koel-neutral-50"
     >
       {/* Sticky container for horizontal scroll effect */}
-      <div className="h-[250vh] md:h-[200vh]">
-        <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
+      <div className="h-[300vh]">
+        <div className="sticky top-0 h-screen overflow-visible flex flex-col justify-center py-12 md:py-16">
           {/* Section Header - Fixed */}
-          <div className="px-6 sm:px-8 md:px-16 lg:px-20 pt-8 sm:pt-12 md:pt-16 pb-4 sm:pb-6 md:pb-8 flex-shrink-0">
+          <div className="px-6 sm:px-8 md:px-16 lg:px-20 pb-8 sm:pb-12">
             <div className="max-w-6xl mx-auto">
               <MaskText delay={0.1}>
-                <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-koel-neutral-500 mb-2 sm:mb-4 font-light text-center">
+                <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-koel-neutral-500 mb-4 sm:mb-6 font-light text-center">
                   Nuestro sistema
                 </p>
               </MaskText>
 
               <MaskText delay={0.2}>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal font-display tracking-wide text-koel-neutral-900 text-center">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-display tracking-wide text-koel-neutral-900 mb-4 sm:mb-6 text-center">
                   Diseño que cambia las reglas.
                 </h2>
               </MaskText>
             </div>
           </div>
 
-          {/* Horizontal Scrolling Cards - Contenedor scrollable */}
-          <div className="flex-1 flex items-center overflow-hidden">
-            <motion.div
-              style={{ x }}
-              className="flex gap-6 sm:gap-8 md:gap-12 lg:gap-16 px-6 sm:px-8 lg:px-20 py-4 md:py-8 h-full items-center"
-            >
-              <div className="w-[85vw] sm:w-[75vw] md:w-[70vw] lg:w-[45vw] xl:w-[40vw] flex-shrink-0 h-[calc(100vh-16rem)] sm:h-[calc(100vh-18rem)] md:h-auto md:max-h-[70vh] overflow-y-auto">
-                <ProductCard
-                  title="Deodorant Case"
-                  subtitle="Tu compañero duradero"
-                  imagePlaceholder="[Render 3D del Case azul claro]"
-                  features={caseFeatures}
-                  price="$35,000"
-                  accentColor="bg-gradient-to-br from-koel-blue/30 to-koel-bamboo/30"
-                />
-              </div>
+          {/* Horizontal Scrolling Cards */}
+          <motion.div
+            style={{ x }}
+            className="flex gap-8 sm:gap-12 lg:gap-16 px-6 sm:px-8 lg:px-20 py-8"
+          >
+            <div className="w-[85vw] sm:w-[70vw] lg:w-[45vw] xl:w-[40vw] flex-shrink-0">
+              <ProductCard
+                title="Deodorant Case"
+                subtitle="Tu compañero duradero"
+                imagePlaceholder="[Render 3D del Case azul claro]"
+                features={caseFeatures}
+                price="$35,000"
+                accentColor="bg-gradient-to-br from-koel-blue/30 to-koel-bamboo/30"
+              />
+            </div>
 
-              <div className="w-[85vw] sm:w-[75vw] md:w-[70vw] lg:w-[45vw] xl:w-[40vw] flex-shrink-0 h-[calc(100vh-16rem)] sm:h-[calc(100vh-18rem)] md:h-auto md:max-h-[70vh] overflow-y-auto">
-                <ProductCard
-                  title="Deodorant Pod"
-                  subtitle="Recarga biodegradable"
-                  imagePlaceholder="[Render del Pod con cartón biodegradable]"
-                  features={podFeatures}
-                  price="$15,000"
-                  accentColor="bg-gradient-to-br from-koel-bamboo/30 to-koel-ginger/30"
-                />
-              </div>
-            </motion.div>
-          </div>
+            <div className="w-[85vw] sm:w-[70vw] lg:w-[45vw] xl:w-[40vw] flex-shrink-0">
+              <ProductCard
+                title="Deodorant Pod"
+                subtitle="Recarga biodegradable"
+                imagePlaceholder="[Render del Pod con cartón biodegradable]"
+                features={podFeatures}
+                price="$15,000"
+                accentColor="bg-gradient-to-br from-koel-bamboo/30 to-koel-ginger/30"
+              />
+            </div>
+          </motion.div>
 
           {/* Progress Bar */}
-          <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 w-48 sm:w-64 flex-shrink-0">
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-48 sm:w-64">
             <div className="h-1 bg-koel-neutral-200 rounded-full overflow-hidden">
               <motion.div
                 style={{ width: progressWidth }}
