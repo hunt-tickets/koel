@@ -80,46 +80,46 @@ export default function ProductSystemSection() {
   const caseFeatures: ProductFeature[] = [
     {
       icon: <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
-      title: "Diseño limpio y ergonómico",
-      description: "Perfecto para el hogar y viajes, su tamaño compacto y elegante se adapta a tu estilo."
+      title: "Diseño ergonómico",
+      description: "Compacto y elegante para cualquier lugar."
     },
     {
       icon: <Shield className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
-      title: "Fabricado para durar",
-      description: "Materiales de alta resistencia que aseguran funcionalidad y durabilidad en cualquier situación."
+      title: "Duradero",
+      description: "Materiales de alta resistencia."
     },
     {
       icon: <Leaf className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
-      title: "Elimina los plásticos de un solo uso",
-      description: "Una solución innovadora para cuidar el futuro sin comprometer el presente."
+      title: "Cero plástico",
+      description: "Elimina desechables de un solo uso."
     },
     {
       icon: <Gem className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
-      title: "Materiales premium",
-      description: "Construcción de alta calidad con acabados sofisticados que reflejan tu estilo de vida consciente."
+      title: "Premium",
+      description: "Acabados de alta calidad."
     }
   ];
 
   const podFeatures: ProductFeature[] = [
     {
       icon: <Leaf className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
-      title: "Cartón biodegradable",
-      description: "Una opción natural y responsable para el cuidado diario."
+      title: "Biodegradable",
+      description: "Cartón 100% natural."
     },
     {
       icon: <CalendarRange className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
-      title: "Práctico",
-      description: "Cada recarga dura de 1 a 2 meses, adaptándose a tus necesidades."
+      title: "Larga duración",
+      description: "1 a 2 meses por recarga."
     },
     {
       icon: <RotateCw className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
-      title: "Fácil de reemplazar",
-      description: "Pensado para que cualquier usuario pueda cambiarlo sin esfuerzo."
+      title: "Fácil recarga",
+      description: "Cambio sin esfuerzo en segundos."
     },
     {
       icon: <Flower2 className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
-      title: "Dos fragancias exclusivas",
-      description: "Bamboo Whisper y Ginger Grape - Opciones diseñadas para elevar tu experiencia con aromas frescos y cautivadores."
+      title: "Dos fragancias",
+      description: "Bamboo Whisper y Ginger Grape."
     }
   ];
 
