@@ -1,11 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
-import { Plus, X } from 'lucide-react';
+import { Sparkles, Shield, Leaf, Gem, CalendarRange, RotateCw, Flower2 } from 'lucide-react';
 import Card from '../ui/Card';
 
 interface ProductFeature {
+  icon: React.ReactNode;
   title: string;
   description: string;
 }
@@ -19,8 +19,6 @@ interface ProductCardProps {
 }
 
 function ProductCard({ title, subtitle, imagePlaceholder, features, bgColor }: ProductCardProps) {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-
   return (
     <Card className={`${bgColor} border border-koel-neutral-200`}>
       {/* Product Image */}
@@ -42,51 +40,36 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, bgColor }: P
       <h3 className="text-xl sm:text-2xl font-bold text-koel-neutral-900 mb-1 sm:mb-2">
         {title}
       </h3>
-      <p className="text-sm sm:text-base text-koel-neutral-600 mb-4 sm:mb-6">
+      <p className="text-sm sm:text-base text-koel-neutral-600 mb-6 sm:mb-8">
         {subtitle}
       </p>
 
-      {/* Expandable Features */}
-      <div className="space-y-2 sm:space-y-3">
+      {/* Features Grid - Minimalista con iconos */}
+      <div className="grid grid-cols-1 gap-4 sm:gap-5">
         {features.map((feature, index) => (
-          <div
+          <motion.div
             key={index}
-            className="border border-koel-neutral-200 rounded-lg sm:rounded-xl overflow-hidden"
+            initial={{ opacity: 0, x: -10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+            className="flex items-start gap-3 sm:gap-4 group"
           >
-            <button
-              onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-              className="w-full flex items-center justify-between p-3 sm:p-4 text-left hover:bg-koel-neutral-50 transition-colors duration-300"
-            >
-              <span className="font-semibold text-koel-neutral-900 text-sm sm:text-base">
-                {feature.title}
-              </span>
-              <motion.div
-                animate={{ rotate: expandedIndex === index ? 45 : 0 }}
-                transition={{ duration: 0.3 }}
-                className="text-koel-blue flex-shrink-0 ml-2"
-              >
-                {expandedIndex === index ? (
-                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
-                ) : (
-                  <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
-                )}
-              </motion.div>
-            </button>
+            {/* Icon */}
+            <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-koel-blue/10 to-koel-bamboo/10 rounded-xl sm:rounded-2xl flex items-center justify-center text-koel-blue group-hover:scale-110 transition-transform duration-300">
+              {feature.icon}
+            </div>
 
-            <motion.div
-              initial={false}
-              animate={{
-                height: expandedIndex === index ? 'auto' : 0,
-                opacity: expandedIndex === index ? 1 : 0,
-              }}
-              transition={{ duration: 0.3 }}
-              className="overflow-hidden"
-            >
-              <div className="px-3 sm:px-4 pb-3 sm:pb-4 text-sm sm:text-base text-koel-neutral-600 leading-relaxed">
+            {/* Content */}
+            <div className="flex-1 pt-1">
+              <h4 className="text-sm sm:text-base font-semibold text-koel-neutral-900 mb-1">
+                {feature.title}
+              </h4>
+              <p className="text-xs sm:text-sm text-koel-neutral-600 leading-relaxed">
                 {feature.description}
-              </div>
-            </motion.div>
-          </div>
+              </p>
+            </div>
+          </motion.div>
         ))}
       </div>
     </Card>
@@ -96,18 +79,22 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, bgColor }: P
 export default function ProductSystemSection() {
   const caseFeatures: ProductFeature[] = [
     {
+      icon: <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
       title: "Diseño limpio y ergonómico",
       description: "Perfecto para el hogar y viajes, su tamaño compacto y elegante se adapta a tu estilo."
     },
     {
+      icon: <Shield className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
       title: "Fabricado para durar",
       description: "Materiales de alta resistencia que aseguran funcionalidad y durabilidad en cualquier situación."
     },
     {
+      icon: <Leaf className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
       title: "Elimina los plásticos de un solo uso",
-      description: "Una solución pionera para cuidar el futuro sin comprometer el presente."
+      description: "Una solución innovadora para cuidar el futuro sin comprometer el presente."
     },
     {
+      icon: <Gem className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
       title: "Materiales premium",
       description: "Construcción de alta calidad con acabados sofisticados que reflejan tu estilo de vida consciente."
     }
@@ -115,20 +102,24 @@ export default function ProductSystemSection() {
 
   const podFeatures: ProductFeature[] = [
     {
+      icon: <Leaf className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
       title: "Cartón biodegradable",
       description: "Una opción natural y responsable para el cuidado diario."
     },
     {
+      icon: <CalendarRange className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
       title: "Práctico",
       description: "Cada recarga dura de 1 a 2 meses, adaptándose a tus necesidades."
     },
     {
+      icon: <RotateCw className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
       title: "Fácil de reemplazar",
       description: "Pensado para que cualquier usuario pueda cambiarlo sin esfuerzo."
     },
     {
+      icon: <Flower2 className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
       title: "Dos fragancias exclusivas",
-      description: "Bamboo Whisper y Ginger Grap - Opciones diseñadas para elevar tu experiencia con aromas frescos y cautivadores."
+      description: "Bamboo Whisper y Ginger Grape - Opciones diseñadas para elevar tu experiencia con aromas frescos y cautivadores."
     }
   ];
 
