@@ -2,9 +2,7 @@
 
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
-import { MagneticPrimaryButton } from '../ui/MagneticButton';
 import { MaskText, StaggerText } from '../ui/TextReveal';
-import ScrollIndicator from '../ui/ScrollIndicator';
 
 export default function HeroSection() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -54,15 +52,6 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 xl:gap-28 items-center">
           {/* Left: Animated Text with Premium Reveals */}
           <div className="text-white text-center lg:text-left order-2 lg:order-1">
-            {/* Small Label */}
-            <MaskText delay={0.2}>
-              <motion.p
-                className="text-xs sm:text-sm tracking-[0.3em] uppercase text-white/60 mb-6 sm:mb-8 font-light"
-              >
-                El primer desodorante recargable de Colombia
-              </motion.p>
-            </MaskText>
-
             {/* Main Headline with Animated Word */}
             <div className="mb-8 md:mb-12 overflow-hidden">
               <MaskText delay={0.4}>
@@ -90,38 +79,11 @@ export default function HeroSection() {
 
             {/* Subheadline */}
             <MaskText delay={0.6}>
-              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/80 mb-10 md:mb-14 font-light leading-relaxed tracking-wide">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/80 font-light leading-relaxed tracking-wide">
                 El desodorante que cambia las reglas.<br />
                 <span className="text-white/60">Simple. Elegante. Diferente.</span>
               </p>
             </MaskText>
-
-            {/* CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex items-center justify-center lg:justify-start"
-            >
-              <MagneticPrimaryButton
-                variant="primary"
-                size="lg"
-                onClick={() => {
-                  document.getElementById('producto')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                strength={0.2}
-              >
-                <span className="flex items-center gap-3">
-                  Pre-order now
-                  <motion.span
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    →
-                  </motion.span>
-                </span>
-              </MagneticPrimaryButton>
-            </motion.div>
           </div>
 
           {/* Right: Product with Enhanced Parallax */}
@@ -239,11 +201,6 @@ export default function HeroSection() {
           </motion.div>
         </div>
       </motion.div>
-
-      {/* Premium Scroll Indicator */}
-      <div className="absolute bottom-10 sm:bottom-16 left-1/2 transform -translate-x-1/2 z-10">
-        <ScrollIndicator variant="line" />
-      </div>
 
       {/* Decorative Elements */}
       <motion.div
