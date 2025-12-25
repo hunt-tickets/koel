@@ -96,12 +96,12 @@ export default function HeroSection() {
               </p>
             </MaskText>
 
-            {/* CTA and Price */}
+            {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 justify-center lg:justify-start"
+              className="flex items-center justify-center lg:justify-start"
             >
               <MagneticPrimaryButton
                 variant="primary"
@@ -121,43 +121,6 @@ export default function HeroSection() {
                   </motion.span>
                 </span>
               </MagneticPrimaryButton>
-
-              {/* Price Badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 1 }}
-                className="flex items-center gap-3"
-              >
-                <div className="w-px h-8 bg-white/30 hidden sm:block" />
-                <div className="text-center sm:text-left">
-                  <span className="text-xs text-white/50 uppercase tracking-wider block">Desde</span>
-                  <span className="text-2xl sm:text-3xl font-normal font-display tracking-wide text-white">
-                    $35,000
-                  </span>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* Trust Badges */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
-              className="mt-10 sm:mt-14 flex flex-wrap items-center gap-4 sm:gap-6 justify-center lg:justify-start text-white/50 text-xs sm:text-sm"
-            >
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-koel-bamboo rounded-full" />
-                100% Natural
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-koel-blue rounded-full" />
-                Recarga en segundos
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-koel-ginger rounded-full" />
-                Hecho en Colombia
-              </span>
             </motion.div>
           </div>
 
