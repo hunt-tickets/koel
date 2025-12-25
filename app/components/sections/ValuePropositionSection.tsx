@@ -124,17 +124,25 @@ export default function ValuePropositionSection() {
             transition={{ duration: 0.8 }}
             className="relative order-1 lg:order-2"
           >
-            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-premium-lg max-w-sm mx-auto lg:max-w-none">
+            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-premium-lg max-w-sm mx-auto lg:max-w-none border-2 border-koel-neutral-300">
               {/* Video Placeholder */}
-              <div className="aspect-[3/4] sm:aspect-[9/16] bg-gradient-to-br from-koel-neutral-200 to-koel-neutral-300 flex items-center justify-center">
-                <div className="text-center px-4 sm:px-8">
-                  <p className="text-sm sm:text-base text-koel-neutral-600 mb-2 sm:mb-4">
-                    [Placeholder para video premium]
+              <div className="aspect-[3/4] sm:aspect-[9/16] bg-gradient-to-br from-koel-neutral-200 to-koel-neutral-300 flex items-center justify-center relative">
+                {/* Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    className="w-14 h-14 sm:w-16 sm:h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg cursor-pointer"
+                  >
+                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-koel-blue border-b-[6px] border-b-transparent ml-1" />
+                  </motion.div>
+                </div>
+                <div className="text-center px-4 sm:px-8 relative z-10">
+                  <p className="text-sm sm:text-base text-koel-neutral-700 font-semibold mb-2">
+                    Video Premium Lifestyle
                   </p>
-                  <p className="text-xs sm:text-sm text-koel-neutral-500">
-                    Video de mujer en baño con espejo como marco
-                    <br />
-                    Aplicando KOEL con satisfacción
+                  <p className="text-xs sm:text-sm text-koel-neutral-600">
+                    1080x1920px (9:16) • Vertical<br />
+                    Mujer aplicando KOEL en baño
                   </p>
                 </div>
               </div>

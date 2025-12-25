@@ -274,14 +274,23 @@ export default function TutorialSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-gradient-to-br from-koel-neutral-100 to-koel-neutral-200 rounded-2xl sm:rounded-3xl overflow-hidden aspect-video max-w-4xl mx-4 sm:mx-auto mb-8 sm:mb-12 flex items-center justify-center"
+          className="relative bg-gradient-to-br from-koel-neutral-100 to-koel-neutral-200 rounded-2xl sm:rounded-3xl overflow-hidden aspect-video max-w-4xl mx-4 sm:mx-auto mb-8 sm:mb-12 flex items-center justify-center border-2 border-koel-neutral-300"
         >
-          <div className="text-center px-4 sm:px-8">
-            <p className="text-sm sm:text-base text-koel-neutral-500 mb-2 sm:mb-4">
-              [Placeholder para video tutorial de recarga]
+          {/* Video Play Button Mockup */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              className="w-16 h-16 sm:w-20 sm:h-20 bg-koel-blue rounded-full flex items-center justify-center shadow-premium cursor-pointer"
+            >
+              <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-white border-b-8 border-b-transparent ml-1" />
+            </motion.div>
+          </div>
+          <div className="text-center px-4 sm:px-8 relative z-10">
+            <p className="text-sm sm:text-base text-koel-neutral-600 font-semibold mb-2">
+              Video Tutorial: Cómo Recargar KOEL
             </p>
-            <p className="text-xs sm:text-sm text-koel-neutral-400">
-              Video demostrativo del proceso 1-2-3 completo
+            <p className="text-xs sm:text-sm text-koel-neutral-500">
+              1920x1080px • MP4 • 30-45 segundos
             </p>
           </div>
         </motion.div>

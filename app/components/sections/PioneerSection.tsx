@@ -42,11 +42,18 @@ export default function PioneerSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
-              className="relative aspect-square rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-koel-neutral-200 to-koel-neutral-300 shadow-md hover:shadow-xl transition-shadow duration-300"
+              className="relative aspect-square rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-koel-neutral-200 to-koel-neutral-300 shadow-md hover:shadow-xl transition-shadow duration-300 border border-koel-neutral-300"
             >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-koel-neutral-500 text-center px-2 sm:px-4 text-xs sm:text-sm">
-                  [Foto lifestyle {index + 1}]
+              {/* Simulated Photo Frame */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-koel-neutral-100/50 to-koel-neutral-200/80" />
+              {/* Simulated Person Silhouette */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-24 sm:w-20 sm:h-28 bg-koel-neutral-400/30 rounded-t-full" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <p className="text-koel-neutral-600 text-center px-2 text-[10px] sm:text-xs font-medium">
+                  Foto Lifestyle {index + 1}
+                </p>
+                <p className="text-koel-neutral-500 text-[8px] sm:text-[10px]">
+                  800x800px
                 </p>
               </div>
             </motion.div>

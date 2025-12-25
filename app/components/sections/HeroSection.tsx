@@ -102,12 +102,17 @@ export default function HeroSection() {
               className="relative w-full aspect-square max-w-xs sm:max-w-sm lg:max-w-lg mx-auto"
             >
               {/* Placeholder for 3D model viewer or product image */}
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="w-full h-full bg-gradient-to-br from-koel-blue/20 to-koel-bamboo/20 rounded-3xl backdrop-blur-sm border border-white/20 flex items-center justify-center">
-                  <p className="text-white/50 text-center px-4 sm:px-8 text-sm sm:text-base">
-                    [Placeholder para render 3D del Starter Kit]<br />
-                    <span className="text-xs sm:text-sm">
-                      Usar model-viewer con /models/koel-product.gltf
+              <div className="w-full h-full flex items-center justify-center p-8">
+                <div className="w-full h-full bg-gradient-to-br from-koel-blue/30 to-koel-bamboo/30 rounded-3xl backdrop-blur-sm border-2 border-white/30 flex flex-col items-center justify-center gap-4 shadow-2xl">
+                  {/* Simulated 3D Product Mockup */}
+                  <div className="w-32 h-48 sm:w-40 sm:h-56 lg:w-48 lg:h-64 bg-gradient-to-b from-koel-blue-light to-koel-blue rounded-[2rem] shadow-premium relative overflow-hidden">
+                    <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
+                    <div className="absolute top-4 left-1/2 -translate-x-1/2 w-16 h-16 sm:w-20 sm:h-20 bg-white/30 rounded-full" />
+                  </div>
+                  <p className="text-white/70 text-center px-4 text-xs sm:text-sm">
+                    Render 3D del Starter Kit<br />
+                    <span className="text-[10px] sm:text-xs opacity-60">
+                      Dimensiones: 400x600px • model-viewer
                     </span>
                   </p>
                 </div>

@@ -24,10 +24,18 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, bgColor }: P
   return (
     <Card className={`${bgColor} border border-koel-neutral-200`}>
       {/* Product Image */}
-      <div className="relative w-full aspect-square mb-4 sm:mb-6 rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-koel-neutral-100 to-koel-neutral-200 flex items-center justify-center">
-        <p className="text-koel-neutral-400 text-center px-4 text-sm sm:text-base">
-          {imagePlaceholder}
-        </p>
+      <div className="relative w-full aspect-square mb-4 sm:mb-6 rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-koel-neutral-50 to-koel-neutral-100 flex items-center justify-center p-8 border border-koel-neutral-200">
+        {/* Simulated Product Render */}
+        <div className="w-full h-full flex flex-col items-center justify-center gap-3">
+          <div className="w-24 h-36 sm:w-32 sm:h-44 bg-gradient-to-b from-koel-blue-light to-koel-blue rounded-[1.5rem] shadow-lg relative">
+            <div className="absolute inset-0 bg-white/10" />
+            <div className="absolute top-3 left-1/2 -translate-x-1/2 w-12 h-12 sm:w-14 sm:h-14 bg-white/20 rounded-full" />
+          </div>
+          <p className="text-koel-neutral-500 text-center px-2 text-xs">
+            {imagePlaceholder}<br />
+            <span className="text-[10px] opacity-60">500x500px</span>
+          </p>
+        </div>
       </div>
 
       {/* Title */}
