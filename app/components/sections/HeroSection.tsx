@@ -32,7 +32,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={ref} className="relative h-screen-safe flex items-center justify-center overflow-hidden">
       {/* Cinematic Gradient Overlay */}
       <div className="absolute inset-0 z-[1] pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
