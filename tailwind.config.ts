@@ -10,32 +10,67 @@ const config: Config = {
     extend: {
       colors: {
         koel: {
-          blue: {
-            DEFAULT: "#6B9FD9", // Azul claro del producto
-            light: "#A8C8E8",
-            dark: "#4A7BB8",
+          // PRIMARY COLORS - Colores oficiales del manual de marca Gustav
+          teal: {
+            DEFAULT: "#153439", // Color principal de marca KOEL
+            light: "#2A4A50",
+            dark: "#0F2428",
           },
-          bamboo: {
-            DEFAULT: "#88B68D", // Verde bamboo
+          aqua: {
+            DEFAULT: "#32A9AE", // Color secundario de marca KOEL
+            light: "#9ACEE4", // Sky Blue
+            dark: "#258B8F",
+          },
+
+          // SECONDARY COLORS - Paleta extendida del manual
+          yellow: {
+            DEFAULT: "#E6E451", // Bright Yellow
+            light: "#FBEEB4",
+          },
+          olive: {
+            DEFAULT: "#59693A", // Olive Green
             light: "#B5D4B8",
             dark: "#5F9465",
           },
-          ginger: {
-            DEFAULT: "#D4A574", // Beige/dorado ginger
+          pink: {
+            DEFAULT: "#B24866", // Pink/Magenta
+          },
+          coral: {
+            DEFAULT: "#D5753C", // Coral Orange
             light: "#E8C9A3",
             dark: "#B8864F",
           },
+
+          // NEUTRALS - Tonos neutros del manual
           neutral: {
-            50: "#FAFAFA",
-            100: "#F5F5F5",
-            200: "#E5E5E5",
+            50: "#FCF9F5",   // Off-white del manual
+            100: "#FCF7EE",  // Cream del manual
+            200: "#D9D6C5",  // Beige del manual
             300: "#D4D4D4",
             400: "#A3A3A3",
             500: "#737373",
             600: "#525252",
             700: "#404040",
             800: "#262626",
-            900: "#171717",
+            900: "#221615",  // Dark Brown del manual
+          },
+
+          // LEGACY SUPPORT - Para compatibilidad con código existente
+          // TODO: Migrar gradualmente todo el código a usar teal/aqua/olive/coral
+          blue: {
+            DEFAULT: "#32A9AE", // Mapeado a aqua
+            light: "#9ACEE4",
+            dark: "#258B8F",
+          },
+          bamboo: {
+            DEFAULT: "#59693A", // Mapeado a olive
+            light: "#B5D4B8",
+            dark: "#5F9465",
+          },
+          ginger: {
+            DEFAULT: "#D5753C", // Mapeado a coral
+            light: "#E8C9A3",
+            dark: "#B8864F",
           },
         },
         accent: {
@@ -43,8 +78,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["Lexend", "system-ui", "sans-serif"],
-        display: ["Bebas Neue", "Arial", "sans-serif"],
+        sans: ["var(--font-body)", "Inter", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "Space Grotesk", "Arial", "sans-serif"],
+        heading: ["var(--font-heading)", "Outfit", "system-ui", "sans-serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

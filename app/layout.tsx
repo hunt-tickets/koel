@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import './globals.css'
 import { LenisProvider } from './components/providers'
+import { spaceGrotesk, outfit, inter } from './fonts'
 
 export const metadata: Metadata = {
   title: 'KOEL - El Primer Desodorante Recargable de Colombia',
@@ -23,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es">
-      <body>
+    <html lang="es" className={`${spaceGrotesk.variable} ${outfit.variable} ${inter.variable}`}>
+      <body className={inter.className}>
         <LenisProvider>
           {children}
         </LenisProvider>

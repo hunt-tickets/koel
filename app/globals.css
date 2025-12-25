@@ -1,5 +1,10 @@
-/* Import Google Fonts - Bebas Neue & Lexend */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lexend:wght@300;400;500;600;700;800&display=swap');
+/* KOEL Brand Fonts
+   - Display (Titles): Space Grotesk (fallback for Transducer Medium)
+   - Heading (Subtitles): Outfit (fallback for Mazzard Soft M Light)
+   - Body (Paragraphs): Inter (fallback for Miso Regular)
+
+   TODO: Replace with official brand fonts when available from Gustav team
+*/
 
 @tailwind base;
 @tailwind components;
@@ -30,7 +35,11 @@ html.lenis, html.lenis body {
 
 @layer base {
   :root {
-    font-family: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-heading: 'Outfit', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+
+    font-family: var(--font-body), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -78,7 +87,7 @@ html.lenis, html.lenis body {
   }
 
   .btn-primary {
-    @apply bg-koel-blue text-white hover:bg-koel-blue-dark;
+    @apply bg-koel-teal text-white hover:bg-koel-teal-dark;
   }
 
   .btn-secondary {
@@ -154,7 +163,7 @@ html.lenis, html.lenis body {
 
   .text-gradient-koel {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #6B9FD9 0%, #88B68D 100%);
+    background-image: linear-gradient(135deg, #32A9AE 0%, #59693A 100%);
   }
 
   /* Premium letter spacing for luxury feel */

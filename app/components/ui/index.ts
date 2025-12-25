@@ -12,3 +12,4 @@ export { default as TiltCard, ProductTiltCard } from './TiltCard';
 export { default as ScrollIndicator } from './ScrollIndicator';
 export { default as HorizontalScroll, ScrollProgress, HorizontalSnapScroll, SnapItem } from './HorizontalScroll';
 export { TextRevealByWord, MaskText, StaggerText, ParallaxText } from './TextReveal';
+export { default as CircularBadge } from './CircularBadge';

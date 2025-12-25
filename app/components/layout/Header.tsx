@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import CircularBadge from '../ui/CircularBadge';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,6 +28,24 @@ export default function Header() {
 
   return (
     <>
+      {/* Circular Badge - Fixed top right */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 1.5 }}
+        className="fixed top-4 right-4 md:top-6 md:right-6 z-[60] hidden lg:block"
+      >
+        <CircularBadge
+          variant={isScrolled ? "white" : "transparent"}
+          size="md"
+          className={`transition-all duration-300 ${
+            isScrolled
+              ? 'text-koel-teal shadow-lg'
+              : 'text-white'
+          }`}
+        />
+      </motion.div>
+
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
