@@ -87,7 +87,7 @@ export default function ValuePropositionSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-koel-neutral-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold font-serif text-koel-neutral-900 mb-4">
             Diseñado para ti, <span className="text-gradient-koel">creado para marcar la diferencia.</span>
           </h2>
           <p className="text-xl text-koel-neutral-600 max-w-3xl mx-auto">

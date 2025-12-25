@@ -54,7 +54,7 @@ export default function HeroSection() {
           >
             {/* Animated RE + Word */}
             <div className="mb-8">
-              <h1 className="text-6xl md:text-8xl font-bold flex items-baseline">
+              <h1 className="text-6xl md:text-8xl font-bold font-serif flex items-baseline">
                 <span className="text-gradient-koel">RE</span>
                 <AnimatePresence mode="wait">
                   <motion.span

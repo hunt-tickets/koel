@@ -24,7 +24,7 @@ export default function PioneerSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-koel-neutral-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold font-serif text-koel-neutral-900 mb-6">
             Ser Pionero: <span className="text-gradient-koel">Redefinir lo común</span>
           </h2>
           <p className="text-xl text-koel-neutral-700 max-w-3xl mx-auto leading-relaxed">
@@ -118,19 +118,19 @@ export default function PioneerSection() {
           className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           <div className="text-center">
-            <div className="text-4xl md:text-5xl font-bold text-gradient-koel mb-2">
+            <div className="text-4xl md:text-5xl font-bold font-serif text-gradient-koel mb-2">
               4 años
             </div>
             <p className="text-koel-neutral-600">De investigación y desarrollo</p>
           </div>
           <div className="text-center">
-            <div className="text-4xl md:text-5xl font-bold text-gradient-koel mb-2">
+            <div className="text-4xl md:text-5xl font-bold font-serif text-gradient-koel mb-2">
               100%
             </div>
             <p className="text-koel-neutral-600">Colombiano e innovador</p>
           </div>
           <div className="text-center">
-            <div className="text-4xl md:text-5xl font-bold text-gradient-koel mb-2">
+            <div className="text-4xl md:text-5xl font-bold font-serif text-gradient-koel mb-2">
               #1
             </div>
             <p className="text-koel-neutral-600">Desodorante recargable del país</p>

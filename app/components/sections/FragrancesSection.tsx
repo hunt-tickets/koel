@@ -57,7 +57,7 @@ function FragranceCard({
 
         {/* Content */}
         <div className="flex-1 flex flex-col">
-          <h3 className="text-3xl md:text-4xl font-bold text-koel-neutral-900 mb-2">
+          <h3 className="text-3xl md:text-4xl font-bold font-serif text-koel-neutral-900 mb-2">
             {name}
           </h3>
           <p className={`text-lg font-semibold mb-4 ${accentColor}`}>
@@ -119,7 +119,7 @@ export default function FragrancesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-koel-neutral-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold font-serif text-koel-neutral-900 mb-4">
             Tu fragancia, <span className="text-gradient-koel">tu historia</span>
           </h2>
           <p className="text-xl text-koel-neutral-600 max-w-3xl mx-auto">
