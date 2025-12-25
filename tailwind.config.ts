@@ -43,8 +43,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["Poppins", "system-ui", "sans-serif"],
-        serif: ["Playfair Display", "Georgia", "serif"],
+        sans: ["Lexend", "system-ui", "sans-serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

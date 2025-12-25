@@ -135,7 +135,7 @@ export default function ProductSystemSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10 sm:mb-16 px-4 sm:px-0"
         >
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold font-serif text-koel-neutral-900 mb-3 sm:mb-4">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold font-sans text-koel-neutral-900 mb-3 sm:mb-4">
             Diseño que cambia las reglas.<br />
             <span className="text-gradient-koel">Innovación que simplifica tu día.</span>
           </h2>

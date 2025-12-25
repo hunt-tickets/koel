@@ -38,7 +38,7 @@ export default function HeroSection() {
           >
             {/* Animated RE + Word */}
             <div className="mb-6 md:mb-8">
-              <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold font-serif flex items-baseline justify-center lg:justify-start">
+              <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold font-sans flex items-baseline justify-center lg:justify-start">
                 <span className="text-gradient-koel">RE</span>
                 <AnimatePresence mode="wait">
                   <motion.span
@@ -78,7 +78,7 @@ export default function HeroSection() {
                 transition={{ duration: 0.5, delay: 0.6 }}
                 className="flex items-center justify-center lg:justify-start"
               >
-                <span className="text-2xl sm:text-3xl font-bold font-serif text-white">
+                <span className="text-2xl sm:text-3xl font-bold font-sans text-white">
                   $35,000
                 </span>
               </motion.div>

@@ -12,19 +12,19 @@ export const typography = {
   // Fuentes principales
   fonts: {
     // Fuente para títulos (h1, h2, h3)
-    heading: 'Playfair Display',
+    heading: 'Lexend',
     // Fuente para el cuerpo del texto
-    body: 'Poppins',
+    body: 'Lexend',
   },
 
   // Clases de Tailwind para títulos
   headingClasses: {
-    h1: 'font-serif font-bold',
-    h2: 'font-serif font-bold',
-    h3: 'font-serif font-bold',
-    h4: 'font-serif font-semibold',
-    h5: 'font-serif font-semibold',
-    h6: 'font-serif font-medium',
+    h1: 'font-sans font-bold',
+    h2: 'font-sans font-bold',
+    h3: 'font-sans font-bold',
+    h4: 'font-sans font-semibold',
+    h5: 'font-sans font-semibold',
+    h6: 'font-sans font-medium',
   },
 
   // Clases de Tailwind para texto

@@ -212,7 +212,7 @@ export default function TutorialSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 lg:mb-16 px-4 sm:px-0"
         >
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold font-serif text-koel-neutral-900 mb-2 sm:mb-4">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold font-sans text-koel-neutral-900 mb-2 sm:mb-4">
             Recargar es tan simple como <span className="text-gradient-koel">1, 2, 3.</span>
           </h2>
           <p className="text-sm sm:text-xl text-koel-neutral-600 max-w-3xl mx-auto">

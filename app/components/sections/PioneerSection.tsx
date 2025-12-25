@@ -24,7 +24,7 @@ export default function PioneerSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10 sm:mb-16 px-4 sm:px-0"
         >
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold font-serif text-koel-neutral-900 mb-4 sm:mb-6">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold font-sans text-koel-neutral-900 mb-4 sm:mb-6">
             Ser Pionero: <span className="text-gradient-koel">Redefinir lo común</span>
           </h2>
           <p className="text-base sm:text-xl text-koel-neutral-700 max-w-3xl mx-auto leading-relaxed">
@@ -118,19 +118,19 @@ export default function PioneerSection() {
           className="mt-12 sm:mt-16 grid grid-cols-3 gap-4 sm:gap-8 px-4 sm:px-0"
         >
           <div className="text-center">
-            <div className="text-2xl sm:text-4xl md:text-5xl font-bold font-serif text-gradient-koel mb-1 sm:mb-2">
+            <div className="text-2xl sm:text-4xl md:text-5xl font-bold font-sans text-gradient-koel mb-1 sm:mb-2">
               4 años
             </div>
             <p className="text-xs sm:text-base text-koel-neutral-600">De investigación y desarrollo</p>
           </div>
           <div className="text-center">
-            <div className="text-2xl sm:text-4xl md:text-5xl font-bold font-serif text-gradient-koel mb-1 sm:mb-2">
+            <div className="text-2xl sm:text-4xl md:text-5xl font-bold font-sans text-gradient-koel mb-1 sm:mb-2">
               100%
             </div>
             <p className="text-xs sm:text-base text-koel-neutral-600">Colombiano e innovador</p>
           </div>
           <div className="text-center">
-            <div className="text-2xl sm:text-4xl md:text-5xl font-bold font-serif text-gradient-koel mb-1 sm:mb-2">
+            <div className="text-2xl sm:text-4xl md:text-5xl font-bold font-sans text-gradient-koel mb-1 sm:mb-2">
               #1
             </div>
             <p className="text-xs sm:text-base text-koel-neutral-600">Desodorante recargable del país</p>
