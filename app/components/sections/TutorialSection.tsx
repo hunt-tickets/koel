@@ -13,6 +13,105 @@ interface TutorialStepProps {
   delay: number;
 }
 
+// Animated Mobile Icons
+function RotateIcon() {
+  return (
+    <motion.svg
+      animate={{ rotate: 360 }}
+      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M21 12a9 9 0 1 1-9-9" />
+      <polyline points="21 3 21 9 15 9" />
+    </motion.svg>
+  );
+}
+
+function InsertIcon() {
+  return (
+    <motion.svg
+      animate={{ y: [0, 4, 0] }}
+      transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="12" y1="5" x2="12" y2="19" />
+      <polyline points="19 12 12 19 5 12" />
+    </motion.svg>
+  );
+}
+
+function ClickIcon() {
+  return (
+    <motion.svg
+      animate={{ scale: [1, 0.85, 1] }}
+      transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="8 12 11 15 16 9" />
+    </motion.svg>
+  );
+}
+
+// Compact Mobile Step Component
+function MobileStep({ number, title, delay }: Omit<TutorialStepProps, 'description' | 'icon'> & { icon?: React.ReactNode }) {
+  const getMobileIcon = () => {
+    switch (number) {
+      case 1: return <RotateIcon />;
+      case 2: return <InsertIcon />;
+      case 3: return <ClickIcon />;
+      default: return null;
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay }}
+      className="flex flex-col items-center relative"
+    >
+      {/* Number Badge with Animated Icon */}
+      <div className="w-16 h-16 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-full flex items-center justify-center text-white shadow-premium mb-2">
+        {getMobileIcon()}
+      </div>
+
+      {/* Step Number */}
+      <div className="absolute -top-1 -right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center text-koel-blue text-xs font-bold shadow-md border-2 border-koel-blue">
+        {number}
+      </div>
+
+      {/* Title */}
+      <h3 className="text-sm font-bold text-koel-neutral-900 text-center">
+        {title}
+      </h3>
+    </motion.div>
+  );
+}
+
+// Desktop Step Card Component
 function TutorialStep({ number, title, description, icon, delay }: TutorialStepProps) {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -30,7 +129,7 @@ function TutorialStep({ number, title, description, icon, delay }: TutorialStepP
       {/* Step Card */}
       <div className="bg-white rounded-3xl p-8 shadow-premium hover:shadow-premium-lg transition-all duration-300">
         {/* Number Badge */}
-        <div className="absolute -top-6 -left-6 w-16 h-16 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-premium">
+        <div className="absolute -top-6 -left-6 w-16 h-16 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-premium z-10">
           {number}
         </div>
 
@@ -60,7 +159,7 @@ function TutorialStep({ number, title, description, icon, delay }: TutorialStepP
         <h3 className="text-2xl font-bold text-koel-neutral-900 mb-3 text-center">
           {title}
         </h3>
-        <p className="text-koel-neutral-600 text-center leading-relaxed">
+        <p className="text-base text-koel-neutral-600 text-center leading-relaxed">
           {description}
         </p>
       </div>
@@ -71,7 +170,7 @@ function TutorialStep({ number, title, description, icon, delay }: TutorialStepP
           initial={{ opacity: 0, x: -20 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: delay + 0.3 }}
-          className="hidden lg:block absolute top-1/2 -right-8 transform -translate-y-1/2 text-koel-blue"
+          className="absolute top-1/2 -right-8 transform -translate-y-1/2 text-koel-blue"
         >
           <HiArrowRight className="w-8 h-8" />
         </motion.div>
@@ -111,18 +210,55 @@ export default function TutorialSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 lg:mb-16 px-4 sm:px-0"
         >
-          <h2 className="text-4xl md:text-5xl font-bold font-serif text-koel-neutral-900 mb-4">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-koel-neutral-900 mb-2 sm:mb-4">
             Recargar es tan simple como <span className="text-gradient-koel">1, 2, 3.</span>
           </h2>
-          <p className="text-xl text-koel-neutral-600 max-w-3xl mx-auto">
-            Olvídate de lo complicado. En solo tres simples pasos, tu desodorante está listo de nuevo. Dale un giro, encaja y listo.
+          <p className="text-sm sm:text-xl text-koel-neutral-600 max-w-3xl mx-auto">
+            Olvídate de lo complicado. En solo tres simples pasos, tu desodorante está listo de nuevo.
           </p>
         </motion.div>
 
-        {/* Tutorial Steps */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 mb-12 relative">
+        {/* Mobile Compact Timeline - Only visible on mobile */}
+        <div className="lg:hidden mb-8 px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-koel-neutral-50 to-koel-neutral-100 rounded-2xl p-6 shadow-premium"
+          >
+            {/* Horizontal Steps */}
+            <div className="flex justify-between items-start mb-6 relative">
+              {/* Connecting Line */}
+              <div className="absolute top-8 left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-koel-blue via-koel-bamboo to-koel-blue opacity-30" />
+
+              {steps.map((step, index) => (
+                <MobileStep
+                  key={step.number}
+                  number={step.number}
+                  title={step.title}
+                  icon={step.icon}
+                  delay={index * 0.1}
+                />
+              ))}
+            </div>
+
+            {/* Combined Description */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-xs text-koel-neutral-600 text-center leading-relaxed"
+            >
+              Gira la tapa, encaja el pod y empuja hasta escuchar un clic. ¡Listo!
+            </motion.p>
+          </motion.div>
+        </div>
+
+        {/* Desktop Tutorial Steps - Hidden on mobile */}
+        <div className="hidden lg:grid lg:grid-cols-3 gap-8 mb-12 relative px-4 sm:px-0">
           {steps.map((step, index) => (
             <TutorialStep
               key={step.number}
@@ -138,13 +274,13 @@ export default function TutorialSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-gradient-to-br from-koel-neutral-100 to-koel-neutral-200 rounded-3xl overflow-hidden aspect-video max-w-4xl mx-auto mb-12 flex items-center justify-center"
+          className="bg-gradient-to-br from-koel-neutral-100 to-koel-neutral-200 rounded-2xl sm:rounded-3xl overflow-hidden aspect-video max-w-4xl mx-4 sm:mx-auto mb-8 sm:mb-12 flex items-center justify-center"
         >
-          <div className="text-center px-8">
-            <p className="text-koel-neutral-500 mb-4">
+          <div className="text-center px-4 sm:px-8">
+            <p className="text-sm sm:text-base text-koel-neutral-500 mb-2 sm:mb-4">
               [Placeholder para video tutorial de recarga]
             </p>
-            <p className="text-sm text-koel-neutral-400">
+            <p className="text-xs sm:text-sm text-koel-neutral-400">
               Video demostrativo del proceso 1-2-3 completo
             </p>
           </div>
@@ -156,9 +292,9 @@ export default function TutorialSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center mb-8"
+          className="text-center mb-6 sm:mb-8 px-4 sm:px-0"
         >
-          <p className="text-2xl md:text-3xl font-bold text-koel-neutral-900 mb-8">
+          <p className="text-lg sm:text-2xl md:text-3xl font-bold text-koel-neutral-900 mb-4 sm:mb-8">
             ¡Tu KOEL siempre está contigo!
           </p>
           <Button variant="primary" size="lg">

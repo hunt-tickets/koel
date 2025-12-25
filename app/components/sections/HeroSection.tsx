@@ -3,7 +3,6 @@
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import Button from '../ui/Button';
-import VideoPlayer from '../ui/VideoPlayer';
 
 export default function HeroSection() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -15,7 +14,6 @@ export default function HeroSection() {
     offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0]);
 
   useEffect(() => {
@@ -28,33 +26,19 @@ export default function HeroSection() {
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background with Parallax */}
-      <motion.div style={{ y }} className="absolute inset-0 z-0">
-        <VideoPlayer
-          src="/hero-video.mp4"
-          className="w-full h-full"
-          autoPlay
-          loop
-          muted
-          showMuteButton={false}
-          playbackRate={0.75}
-        />
-        <div className="video-overlay" />
-      </motion.div>
-
       {/* Content with Parallax Opacity */}
       <motion.div style={{ opacity }} className="relative z-10 section-container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left: Animated Text */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-white"
+            className="text-white text-center lg:text-left order-2 lg:order-1"
           >
             {/* Animated RE + Word */}
-            <div className="mb-8">
-              <h1 className="text-6xl md:text-8xl font-bold font-serif flex items-baseline">
+            <div className="mb-6 md:mb-8">
+              <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold flex items-baseline justify-center lg:justify-start">
                 <span className="text-gradient-koel">RE</span>
                 <AnimatePresence mode="wait">
                   <motion.span
@@ -63,7 +47,7 @@ export default function HeroSection() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.5 }}
-                    className="ml-2"
+                    className="ml-1 sm:ml-2"
                   >
                     {words[currentWordIndex]}
                   </motion.span>
@@ -71,12 +55,12 @@ export default function HeroSection() {
               </h1>
             </div>
 
-            <p className="text-xl md:text-2xl text-white/90 mb-8 font-light">
+            <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-6 md:mb-8 font-light px-4 sm:px-0">
               El desodorante que cambia las reglas.<br />
               Simple. Elegante. Diferente.
             </p>
 
-            <div className="space-y-4">
+            <div className="space-y-4 flex flex-col items-center lg:items-start">
               <Button
                 variant="primary"
                 size="lg"
@@ -92,9 +76,9 @@ export default function HeroSection() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
-                className="flex items-center"
+                className="flex items-center justify-center lg:justify-start"
               >
-                <span className="text-3xl font-bold text-white">
+                <span className="text-2xl sm:text-3xl font-bold text-white">
                   $35,000
                 </span>
               </motion.div>
@@ -106,7 +90,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
+            className="relative order-1 lg:order-2 px-8 sm:px-4 lg:px-0"
           >
             <motion.div
               animate={{ y: [0, -20, 0] }}
@@ -115,14 +99,14 @@ export default function HeroSection() {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="relative w-full aspect-square max-w-lg mx-auto"
+              className="relative w-full aspect-square max-w-xs sm:max-w-sm lg:max-w-lg mx-auto"
             >
               {/* Placeholder for 3D model viewer or product image */}
               <div className="w-full h-full flex items-center justify-center">
                 <div className="w-full h-full bg-gradient-to-br from-koel-blue/20 to-koel-bamboo/20 rounded-3xl backdrop-blur-sm border border-white/20 flex items-center justify-center">
-                  <p className="text-white/50 text-center px-8">
+                  <p className="text-white/50 text-center px-4 sm:px-8 text-sm sm:text-base">
                     [Placeholder para render 3D del Starter Kit]<br />
-                    <span className="text-sm">
+                    <span className="text-xs sm:text-sm">
                       Usar model-viewer con /models/koel-product.gltf
                     </span>
                   </p>
@@ -130,23 +114,23 @@ export default function HeroSection() {
               </div>
             </motion.div>
 
-            {/* Floating Features */}
+            {/* Floating Features - Hidden on small mobile, visible from sm */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1 }}
-              className="absolute -bottom-6 -left-6 glass rounded-2xl p-4 text-white"
+              className="hidden sm:block absolute bottom-0 sm:-bottom-4 lg:-bottom-6 left-0 sm:-left-2 lg:-left-6 glass rounded-xl sm:rounded-2xl p-2 sm:p-3 lg:p-4 text-white"
             >
-              <p className="text-sm font-semibold">🌿 100% Natural</p>
+              <p className="text-xs sm:text-sm font-semibold">🌿 100% Natural</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.2 }}
-              className="absolute -top-6 -right-6 glass rounded-2xl p-4 text-white"
+              className="hidden sm:block absolute top-0 sm:-top-4 lg:-top-6 right-0 sm:-right-2 lg:-right-6 glass rounded-xl sm:rounded-2xl p-2 sm:p-3 lg:p-4 text-white"
             >
-              <p className="text-sm font-semibold">⚡ Recarga en segundos</p>
+              <p className="text-xs sm:text-sm font-semibold">⚡ Recarga en segundos</p>
             </motion.div>
           </motion.div>
         </div>
@@ -157,7 +141,7 @@ export default function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.5 }}
-        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10"
+        className="absolute bottom-6 sm:bottom-12 left-1/2 transform -translate-x-1/2 z-10"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}

@@ -11,39 +11,57 @@ import {
   EmailCaptureSection,
   FAQSection,
 } from './components/sections';
+import VideoPlayer from './components/ui/VideoPlayer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      {/* Header */}
-      <Header />
+    <main className="min-h-screen relative">
+      {/* Fixed Full-Page Video Background - No zoom/parallax */}
+      <div className="video-background-fixed z-0">
+        <VideoPlayer
+          src="/hero-video.mp4"
+          className="w-full h-full"
+          autoPlay
+          loop
+          muted
+          showMuteButton={false}
+          playbackRate={0.75}
+        />
+        <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+      </div>
 
-      {/* Hero Section */}
-      <HeroSection />
+      {/* Content Container */}
+      <div className="relative z-10">
+        {/* Header */}
+        <Header />
 
-      {/* Product System Section */}
-      <ProductSystemSection />
+        {/* Hero Section */}
+        <HeroSection />
 
-      {/* Tutorial Section (1-2-3) */}
-      <TutorialSection />
+        {/* Product System Section */}
+        <ProductSystemSection />
 
-      {/* Fragrances Section */}
-      <FragrancesSection />
+        {/* Tutorial Section (1-2-3) */}
+        <TutorialSection />
 
-      {/* Value Proposition Section */}
-      <ValuePropositionSection />
+        {/* Fragrances Section */}
+        <FragrancesSection />
 
-      {/* Pioneer Section */}
-      <PioneerSection />
+        {/* Value Proposition Section */}
+        <ValuePropositionSection />
 
-      {/* Email Capture Section */}
-      <EmailCaptureSection />
+        {/* Pioneer Section */}
+        <PioneerSection />
 
-      {/* FAQ Section */}
-      <FAQSection />
+        {/* Email Capture Section */}
+        <EmailCaptureSection />
 
-      {/* Footer */}
-      <Footer />
+        {/* FAQ Section */}
+        <FAQSection />
+
+        {/* Footer */}
+        <Footer />
+      </div>
     </main>
   );
 }

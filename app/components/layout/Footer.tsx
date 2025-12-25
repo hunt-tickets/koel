@@ -25,17 +25,17 @@ export default function Footer() {
       {/* Newsletter Section */}
       <div className="border-b border-koel-neutral-800">
         <div className="section-container">
-          <div className="max-w-2xl mx-auto text-center">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
+          <div className="max-w-2xl mx-auto text-center px-4 sm:px-0">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4">
               Únete a la revolución recargable
             </h3>
-            <p className="text-koel-neutral-400 mb-6">
+            <p className="text-sm sm:text-base text-koel-neutral-400 mb-4 sm:mb-6">
               Recibe actualizaciones exclusivas, descuentos y sé el primero en conocer nuevas fragancias.
             </p>
 
             <form
               onSubmit={handleNewsletterSubmit}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
             >
               <Input
                 type="email"
@@ -55,15 +55,15 @@ export default function Footer() {
 
       {/* Main Footer Content */}
       <div className="section-container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 px-4 sm:px-0">
           {/* Column 1: Sobre KOEL */}
           <div>
-            <h4 className="text-lg font-bold mb-6">Sobre KOEL</h4>
-            <ul className="space-y-3">
+            <h4 className="text-sm sm:text-lg font-bold mb-3 sm:mb-6">Sobre KOEL</h4>
+            <ul className="space-y-2 sm:space-y-3">
               <li>
                 <Link
                   href="/pioneros"
-                  className="text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
+                  className="text-xs sm:text-base text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
                 >
                   Nuestra historia
                 </Link>
@@ -71,7 +71,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/pioneros#movimiento"
-                  className="text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
+                  className="text-xs sm:text-base text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
                 >
                   Ser pionero
                 </Link>
@@ -79,7 +79,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/contacto"
-                  className="text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
+                  className="text-xs sm:text-base text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
                 >
                   Contacto
                 </Link>
@@ -89,12 +89,12 @@ export default function Footer() {
 
           {/* Column 2: Producto */}
           <div>
-            <h4 className="text-lg font-bold mb-6">Producto</h4>
-            <ul className="space-y-3">
+            <h4 className="text-sm sm:text-lg font-bold mb-3 sm:mb-6">Producto</h4>
+            <ul className="space-y-2 sm:space-y-3">
               <li>
                 <Link
                   href="/#como-funciona"
-                  className="text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
+                  className="text-xs sm:text-base text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
                 >
                   ¿Cómo funciona?
                 </Link>
@@ -102,7 +102,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/#fragancias"
-                  className="text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
+                  className="text-xs sm:text-base text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
                 >
                   Fragancias
                 </Link>
@@ -110,7 +110,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/#faq"
-                  className="text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
+                  className="text-xs sm:text-base text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
                 >
                   Preguntas frecuentes
                 </Link>
@@ -118,7 +118,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/producto"
-                  className="text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
+                  className="text-xs sm:text-base text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
                 >
                   Detalles del producto
                 </Link>
@@ -128,12 +128,12 @@ export default function Footer() {
 
           {/* Column 3: Legal */}
           <div>
-            <h4 className="text-lg font-bold mb-6">Legal</h4>
-            <ul className="space-y-3">
+            <h4 className="text-sm sm:text-lg font-bold mb-3 sm:mb-6">Legal</h4>
+            <ul className="space-y-2 sm:space-y-3">
               <li>
                 <Link
                   href="/politicas/devoluciones"
-                  className="text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
+                  className="text-xs sm:text-base text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
                 >
                   Políticas de devolución
                 </Link>
@@ -141,7 +141,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/politicas/privacidad"
-                  className="text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
+                  className="text-xs sm:text-base text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
                 >
                   Política de privacidad
                 </Link>
@@ -149,7 +149,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/politicas/terminos"
-                  className="text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
+                  className="text-xs sm:text-base text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
                 >
                   Términos y condiciones
                 </Link>
@@ -157,7 +157,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/politicas/datos"
-                  className="text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
+                  className="text-xs sm:text-base text-koel-neutral-400 hover:text-koel-blue transition-colors duration-300"
                 >
                   Tratamiento de datos
                 </Link>
@@ -167,17 +167,17 @@ export default function Footer() {
 
           {/* Column 4: Síguenos */}
           <div>
-            <h4 className="text-lg font-bold mb-6">Síguenos</h4>
-            <div className="flex gap-4 mb-6">
+            <h4 className="text-sm sm:text-lg font-bold mb-3 sm:mb-6">Síguenos</h4>
+            <div className="flex gap-3 sm:gap-4 mb-4 sm:mb-6">
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 href="https://instagram.com/koel"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-koel-neutral-800 flex items-center justify-center text-white hover:bg-koel-blue transition-colors duration-300"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-koel-neutral-800 flex items-center justify-center text-white hover:bg-koel-blue transition-colors duration-300"
               >
-                <FaInstagram className="w-5 h-5" />
+                <FaInstagram className="w-4 h-4 sm:w-5 sm:h-5" />
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1 }}
@@ -185,9 +185,9 @@ export default function Footer() {
                 href="https://facebook.com/koel"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-koel-neutral-800 flex items-center justify-center text-white hover:bg-koel-blue transition-colors duration-300"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-koel-neutral-800 flex items-center justify-center text-white hover:bg-koel-blue transition-colors duration-300"
               >
-                <FaFacebook className="w-5 h-5" />
+                <FaFacebook className="w-4 h-4 sm:w-5 sm:h-5" />
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1 }}
@@ -195,25 +195,25 @@ export default function Footer() {
                 href="https://tiktok.com/@koel"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-koel-neutral-800 flex items-center justify-center text-white hover:bg-koel-blue transition-colors duration-300"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-koel-neutral-800 flex items-center justify-center text-white hover:bg-koel-blue transition-colors duration-300"
               >
-                <FaTiktok className="w-5 h-5" />
+                <FaTiktok className="w-4 h-4 sm:w-5 sm:h-5" />
               </motion.a>
             </div>
 
             {/* Payment Methods */}
             <div>
-              <p className="text-sm text-koel-neutral-400 mb-3">
+              <p className="text-xs sm:text-sm text-koel-neutral-400 mb-2 sm:mb-3">
                 Métodos de pago
               </p>
-              <div className="flex gap-2 flex-wrap">
-                <div className="px-3 py-2 bg-koel-neutral-800 rounded text-xs font-medium">
+              <div className="flex gap-1 sm:gap-2 flex-wrap">
+                <div className="px-2 sm:px-3 py-1 sm:py-2 bg-koel-neutral-800 rounded text-[10px] sm:text-xs font-medium">
                   PSE
                 </div>
-                <div className="px-3 py-2 bg-koel-neutral-800 rounded text-xs font-medium">
+                <div className="px-2 sm:px-3 py-1 sm:py-2 bg-koel-neutral-800 rounded text-[10px] sm:text-xs font-medium">
                   Visa
                 </div>
-                <div className="px-3 py-2 bg-koel-neutral-800 rounded text-xs font-medium">
+                <div className="px-2 sm:px-3 py-1 sm:py-2 bg-koel-neutral-800 rounded text-[10px] sm:text-xs font-medium">
                   Mastercard
                 </div>
               </div>
@@ -224,12 +224,12 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-koel-neutral-800">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-koel-neutral-400">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-4 sm:py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-2 sm:gap-4">
+            <p className="text-xs sm:text-sm text-koel-neutral-400 text-center md:text-left">
               © 2024 KOEL. 100% Colombiano. Todos los derechos reservados.
             </p>
-            <p className="text-sm text-koel-neutral-400">
+            <p className="text-xs sm:text-sm text-koel-neutral-400">
               Hecho con 💙 en Colombia
             </p>
           </div>
