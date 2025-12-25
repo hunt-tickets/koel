@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import './globals.css'
+import { LenisProvider } from './components/providers'
 
 export const metadata: Metadata = {
   title: 'KOEL - El Primer Desodorante Recargable de Colombia',
@@ -24,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
-        {children}
+        <LenisProvider>
+          {children}
+        </LenisProvider>
         <Script
           type="module"
           src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"

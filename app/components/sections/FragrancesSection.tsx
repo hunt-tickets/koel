@@ -32,11 +32,11 @@ function FragranceCard({
       whileHover={{ scale: 1.02 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className={`${bgColor} rounded-2xl sm:rounded-3xl overflow-hidden shadow-premium hover:shadow-premium-lg transition-all duration-300 h-full`}
+      className={`${bgColor} rounded-3xl lg:rounded-[2rem] overflow-hidden shadow-premium hover:shadow-premium-lg transition-all duration-300 h-full`}
     >
-      <div className="p-5 sm:p-8 md:p-12 flex flex-col h-full">
+      <div className="p-8 sm:p-12 md:p-16 flex flex-col h-full">
         {/* Illustration */}
-        <div className="relative w-full aspect-square mb-5 sm:mb-8 rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center">
+        <div className="relative w-full aspect-square mb-8 sm:mb-12 rounded-2xl sm:rounded-3xl overflow-hidden flex items-center justify-center">
           <motion.div
             animate={{
               scale: isHovered ? 1.1 : 1,
@@ -50,20 +50,20 @@ function FragranceCard({
               alt={`${name} illustration`}
               width={400}
               height={400}
-              className="w-full h-full object-contain p-4 sm:p-8"
+              className="w-full h-full object-contain p-6 sm:p-10"
             />
           </motion.div>
         </div>
 
         {/* Content */}
         <div className="flex-1 flex flex-col">
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-normal font-display tracking-wide text-koel-neutral-900 mb-1 sm:mb-2">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-normal font-display tracking-wide text-koel-neutral-900 mb-2 sm:mb-3">
             {name}
           </h3>
-          <p className={`text-base sm:text-lg font-semibold mb-3 sm:mb-4 ${accentColor}`}>
+          <p className={`text-lg sm:text-xl font-semibold mb-4 sm:mb-6 ${accentColor}`}>
             {subtitle}
           </p>
-          <p className="text-sm sm:text-base text-koel-neutral-600 leading-relaxed flex-1">
+          <p className="text-base sm:text-lg text-koel-neutral-600 leading-relaxed flex-1">
             {description}
           </p>
 
@@ -73,10 +73,10 @@ function FragranceCard({
               y: isHovered ? -5 : 0,
             }}
             transition={{ duration: 0.3 }}
-            className="mt-4 sm:mt-6 inline-flex items-center gap-2"
+            className="mt-6 sm:mt-8 inline-flex items-center gap-3"
           >
-            <div className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full ${accentColor}`} />
-            <span className="text-xs sm:text-sm font-semibold text-koel-neutral-700">
+            <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${accentColor}`} />
+            <span className="text-sm sm:text-base font-semibold text-koel-neutral-700">
               100% Origen Natural
             </span>
           </motion.div>
@@ -117,18 +117,18 @@ export default function FragrancesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10 sm:mb-16 px-4 sm:px-0"
+          className="text-center mb-16 sm:mb-24 lg:mb-32"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal font-display tracking-wide text-koel-neutral-900 mb-3 sm:mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-display tracking-wide text-koel-neutral-900 mb-4 sm:mb-6">
             Tu fragancia, <span className="text-gradient-koel">tu historia</span>
           </h2>
-          <p className="text-base sm:text-xl text-koel-neutral-600 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl lg:text-2xl text-koel-neutral-600 max-w-3xl mx-auto leading-relaxed">
             Dos fragancias diseñadas para adaptarse a tu día a día. ¿Cuál será tu elegida?
           </p>
         </motion.div>
 
         {/* Fragrance Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 px-4 sm:px-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
           {fragrances.map((fragrance, index) => (
             <motion.div
               key={fragrance.name}
@@ -148,12 +148,12 @@ export default function FragrancesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-8 sm:mt-12 text-center glass-dark rounded-2xl sm:rounded-3xl p-5 sm:p-8 text-white mx-4 sm:mx-0"
+          className="mt-12 sm:mt-20 lg:mt-24 text-center glass-dark rounded-3xl lg:rounded-[2rem] p-8 sm:p-12 text-white"
         >
-          <p className="text-base sm:text-lg mb-1 sm:mb-2">
-            🌿 Libres de aluminio y alcohol
+          <p className="text-lg sm:text-xl lg:text-2xl mb-2 sm:mb-3">
+            Libres de aluminio y alcohol
           </p>
-          <p className="text-sm sm:text-base text-koel-neutral-300">
+          <p className="text-base sm:text-lg text-koel-neutral-300 leading-relaxed">
             Fórmulas 100% naturales que cuidan tu piel sin comprometer la eficacia
           </p>
         </motion.div>

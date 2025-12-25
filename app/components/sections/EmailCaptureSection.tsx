@@ -60,7 +60,7 @@ export default function EmailCaptureSection() {
 
   return (
     <section className="section-container bg-gradient-to-br from-koel-blue/5 via-white to-koel-ginger/5">
-      <div className="max-w-4xl mx-auto px-4 sm:px-0">
+      <div className="max-w-5xl mx-auto">
         <div className="relative">
           {/* Decorative animated elements - Hidden on mobile */}
           <motion.div
@@ -73,7 +73,7 @@ export default function EmailCaptureSection() {
               repeat: Infinity,
               ease: "linear",
             }}
-            className="hidden sm:block absolute -top-20 -left-20 w-40 h-40 bg-gradient-to-br from-koel-blue/20 to-koel-bamboo/20 rounded-full blur-3xl"
+            className="hidden sm:block absolute -top-24 -left-24 w-48 h-48 bg-gradient-to-br from-koel-blue/20 to-koel-bamboo/20 rounded-full blur-3xl"
           />
           <motion.div
             animate={{
@@ -85,7 +85,7 @@ export default function EmailCaptureSection() {
               repeat: Infinity,
               ease: "linear",
             }}
-            className="hidden sm:block absolute -bottom-20 -right-20 w-40 h-40 bg-gradient-to-br from-koel-ginger/20 to-koel-blue/20 rounded-full blur-3xl"
+            className="hidden sm:block absolute -bottom-24 -right-24 w-48 h-48 bg-gradient-to-br from-koel-ginger/20 to-koel-blue/20 rounded-full blur-3xl"
           />
 
           {/* Main Content Card */}
@@ -94,7 +94,7 @@ export default function EmailCaptureSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative glass-dark rounded-2xl sm:rounded-3xl p-6 sm:p-12 md:p-16 text-center overflow-hidden"
+            className="relative glass-dark rounded-3xl lg:rounded-[2rem] p-10 sm:p-16 md:p-20 text-center overflow-hidden"
           >
             {/* Animated Illustration Placeholder */}
             <motion.div
@@ -102,7 +102,7 @@ export default function EmailCaptureSection() {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-6 sm:mb-8"
+              className="mb-10 sm:mb-14"
             >
               <motion.div
                 animate={{
@@ -113,11 +113,11 @@ export default function EmailCaptureSection() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="relative w-32 h-32 sm:w-48 sm:h-48 mx-auto bg-gradient-to-br from-koel-blue/30 to-koel-ginger/30 rounded-2xl sm:rounded-3xl flex items-center justify-center backdrop-blur-sm"
+                className="relative w-40 h-40 sm:w-56 sm:h-56 mx-auto bg-gradient-to-br from-koel-blue/30 to-koel-ginger/30 rounded-3xl sm:rounded-[2rem] flex items-center justify-center backdrop-blur-sm"
               >
                 <div className="text-center">
-                  <Mail className="w-14 h-14 sm:w-20 sm:h-20 text-white mx-auto mb-1 sm:mb-2" />
-                  <p className="text-white/70 text-[10px] sm:text-xs">
+                  <Mail className="w-16 h-16 sm:w-24 sm:h-24 text-white mx-auto mb-2 sm:mb-3" />
+                  <p className="text-white/70 text-xs sm:text-sm">
                     [Ilustración animada<br />del Starter Kit]
                   </p>
                 </div>
@@ -133,16 +133,16 @@ export default function EmailCaptureSection() {
                     repeat: Infinity,
                     repeatDelay: 1,
                   }}
-                  className="absolute top-2 right-2 sm:top-4 sm:right-4 w-6 h-6 sm:w-8 sm:h-8 bg-accent-gold/50 rounded-full blur-sm"
+                  className="absolute top-3 right-3 sm:top-5 sm:right-5 w-8 h-8 sm:w-10 sm:h-10 bg-accent-gold/50 rounded-full blur-sm"
                 />
               </motion.div>
             </motion.div>
 
             {/* Headline */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal font-display tracking-wide text-white mb-3 sm:mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal font-display tracking-wide text-white mb-4 sm:mb-6">
               ¿Aún no te unes al cambio?
             </h2>
-            <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl lg:text-2xl text-white/90 mb-10 sm:mb-12 max-w-3xl mx-auto leading-relaxed">
               No te preocupes, te mantendremos al tanto. Déjanos tu correo y obtén un descuento exclusivo en el lanzamiento oficial de KOEL.
             </p>
 
@@ -151,18 +151,18 @@ export default function EmailCaptureSection() {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mb-4 sm:mb-6 p-3 sm:p-4 bg-green-500/20 border border-green-500/50 rounded-xl sm:rounded-2xl flex items-center justify-center gap-2 text-white"
+                className="mb-6 sm:mb-8 p-4 sm:p-5 bg-green-500/20 border border-green-500/50 rounded-2xl sm:rounded-3xl flex items-center justify-center gap-3 text-white"
               >
-                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-green-400 flex-shrink-0" />
-                <span className="font-semibold text-sm sm:text-base">
+                <CheckCircle className="w-6 h-6 sm:w-7 sm:h-7 text-green-400 flex-shrink-0" />
+                <span className="font-semibold text-base sm:text-lg">
                   ¡Gracias! Te enviaremos actualizaciones exclusivas pronto.
                 </span>
               </motion.div>
             )}
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="max-w-xl mx-auto">
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <form onSubmit={handleSubmit} className="max-w-2xl mx-auto">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-5">
                 <div className="flex-1">
                   <Input
                     type="email"
@@ -170,7 +170,7 @@ export default function EmailCaptureSection() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     error={error}
-                    className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
+                    className="bg-white/10 border-white/30 text-white placeholder:text-white/50 text-base sm:text-lg py-4"
                     disabled={isSubmitting}
                   />
                 </div>
@@ -179,7 +179,7 @@ export default function EmailCaptureSection() {
                   variant="primary"
                   size="lg"
                   disabled={isSubmitting}
-                  className="whitespace-nowrap text-sm sm:text-base"
+                  className="whitespace-nowrap text-base sm:text-lg"
                 >
                   {isSubmitting ? 'Enviando...' : '¡Quiero ser pionero!'}
                 </Button>
@@ -192,9 +192,9 @@ export default function EmailCaptureSection() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="mt-4 sm:mt-6 text-xs sm:text-sm text-white/60"
+              className="mt-6 sm:mt-8 text-sm sm:text-base text-white/60"
             >
-              🔒 Tu información está segura. No compartimos datos con terceros.
+              Tu información está segura. No compartimos datos con terceros.
             </motion.p>
           </motion.div>
         </div>

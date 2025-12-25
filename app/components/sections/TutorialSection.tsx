@@ -94,17 +94,17 @@ function MobileStep({ number, title, delay }: Omit<TutorialStepProps, 'descripti
       className="flex flex-col items-center relative"
     >
       {/* Number Badge with Animated Icon */}
-      <div className="w-16 h-16 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-full flex items-center justify-center text-white shadow-premium mb-2">
+      <div className="w-18 h-18 sm:w-20 sm:h-20 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-full flex items-center justify-center text-white shadow-premium mb-3">
         {getMobileIcon()}
       </div>
 
       {/* Step Number */}
-      <div className="absolute -top-1 -right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center text-koel-blue text-xs font-bold shadow-md border-2 border-koel-blue">
+      <div className="absolute -top-1 -right-1 w-7 h-7 bg-white rounded-full flex items-center justify-center text-koel-blue text-sm font-bold shadow-md border-2 border-koel-blue">
         {number}
       </div>
 
       {/* Title */}
-      <h3 className="text-sm font-bold text-koel-neutral-900 text-center">
+      <h3 className="text-sm sm:text-base font-bold text-koel-neutral-900 text-center">
         {title}
       </h3>
     </motion.div>
@@ -127,14 +127,14 @@ function TutorialStep({ number, title, description, icon, delay }: TutorialStepP
       className="relative"
     >
       {/* Step Card */}
-      <div className="bg-white rounded-3xl p-8 shadow-premium hover:shadow-premium-lg transition-all duration-300">
+      <div className="bg-white rounded-3xl p-10 lg:p-12 shadow-premium hover:shadow-premium-lg transition-all duration-300">
         {/* Number Badge */}
-        <div className="absolute -top-6 -left-6 w-16 h-16 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-premium z-10">
+        <div className="absolute -top-7 -left-7 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-full flex items-center justify-center text-white text-2xl lg:text-3xl font-bold shadow-premium z-10">
           {number}
         </div>
 
         {/* Icon Animation Container */}
-        <div className="mb-6 flex justify-center">
+        <div className="mb-8 flex justify-center">
           <motion.div
             animate={inView ? {
               rotate: number === 1 ? [0, 360, 360] : 0,
@@ -147,19 +147,19 @@ function TutorialStep({ number, title, description, icon, delay }: TutorialStepP
               repeat: Infinity,
               repeatDelay: 3,
             }}
-            className="w-32 h-32 bg-gradient-to-br from-koel-blue/10 to-koel-bamboo/10 rounded-full flex items-center justify-center"
+            className="w-36 h-36 lg:w-40 lg:h-40 bg-gradient-to-br from-koel-blue/10 to-koel-bamboo/10 rounded-full flex items-center justify-center"
           >
-            <div className="text-koel-blue text-6xl">
+            <div className="text-koel-blue text-6xl lg:text-7xl">
               {icon}
             </div>
           </motion.div>
         </div>
 
         {/* Title & Description */}
-        <h3 className="text-2xl font-bold text-koel-neutral-900 mb-3 text-center">
+        <h3 className="text-2xl lg:text-3xl font-bold text-koel-neutral-900 mb-4 text-center">
           {title}
         </h3>
-        <p className="text-base text-koel-neutral-600 text-center leading-relaxed">
+        <p className="text-base lg:text-lg text-koel-neutral-600 text-center leading-relaxed">
           {description}
         </p>
       </div>
@@ -170,9 +170,9 @@ function TutorialStep({ number, title, description, icon, delay }: TutorialStepP
           initial={{ opacity: 0, x: -20 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: delay + 0.3 }}
-          className="absolute top-1/2 -right-8 transform -translate-y-1/2 text-koel-blue"
+          className="absolute top-1/2 -right-10 transform -translate-y-1/2 text-koel-blue"
         >
-          <ArrowRight className="w-8 h-8" />
+          <ArrowRight className="w-10 h-10" />
         </motion.div>
       )}
     </motion.div>
@@ -191,7 +191,7 @@ export default function TutorialSection() {
       number: 2,
       title: "Encaja",
       description: "La recarga Deodorant Pod entra perfectamente en su lugar. Simple y preciso.",
-      icon: <span className="text-5xl">📦</span>,
+      icon: <span className="text-5xl lg:text-6xl">📦</span>,
     },
     {
       number: 3,
@@ -210,28 +210,28 @@ export default function TutorialSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 lg:mb-16 px-4 sm:px-0"
+          className="text-center mb-12 lg:mb-24"
         >
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal font-display tracking-wide text-koel-neutral-900 mb-2 sm:mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-display tracking-wide text-koel-neutral-900 mb-4 sm:mb-6">
             Recargar es tan simple como <span className="text-gradient-koel">1, 2, 3.</span>
           </h2>
-          <p className="text-sm sm:text-xl text-koel-neutral-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl lg:text-2xl text-koel-neutral-600 max-w-3xl mx-auto leading-relaxed">
             Olvídate de lo complicado. En solo tres simples pasos, tu desodorante está listo de nuevo.
           </p>
         </motion.div>
 
         {/* Mobile Compact Timeline - Only visible on mobile */}
-        <div className="lg:hidden mb-8 px-4">
+        <div className="lg:hidden mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-koel-neutral-50 to-koel-neutral-100 rounded-2xl p-6 shadow-premium"
+            className="bg-gradient-to-br from-koel-neutral-50 to-koel-neutral-100 rounded-3xl p-8 shadow-premium"
           >
             {/* Horizontal Steps */}
-            <div className="flex justify-between items-start mb-6 relative">
+            <div className="flex justify-between items-start mb-8 relative">
               {/* Connecting Line */}
-              <div className="absolute top-8 left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-koel-blue via-koel-bamboo to-koel-blue opacity-30" />
+              <div className="absolute top-9 left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-koel-blue via-koel-bamboo to-koel-blue opacity-30" />
 
               {steps.map((step, index) => (
                 <MobileStep
@@ -250,7 +250,7 @@ export default function TutorialSection() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="text-xs text-koel-neutral-600 text-center leading-relaxed"
+              className="text-sm text-koel-neutral-600 text-center leading-relaxed"
             >
               Gira la tapa, encaja el pod y empuja hasta escuchar un clic. ¡Listo!
             </motion.p>
@@ -258,7 +258,7 @@ export default function TutorialSection() {
         </div>
 
         {/* Desktop Tutorial Steps - Hidden on mobile */}
-        <div className="hidden lg:grid lg:grid-cols-3 gap-8 mb-12 relative px-4 sm:px-0">
+        <div className="hidden lg:grid lg:grid-cols-3 gap-12 xl:gap-16 mb-20 relative">
           {steps.map((step, index) => (
             <TutorialStep
               key={step.number}
@@ -274,22 +274,22 @@ export default function TutorialSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="relative bg-gradient-to-br from-koel-neutral-100 to-koel-neutral-200 rounded-2xl sm:rounded-3xl overflow-hidden aspect-video max-w-4xl mx-4 sm:mx-auto mb-8 sm:mb-12 flex items-center justify-center border-2 border-koel-neutral-300"
+          className="relative bg-gradient-to-br from-koel-neutral-100 to-koel-neutral-200 rounded-3xl lg:rounded-[2rem] overflow-hidden aspect-video max-w-5xl mx-auto mb-12 sm:mb-16 flex items-center justify-center border-2 border-koel-neutral-300"
         >
           {/* Video Play Button Mockup */}
           <div className="absolute inset-0 flex items-center justify-center">
             <motion.div
               whileHover={{ scale: 1.1 }}
-              className="w-16 h-16 sm:w-20 sm:h-20 bg-koel-blue rounded-full flex items-center justify-center shadow-premium cursor-pointer"
+              className="w-20 h-20 sm:w-24 sm:h-24 bg-koel-blue rounded-full flex items-center justify-center shadow-premium cursor-pointer"
             >
               <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-white border-b-8 border-b-transparent ml-1" />
             </motion.div>
           </div>
-          <div className="text-center px-4 sm:px-8 relative z-10">
-            <p className="text-sm sm:text-base text-koel-neutral-600 font-semibold mb-2">
+          <div className="text-center px-6 sm:px-10 relative z-10">
+            <p className="text-base sm:text-lg text-koel-neutral-600 font-semibold mb-2">
               Video Tutorial: Cómo Recargar KOEL
             </p>
-            <p className="text-xs sm:text-sm text-koel-neutral-500">
+            <p className="text-sm sm:text-base text-koel-neutral-500">
               1920x1080px • MP4 • 30-45 segundos
             </p>
           </div>
@@ -301,9 +301,9 @@ export default function TutorialSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center mb-6 sm:mb-8 px-4 sm:px-0"
+          className="text-center mb-8 sm:mb-12"
         >
-          <p className="text-lg sm:text-2xl md:text-3xl font-bold text-koel-neutral-900 mb-4 sm:mb-8">
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-koel-neutral-900 mb-6 sm:mb-10">
             ¡Tu KOEL siempre está contigo!
           </p>
           <Button variant="primary" size="lg">

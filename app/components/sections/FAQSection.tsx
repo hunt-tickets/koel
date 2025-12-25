@@ -45,19 +45,19 @@ export default function FAQSection() {
 
   return (
     <section id="faq" className="section-container bg-koel-neutral-50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-0">
+      <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10 sm:mb-16"
+          className="text-center mb-16 sm:mb-24"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal font-display tracking-wide text-koel-neutral-900 mb-3 sm:mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-display tracking-wide text-koel-neutral-900 mb-4 sm:mb-6">
             Preguntas <span className="text-gradient-koel">Frecuentes</span>
           </h2>
-          <p className="text-base sm:text-xl text-koel-neutral-600">
+          <p className="text-lg sm:text-xl lg:text-2xl text-koel-neutral-600">
             Todo lo que necesitas saber sobre KOEL
           </p>
         </motion.div>
@@ -68,7 +68,7 @@ export default function FAQSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white rounded-2xl sm:rounded-3xl shadow-premium p-4 sm:p-8 md:p-12"
+          className="bg-white rounded-3xl lg:rounded-[2rem] shadow-premium p-6 sm:p-10 md:p-14 lg:p-16"
         >
           {faqs.map((faq, index) => (
             <ExpandableSection
@@ -87,14 +87,14 @@ export default function FAQSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-8 sm:mt-12 text-center"
+          className="mt-12 sm:mt-16 text-center"
         >
-          <p className="text-sm sm:text-base text-koel-neutral-600 mb-3 sm:mb-4">
+          <p className="text-base sm:text-lg text-koel-neutral-600 mb-4 sm:mb-5">
             ¿Tienes más preguntas?
           </p>
           <a
             href="mailto:hola@koel.co"
-            className="text-koel-blue hover:text-koel-blue-dark font-semibold transition-colors duration-300 text-sm sm:text-base"
+            className="text-koel-blue hover:text-koel-blue-dark font-semibold transition-colors duration-300 text-base sm:text-lg"
           >
             Contáctanos en hola@koel.co
           </a>
