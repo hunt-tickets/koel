@@ -36,11 +36,11 @@ export default function LoadingScreen({
           exit={{ y: '-100%' }}
           transition={{
             type: 'spring',
-            damping: 30,
-            stiffness: 100,
-            duration: 0.8,
+            damping: 25,
+            stiffness: 120,
+            duration: 0.6,
           }}
-          className="fixed inset-0 w-screen h-screen bg-gradient-to-br from-koel-teal via-koel-aqua to-koel-teal z-[9999] flex items-center justify-center overflow-hidden"
+          className="fixed inset-0 w-screen h-screen bg-koel-aqua z-[9999] flex items-center justify-center overflow-hidden"
         >
 
           {/* Logo container */}

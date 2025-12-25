@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { Header, Footer } from './components/layout';
 import {
   HeroSection,
@@ -15,18 +14,12 @@ import VideoPlayer from './components/ui/VideoPlayer';
 import LoadingScreen from './components/ui/LoadingScreen';
 
 export default function Home() {
-  const [showContent, setShowContent] = useState(false);
-
   return (
     <>
-      {/* Splash Screen */}
-      <LoadingScreen
-        onLoadingComplete={() => setShowContent(true)}
-        minDuration={2500}
-      />
+      {/* Splash Screen - Se superpone al contenido */}
+      <LoadingScreen minDuration={2500} />
 
-      {/* Main Content - Solo se muestra después del splash */}
-      {showContent && (
+      {/* Main Content - Siempre renderizado (el splash lo cubre) */}
       <main className="min-h-screen relative">
       {/* Fixed Full-Page Video Background - No zoom/parallax */}
       <div className="video-background-fixed z-0">
@@ -72,7 +65,6 @@ export default function Home() {
         <Footer />
       </div>
     </main>
-      )}
     </>
   );
 }
