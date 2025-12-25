@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { HiMenu, HiX, HiShoppingCart } from 'react-icons/hi';
+import { Menu, X, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -80,7 +80,7 @@ export default function Header() {
                 className="relative p-2 text-white hover:text-koel-blue transition-colors duration-300"
                 aria-label="Shopping cart"
               >
-                <HiShoppingCart className="w-6 h-6" />
+                <ShoppingCart className="w-6 h-6" strokeWidth={2} />
                 {cartItemCount > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-koel-blue rounded-full text-xs flex items-center justify-center text-white font-bold">
                     {cartItemCount}
@@ -95,9 +95,9 @@ export default function Header() {
                 aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? (
-                  <HiX className="w-6 h-6" />
+                  <X className="w-6 h-6" strokeWidth={2} />
                 ) : (
-                  <HiMenu className="w-6 h-6" />
+                  <Menu className="w-6 h-6" strokeWidth={2} />
                 )}
               </button>
             </div>
@@ -133,7 +133,7 @@ export default function Header() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="p-2 text-white hover:text-koel-blue"
                   >
-                    <HiX className="w-6 h-6" />
+                    <X className="w-6 h-6" strokeWidth={2} />
                   </button>
                 </div>
 

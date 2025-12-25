@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { HiVolumeOff, HiVolumeUp } from 'react-icons/hi';
+import { VolumeX, Volume2 } from 'lucide-react';
 
 interface VideoPlayerProps {
   src: string;
@@ -92,9 +92,9 @@ export default function VideoPlayer({
           aria-label={isMuted ? 'Unmute' : 'Mute'}
         >
           {isMuted ? (
-            <HiVolumeOff className="w-6 h-6" />
+            <VolumeX className="w-6 h-6" />
           ) : (
-            <HiVolumeUp className="w-6 h-6" />
+            <Volume2 className="w-6 h-6" />
           )}
         </button>
       )}

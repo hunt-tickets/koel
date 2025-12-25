@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, ReactNode } from 'react';
-import { HiPlus, HiX } from 'react-icons/hi';
+import { Plus, X } from 'lucide-react';
 
 interface ExpandableSectionProps {
   title: string;
@@ -34,9 +34,9 @@ export default function ExpandableSection({
           className="text-koel-blue flex-shrink-0"
         >
           {isExpanded ? (
-            <HiX className="w-5 h-5 sm:w-6 sm:h-6" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
           ) : (
-            <HiPlus className="w-5 h-5 sm:w-6 sm:h-6" />
+            <Plus className="w-5 h-5 sm:w-6 sm:h-6" />
           )}
         </motion.div>
       </button>

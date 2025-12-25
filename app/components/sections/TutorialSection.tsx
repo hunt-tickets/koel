@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Button from '../ui/Button';
-import { HiRefresh, HiLockClosed, HiArrowRight } from 'react-icons/hi';
+import { RotateCw, Lock, ArrowRight } from 'lucide-react';
 
 interface TutorialStepProps {
   number: number;
@@ -172,7 +172,7 @@ function TutorialStep({ number, title, description, icon, delay }: TutorialStepP
           transition={{ duration: 0.6, delay: delay + 0.3 }}
           className="absolute top-1/2 -right-8 transform -translate-y-1/2 text-koel-blue"
         >
-          <HiArrowRight className="w-8 h-8" />
+          <ArrowRight className="w-8 h-8" />
         </motion.div>
       )}
     </motion.div>
@@ -185,7 +185,7 @@ export default function TutorialSection() {
       number: 1,
       title: "Gira",
       description: "Muestra el movimiento rotacional para abrir el envase del Deodorant Case.",
-      icon: <HiRefresh />,
+      icon: <RotateCw />,
     },
     {
       number: 2,
@@ -197,7 +197,7 @@ export default function TutorialSection() {
       number: 3,
       title: "Empuja",
       description: "Cierra el envase hasta escuchar un clic seguro. ¡Tu KOEL está listo!",
-      icon: <HiLockClosed />,
+      icon: <Lock />,
     },
   ];
 

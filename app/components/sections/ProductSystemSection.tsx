@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { HiPlus, HiX } from 'react-icons/hi';
+import { Plus, X } from 'lucide-react';
 import Card from '../ui/Card';
 
 interface ProductFeature {
@@ -58,9 +58,9 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, bgColor }: P
                 className="text-koel-blue flex-shrink-0 ml-2"
               >
                 {expandedIndex === index ? (
-                  <HiX className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 ) : (
-                  <HiPlus className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
                 )}
               </motion.div>
             </button>

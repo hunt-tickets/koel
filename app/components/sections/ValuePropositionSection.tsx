@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { HiLightningBolt, HiStar, HiSparkles, HiCash, HiFlag, HiHeart } from 'react-icons/hi';
+import { Zap, Star, Sparkles, Banknote, Flag, Heart } from 'lucide-react';
 import Button from '../ui/Button';
 import VideoPlayer from '../ui/VideoPlayer';
 
@@ -39,37 +39,37 @@ function ValueItem({ icon, title, description, delay }: ValueItemProps) {
 export default function ValuePropositionSection() {
   const valuePoints = [
     {
-      icon: <HiLightningBolt className="w-6 h-6" />,
+      icon: <Zap className="w-6 h-6" />,
       title: "Recarga en segundos",
       description: "Un giro, encaja, y listo. ¡Es así de fácil!",
       delay: 0.1,
     },
     {
-      icon: <HiStar className="w-6 h-6" />,
+      icon: <Star className="w-6 h-6" />,
       title: "Diseño premium",
       description: "Un accesorio que combina estilo y funcionalidad.",
       delay: 0.2,
     },
     {
-      icon: <HiSparkles className="w-6 h-6" />,
+      icon: <Sparkles className="w-6 h-6" />,
       title: "Fragancias exclusivas",
       description: "Aromas cautivadores diseñados para ti.",
       delay: 0.3,
     },
     {
-      icon: <HiCash className="w-6 h-6" />,
+      icon: <Banknote className="w-6 h-6" />,
       title: "Ahorro inteligente",
       description: "Menos plástico y más valor para tu bolsillo: a largo plazo, KOEL es la opción más económica.",
       delay: 0.4,
     },
     {
-      icon: <HiFlag className="w-6 h-6" />,
+      icon: <Flag className="w-6 h-6" />,
       title: "100% colombiano",
       description: "Innovación local al alcance de tus manos.",
       delay: 0.5,
     },
     {
-      icon: <HiHeart className="w-6 h-6" />,
+      icon: <Heart className="w-6 h-6" />,
       title: "Cuidado personal simplificado",
       description: "Ingredientes suaves, piel fresca y protegida.",
       delay: 0.6,

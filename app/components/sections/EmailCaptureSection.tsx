@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Input from '../ui/Input';
 import Button from '../ui/Button';
-import { HiCheckCircle, HiMail } from 'react-icons/hi';
+import { CheckCircle, Mail } from 'lucide-react';
 
 export default function EmailCaptureSection() {
   const [email, setEmail] = useState('');
@@ -116,7 +116,7 @@ export default function EmailCaptureSection() {
                 className="relative w-32 h-32 sm:w-48 sm:h-48 mx-auto bg-gradient-to-br from-koel-blue/30 to-koel-ginger/30 rounded-2xl sm:rounded-3xl flex items-center justify-center backdrop-blur-sm"
               >
                 <div className="text-center">
-                  <HiMail className="w-14 h-14 sm:w-20 sm:h-20 text-white mx-auto mb-1 sm:mb-2" />
+                  <Mail className="w-14 h-14 sm:w-20 sm:h-20 text-white mx-auto mb-1 sm:mb-2" />
                   <p className="text-white/70 text-[10px] sm:text-xs">
                     [Ilustración animada<br />del Starter Kit]
                   </p>
@@ -153,7 +153,7 @@ export default function EmailCaptureSection() {
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-4 sm:mb-6 p-3 sm:p-4 bg-green-500/20 border border-green-500/50 rounded-xl sm:rounded-2xl flex items-center justify-center gap-2 text-white"
               >
-                <HiCheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-green-400 flex-shrink-0" />
+                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-green-400 flex-shrink-0" />
                 <span className="font-semibold text-sm sm:text-base">
                   ¡Gracias! Te enviaremos actualizaciones exclusivas pronto.
                 </span>
