@@ -37,13 +37,44 @@ export default function Header() {
             : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <Link href="/" className="flex items-center">
+        <div className="max-w-7xl mx-auto px-4 md:px-12">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            {/* Mobile: Menu Button (Left) */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 text-white hover:text-koel-blue transition-colors duration-300"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5" strokeWidth={2} />
+              ) : (
+                <Menu className="w-5 h-5" strokeWidth={2} />
+              )}
+            </button>
+
+            {/* Desktop: Logo (Left) */}
+            <Link href="/" className="hidden md:flex items-center">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 className="relative w-24 h-10"
+              >
+                <Image
+                  src="/logo.png"
+                  alt="KOEL Logo"
+                  fill
+                  className={`object-contain transition-all duration-300 ${
+                    isScrolled ? 'brightness-0 invert' : ''
+                  }`}
+                  priority
+                />
+              </motion.div>
+            </Link>
+
+            {/* Mobile: Logo (Center, Smaller) */}
+            <Link href="/" className="md:hidden absolute left-1/2 -translate-x-1/2">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="relative w-16 h-7"
               >
                 <Image
                   src="/logo.png"
@@ -70,35 +101,21 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* Cart & Mobile Menu Button */}
+            {/* Cart Icon (Right on both mobile and desktop) */}
             <div className="flex items-center gap-4">
-              {/* Cart Icon */}
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 className="relative p-2 text-white hover:text-koel-blue transition-colors duration-300"
                 aria-label="Shopping cart"
               >
-                <ShoppingCart className="w-6 h-6" strokeWidth={2} />
+                <ShoppingCart className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2} />
                 {cartItemCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-koel-blue rounded-full text-xs flex items-center justify-center text-white font-bold">
+                  <span className="absolute -top-1 -right-1 w-4 h-4 md:w-5 md:h-5 bg-koel-blue rounded-full text-[10px] md:text-xs flex items-center justify-center text-white font-bold">
                     {cartItemCount}
                   </span>
                 )}
               </motion.button>
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2 text-white hover:text-koel-blue transition-colors duration-300"
-                aria-label="Toggle menu"
-              >
-                {isMobileMenuOpen ? (
-                  <X className="w-6 h-6" strokeWidth={2} />
-                ) : (
-                  <Menu className="w-6 h-6" strokeWidth={2} />
-                )}
-              </button>
             </div>
           </div>
         </div>
