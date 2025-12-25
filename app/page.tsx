@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { Header, Footer } from './components/layout';
 import {
   HeroSection,
@@ -11,10 +12,21 @@ import {
   FAQSection,
 } from './components/sections';
 import VideoPlayer from './components/ui/VideoPlayer';
+import LoadingScreen from './components/ui/LoadingScreen';
 
 export default function Home() {
+  const [showContent, setShowContent] = useState(false);
+
   return (
-    <main className="min-h-screen relative">
+    <>
+      {/* Splash Screen */}
+      <LoadingScreen
+        onLoadingComplete={() => setShowContent(true)}
+        minDuration={2500}
+      />
+
+      {/* Main Content */}
+      <main className="min-h-screen relative">
       {/* Fixed Full-Page Video Background - No zoom/parallax */}
       <div className="video-background-fixed z-0">
         <VideoPlayer
@@ -59,5 +71,6 @@ export default function Home() {
         <Footer />
       </div>
     </main>
+    </>
   );
 }

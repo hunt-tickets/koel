@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 interface LoadingScreenProps {
   onLoadingComplete?: () => void;
@@ -12,68 +13,132 @@ export default function LoadingScreen({
   onLoadingComplete,
   minDuration = 2000,
 }: LoadingScreenProps) {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsVisible(false);
-      onLoadingComplete?.();
+      setIsLoading(false);
+      setTimeout(() => {
+        onLoadingComplete?.();
+      }, 800); // Espera a que termine la animación de salida
     }, minDuration);
 
     return () => clearTimeout(timer);
   }, [minDuration, onLoadingComplete]);
 
-  if (!isVisible) return null;
-
   return (
-    <motion.div
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-      className="loading-screen"
-    >
-      <div className="loading-content">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-6xl font-normal font-display tracking-wide text-white mb-4"
-        >
-          KOEL
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-xl text-white/90"
-        >
-          El primer desodorante recargable de Colombia
-        </motion.p>
-
-        {/* Loading indicator */}
+    <AnimatePresence mode="wait">
+      {isLoading && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-8 flex justify-center gap-2"
+          key="splash"
+          initial={{ y: '100%' }}
+          animate={{ y: 0 }}
+          exit={{ y: '-100%' }}
+          transition={{
+            type: 'spring',
+            damping: 30,
+            stiffness: 100,
+            duration: 0.8,
+          }}
+          className="fixed inset-0 w-screen h-screen bg-gradient-to-br from-koel-teal via-koel-aqua to-koel-teal z-[100] flex items-center justify-center overflow-hidden"
         >
-          {[0, 1, 2].map((index) => (
+          {/* Animated background circles */}
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.1, 0.2, 0.1],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            className="absolute w-[500px] h-[500px] rounded-full bg-white/10 blur-3xl"
+            style={{ top: '10%', left: '20%' }}
+          />
+          <motion.div
+            animate={{
+              scale: [1.2, 1, 1.2],
+              opacity: [0.1, 0.2, 0.1],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            className="absolute w-[400px] h-[400px] rounded-full bg-white/10 blur-3xl"
+            style={{ bottom: '10%', right: '20%' }}
+          />
+
+          {/* Logo container */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              delay: 0.3,
+              duration: 0.6,
+              ease: 'easeOut',
+            }}
+            className="relative z-10 flex flex-col items-center gap-8"
+          >
+            {/* Logo */}
             <motion.div
-              key={index}
               animate={{
-                scale: [1, 1.2, 1],
-                opacity: [1, 0.5, 1],
+                y: [0, -10, 0],
               }}
               transition={{
-                duration: 1,
+                duration: 2,
                 repeat: Infinity,
-                delay: index * 0.2,
+                ease: 'easeInOut',
               }}
-              className="w-3 h-3 bg-white rounded-full"
-            />
-          ))}
+              className="relative w-48 h-48 md:w-64 md:h-64"
+            >
+              <Image
+                src="/logo.png"
+                alt="KOEL Logo"
+                fill
+                className="object-contain brightness-0 invert"
+                priority
+              />
+            </motion.div>
+
+            {/* Loading dots */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="flex gap-3"
+            >
+              {[0, 1, 2].map((index) => (
+                <motion.div
+                  key={index}
+                  animate={{
+                    scale: [1, 1.4, 1],
+                    opacity: [0.5, 1, 0.5],
+                  }}
+                  transition={{
+                    duration: 1.2,
+                    repeat: Infinity,
+                    delay: index * 0.2,
+                    ease: 'easeInOut',
+                  }}
+                  className="w-3 h-3 rounded-full bg-white"
+                />
+              ))}
+            </motion.div>
+
+            {/* Tagline */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.5 }}
+              className="text-white/90 text-sm md:text-base font-heading tracking-wide uppercase"
+            >
+              A New Way to Care
+            </motion.p>
+          </motion.div>
         </motion.div>
-      </div>
-    </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
