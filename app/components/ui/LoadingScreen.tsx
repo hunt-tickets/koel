@@ -40,35 +40,8 @@ export default function LoadingScreen({
             stiffness: 100,
             duration: 0.8,
           }}
-          className="fixed inset-0 w-screen h-screen bg-gradient-to-br from-koel-teal via-koel-aqua to-koel-teal z-[100] flex items-center justify-center overflow-hidden"
+          className="fixed inset-0 w-screen h-screen bg-gradient-to-br from-koel-teal via-koel-aqua to-koel-teal z-[9999] flex items-center justify-center overflow-hidden"
         >
-          {/* Animated background circles */}
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.1, 0.2, 0.1],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            className="absolute w-[500px] h-[500px] rounded-full bg-white/10 blur-3xl"
-            style={{ top: '10%', left: '20%' }}
-          />
-          <motion.div
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.1, 0.2, 0.1],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            className="absolute w-[400px] h-[400px] rounded-full bg-white/10 blur-3xl"
-            style={{ bottom: '10%', right: '20%' }}
-          />
 
           {/* Logo container */}
           <motion.div

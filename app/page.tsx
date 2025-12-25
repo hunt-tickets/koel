@@ -25,7 +25,8 @@ export default function Home() {
         minDuration={2500}
       />
 
-      {/* Main Content */}
+      {/* Main Content - Solo se muestra después del splash */}
+      {showContent && (
       <main className="min-h-screen relative">
       {/* Fixed Full-Page Video Background - No zoom/parallax */}
       <div className="video-background-fixed z-0">
@@ -71,6 +72,7 @@ export default function Home() {
         <Footer />
       </div>
     </main>
+      )}
     </>
   );
 }
