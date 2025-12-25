@@ -38,7 +38,9 @@ export default function Header() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-12">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className={`flex items-center justify-between transition-all duration-500 ${
+            isScrolled ? 'h-16 md:h-20' : 'h-20 md:h-28'
+          }`}>
             {/* Mobile: Menu Button (Left) */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -46,9 +48,9 @@ export default function Header() {
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
-                <X className="w-5 h-5" strokeWidth={2} />
+                <X className={`transition-all duration-500 ${isScrolled ? 'w-5 h-5' : 'w-6 h-6'}`} strokeWidth={2} />
               ) : (
-                <Menu className="w-5 h-5" strokeWidth={2} />
+                <Menu className={`transition-all duration-500 ${isScrolled ? 'w-5 h-5' : 'w-6 h-6'}`} strokeWidth={2} />
               )}
             </button>
 
@@ -56,7 +58,9 @@ export default function Header() {
             <Link href="/" className="hidden md:flex items-center">
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="relative w-24 h-10"
+                className={`relative transition-all duration-500 ${
+                  isScrolled ? 'w-24 h-10' : 'w-32 h-14'
+                }`}
               >
                 <Image
                   src="/logo.png"
@@ -70,11 +74,13 @@ export default function Header() {
               </motion.div>
             </Link>
 
-            {/* Mobile: Logo (Center, Smaller) */}
+            {/* Mobile: Logo (Center) */}
             <Link href="/" className="md:hidden absolute left-1/2 -translate-x-1/2">
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="relative w-16 h-7"
+                className={`relative transition-all duration-500 ${
+                  isScrolled ? 'w-16 h-7' : 'w-20 h-9'
+                }`}
               >
                 <Image
                   src="/logo.png"
@@ -94,7 +100,9 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-white font-medium hover:text-koel-blue transition-colors duration-300"
+                  className={`text-white font-medium hover:text-koel-blue transition-all duration-300 ${
+                    isScrolled ? 'text-base' : 'text-lg'
+                  }`}
                 >
                   {link.label}
                 </Link>
@@ -109,7 +117,12 @@ export default function Header() {
                 className="relative p-2 text-white hover:text-koel-blue transition-colors duration-300"
                 aria-label="Shopping cart"
               >
-                <ShoppingCart className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2} />
+                <ShoppingCart
+                  className={`transition-all duration-500 ${
+                    isScrolled ? 'w-5 h-5 md:w-6 md:h-6' : 'w-6 h-6 md:w-7 md:h-7'
+                  }`}
+                  strokeWidth={2}
+                />
                 {cartItemCount > 0 && (
                   <span className="absolute -top-1 -right-1 w-4 h-4 md:w-5 md:h-5 bg-koel-blue rounded-full text-[10px] md:text-xs flex items-center justify-center text-white font-bold">
                     {cartItemCount}
