@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Sparkles, Shield, Leaf, Gem, CalendarRange, RotateCw, Flower2 } from 'lucide-react';
 import Card from '../ui/Card';
+import Button from '../ui/Button';
 
 interface ProductFeature {
   icon: React.ReactNode;
@@ -16,11 +17,12 @@ interface ProductCardProps {
   imagePlaceholder: string;
   features: ProductFeature[];
   bgColor: string;
+  price: string;
 }
 
-function ProductCard({ title, subtitle, imagePlaceholder, features, bgColor }: ProductCardProps) {
+function ProductCard({ title, subtitle, imagePlaceholder, features, bgColor, price }: ProductCardProps) {
   return (
-    <Card className={`${bgColor} border border-koel-neutral-200`}>
+    <Card className={`${bgColor} border border-koel-neutral-200 flex flex-col`}>
       {/* Product Image */}
       <div className="relative w-full aspect-square mb-4 sm:mb-6 rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-koel-neutral-50 to-koel-neutral-100 flex items-center justify-center p-8 border border-koel-neutral-200">
         {/* Simulated Product Render */}
@@ -45,7 +47,7 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, bgColor }: P
       </p>
 
       {/* Features Grid - Minimalista con iconos */}
-      <div className="grid grid-cols-1 gap-4 sm:gap-5">
+      <div className="grid grid-cols-1 gap-4 sm:gap-5 mb-6 sm:mb-8 flex-1">
         {features.map((feature, index) => (
           <motion.div
             key={index}
@@ -71,6 +73,25 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, bgColor }: P
             </div>
           </motion.div>
         ))}
+      </div>
+
+      {/* Price and Buy Button */}
+      <div className="mt-auto border-t border-koel-neutral-200 pt-6">
+        <div className="flex items-center justify-between gap-4 mb-4">
+          <div>
+            <p className="text-xs sm:text-sm text-koel-neutral-600 mb-1">Precio</p>
+            <p className="text-2xl sm:text-3xl font-bold font-display tracking-wide text-koel-neutral-900">
+              {price}
+            </p>
+          </div>
+        </div>
+        <Button
+          variant="primary"
+          size="lg"
+          className="w-full"
+        >
+          Comprar ahora
+        </Button>
       </div>
     </Card>
   );
@@ -157,6 +178,7 @@ export default function ProductSystemSection() {
               imagePlaceholder="[Render 3D del Case azul claro]"
               features={caseFeatures}
               bgColor="bg-white"
+              price="$35,000"
             />
           </motion.div>
 
@@ -172,6 +194,7 @@ export default function ProductSystemSection() {
               imagePlaceholder="[Render del Pod con cartón biodegradable]"
               features={podFeatures}
               bgColor="bg-white"
+              price="$15,000"
             />
           </motion.div>
         </div>
