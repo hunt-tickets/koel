@@ -139,7 +139,7 @@ export default function EmailCaptureSection() {
             </motion.div>
 
             {/* Headline */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif text-white mb-3 sm:mb-4">
               ¿Aún no te unes al cambio?
             </h2>
             <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto">
