@@ -82,7 +82,7 @@ export default function Header() {
                 }`}
               >
                 <Image
-                  src="/logo.png"
+                  src="/logo.svg"
                   alt="KOEL Logo"
                   fill
                   className={`object-contain transition-all duration-300 ${
@@ -102,7 +102,7 @@ export default function Header() {
                 }`}
               >
                 <Image
-                  src="/logo.png"
+                  src="/logo.svg"
                   alt="KOEL Logo"
                   fill
                   className={`object-contain transition-all duration-300 ${

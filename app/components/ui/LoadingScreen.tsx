@@ -64,10 +64,10 @@ export default function LoadingScreen({
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
-              className="relative w-48 h-48 md:w-64 md:h-64"
+              className="relative w-48 h-16 md:w-64 md:h-24"
             >
               <Image
-                src="/logo.png"
+                src="/logo.svg"
                 alt="KOEL Logo"
                 fill
                 className="object-contain brightness-0 invert"
