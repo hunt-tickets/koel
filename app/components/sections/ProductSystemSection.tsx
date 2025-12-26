@@ -324,7 +324,7 @@ export default function ProductSystemSection() {
   ];
 
   return (
-    <section id="producto" className="section-container bg-koel-neutral-50 rounded-t-3xl">
+    <section id="producto" className="section-container rounded-t-3xl md:bg-koel-neutral-50 bg-white">
       {/* Section Header */}
       <div className="max-w-6xl mx-auto w-full">
         <div className="text-center mb-12 sm:mb-16">
@@ -345,7 +345,7 @@ export default function ProductSystemSection() {
       {/* MOBILE: Horizontal Carousel - Full Width */}
       <div className="md:hidden">
         {/* Carousel Container */}
-        <div className="bg-white overflow-hidden w-screen -mx-[calc((100vw-100%)/2)]" ref={emblaRef}>
+        <div className="overflow-hidden w-screen -mx-[calc((100vw-100%)/2)]" ref={emblaRef}>
           <div className="flex gap-4 px-4">
             {products.map((product, index) => (
               <motion.div
@@ -369,7 +369,7 @@ export default function ProductSystemSection() {
         </div>
 
         {/* Mobile Carousel Indicators - Integrated */}
-        <div className="bg-white flex justify-center gap-2 py-6">
+        <div className="flex justify-center gap-2 py-6">
           {products.map((_, index) => (
             <button
               key={index}
