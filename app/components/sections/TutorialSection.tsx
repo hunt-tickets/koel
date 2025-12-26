@@ -220,41 +220,45 @@ export default function TutorialSection() {
           </p>
         </motion.div>
 
-        {/* Mobile Compact Timeline - Only visible on mobile */}
-        <div className="lg:hidden mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-br from-koel-neutral-50 to-koel-neutral-100 rounded-3xl p-8 shadow-premium"
-          >
-            {/* Horizontal Steps */}
-            <div className="flex justify-between items-start mb-8 relative">
-              {/* Connecting Line */}
-              <div className="absolute top-9 left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-koel-blue via-koel-bamboo to-koel-blue opacity-30" />
+        {/* Mobile Compact Timeline - Vertical Stacked */}
+        <div className="lg:hidden mb-12 sm:mb-16">
+          {/* Vertical Steps */}
+          <div className="flex flex-col gap-8 sm:gap-10">
+            {steps.map((step, index) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="flex gap-5 sm:gap-6 items-start"
+              >
+                {/* Number Circle with Icon */}
+                <div className="flex-shrink-0">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-full flex items-center justify-center text-white shadow-premium relative">
+                    {step.number === 1 && <RotateIcon />}
+                    {step.number === 2 && <InsertIcon />}
+                    {step.number === 3 && <ClickIcon />}
 
-              {steps.map((step, index) => (
-                <MobileStep
-                  key={step.number}
-                  number={step.number}
-                  title={step.title}
-                  icon={step.icon}
-                  delay={index * 0.1}
-                />
-              ))}
-            </div>
+                    {/* Step Number Badge */}
+                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center text-koel-blue text-xs font-bold border-2 border-koel-blue">
+                      {step.number}
+                    </div>
+                  </div>
+                </div>
 
-            {/* Combined Description */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="text-sm text-koel-neutral-600 text-center leading-relaxed"
-            >
-              Gira la tapa, encaja el pod y empuja hasta escuchar un clic. ¡Listo!
-            </motion.p>
-          </motion.div>
+                {/* Text Content */}
+                <div className="flex-1 pt-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-koel-neutral-900 mb-1">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-koel-neutral-600 leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Desktop Tutorial Steps - Hidden on mobile */}
