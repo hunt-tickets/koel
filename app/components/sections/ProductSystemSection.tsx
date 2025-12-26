@@ -140,9 +140,9 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
           className="w-full justify-center"
           strength={0.15}
         >
-          <span className="flex items-center gap-3">
-            <span>Comprar ahora</span>
-            <span className="text-lg sm:text-xl font-bold">·</span>
+          <span className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base">
+            <span>Comprar</span>
+            <span className="font-bold">·</span>
             <span className="font-bold">{price}</span>
           </span>
         </MagneticPrimaryButton>
