@@ -5,7 +5,6 @@ import {
   HeroSection,
   ProductSystemSection,
   TutorialSection,
-  FragrancesSection,
   ValuePropositionSection,
   EmailCaptureSection,
   FAQSection,
@@ -48,9 +47,6 @@ export default function Home() {
 
         {/* Tutorial Section (1-2-3) */}
         <TutorialSection />
-
-        {/* Fragrances Section */}
-        <FragrancesSection />
 
         {/* Value Proposition Section */}
         <ValuePropositionSection />
