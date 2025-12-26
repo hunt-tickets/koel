@@ -173,7 +173,6 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
         </button>
       </motion.div>
     );
-  }
 }
 
 export default function ProductSystemSection() {
