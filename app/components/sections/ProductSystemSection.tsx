@@ -236,12 +236,74 @@ export default function ProductSystemSection() {
     },
     {
       icon: <Flower2 className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
+      title: "Natural",
+      description: "Ingredientes puros y seguros."
+    }
+  ];
+
+  const starterKitFeatures: ProductFeature[] = [
+    {
+      icon: <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
+      title: "Todo lo que necesitas",
+      description: "Case + 2 Pods biodegradables."
+    },
+    {
+      icon: <Shield className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
+      title: "Mejor valor",
+      description: "Ahorra con este kit completo."
+    },
+    {
+      icon: <Gem className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
+      title: "Premium",
+      description: "Diseño y calidad sin compromiso."
+    },
+    {
+      icon: <Flower2 className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
+      title: "Perfecto para empezar",
+      description: "Ideal para tu primera compra."
+    }
+  ];
+
+  const familyKitFeatures: ProductFeature[] = [
+    {
+      icon: <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
+      title: "Para toda la familia",
+      description: "2 Cases + 4 Pods variados."
+    },
+    {
+      icon: <Shield className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
+      title: "Máximo ahorro",
+      description: "Mejor precio por unidad."
+    },
+    {
+      icon: <Gem className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
       title: "Dos fragancias",
-      description: "Bamboo Whisper y Ginger Grape."
+      description: "Bamboo y Ginger Grape."
+    },
+    {
+      icon: <Leaf className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />,
+      title: "Sostenible",
+      description: "Menos empaques, más conciencia."
     }
   ];
 
   const products = [
+    {
+      title: "Deodorant Pod Bamboo",
+      subtitle: "Recarga biodegradable",
+      imagePlaceholder: "[Render Pod Bamboo Whisper]",
+      features: podFeatures,
+      price: "$12,000",
+      accentColor: "bg-gradient-to-br from-koel-bamboo/30 to-koel-aqua/30"
+    },
+    {
+      title: "Deodorant Pod Ginger Grape",
+      subtitle: "Recarga con aroma cítrico",
+      imagePlaceholder: "[Render Pod Ginger Grape]",
+      features: podFeatures,
+      price: "$12,000",
+      accentColor: "bg-gradient-to-br from-koel-ginger/30 to-koel-coral/30"
+    },
     {
       title: "Deodorant Case",
       subtitle: "Tu compañero duradero",
@@ -251,12 +313,20 @@ export default function ProductSystemSection() {
       accentColor: "bg-gradient-to-br from-koel-blue/30 to-koel-bamboo/30"
     },
     {
-      title: "Deodorant Pod",
-      subtitle: "Recarga biodegradable",
-      imagePlaceholder: "[Render del Pod con cartón biodegradable]",
-      features: podFeatures,
-      price: "$15,000",
-      accentColor: "bg-gradient-to-br from-koel-bamboo/30 to-koel-ginger/30"
+      title: "Starter Kit",
+      subtitle: "Tu primer paso hacia lo sostenible",
+      imagePlaceholder: "[Render Starter Kit completo]",
+      features: starterKitFeatures,
+      price: "$45,000",
+      accentColor: "bg-gradient-to-br from-koel-teal/30 to-koel-aqua/30"
+    },
+    {
+      title: "Family Kit",
+      subtitle: "Para compartir en familia",
+      imagePlaceholder: "[Render Family Kit premium]",
+      features: familyKitFeatures,
+      price: "$79,000",
+      accentColor: "bg-gradient-to-br from-koel-aqua/30 to-koel-olive/30"
     }
   ];
 
