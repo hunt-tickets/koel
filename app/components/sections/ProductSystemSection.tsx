@@ -1,8 +1,9 @@
 'use client';
 
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useCallback } from 'react';
 import { Sparkles, Shield, Leaf, Gem, CalendarRange, RotateCw, Flower2, ChevronDown } from 'lucide-react';
+import useEmblaCarousel from 'embla-carousel-react';
 import { MagneticPrimaryButton } from '../ui/MagneticButton';
 import { MaskText } from '../ui/TextReveal';
 
@@ -19,10 +20,11 @@ interface ProductCardProps {
   features: ProductFeature[];
   price: string;
   accentColor: string;
+  isExpanded?: boolean;
+  onToggleExpand?: () => void;
 }
 
-function ProductCard({ title, subtitle, imagePlaceholder, features, price, accentColor }: ProductCardProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
+function ProductCard({ title, subtitle, imagePlaceholder, features, price, accentColor, isExpanded = false, onToggleExpand }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -79,7 +81,7 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
 
       {/* Expandir/Colapsar Button */}
       <button
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={onToggleExpand}
         className="flex items-center gap-2 text-koel-aqua hover:text-koel-teal transition-colors mb-6 group"
       >
         <span className="text-sm sm:text-base font-medium">
@@ -150,19 +152,35 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
 }
 
 export default function ProductSystemSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: 'center',
+    containScroll: 'trimSnaps',
+    dragFree: false,
   });
 
-  // Transform vertical scroll to horizontal movement
-  // Móvil: más recorrido para cards más anchas (85vw)
-  // Desktop: menos recorrido para cards más pequeñas (45vw)
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-95%"]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
-  // Progress bar
-  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on('select', onSelect);
+    return () => {
+      emblaApi.off('select', onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
+  // Reinit carousel when card height changes (expand/collapse)
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.reInit();
+    }
+  }, [expandedIndex, emblaApi]);
 
   const caseFeatures: ProductFeature[] = [
     {
@@ -210,73 +228,85 @@ export default function ProductSystemSection() {
     }
   ];
 
+  const products = [
+    {
+      title: "Deodorant Case",
+      subtitle: "Tu compañero duradero",
+      imagePlaceholder: "[Render 3D del Case azul claro]",
+      features: caseFeatures,
+      price: "$35,000",
+      accentColor: "bg-gradient-to-br from-koel-blue/30 to-koel-bamboo/30"
+    },
+    {
+      title: "Deodorant Pod",
+      subtitle: "Recarga biodegradable",
+      imagePlaceholder: "[Render del Pod con cartón biodegradable]",
+      features: podFeatures,
+      price: "$15,000",
+      accentColor: "bg-gradient-to-br from-koel-bamboo/30 to-koel-ginger/30"
+    }
+  ];
+
   return (
-    <section
-      ref={containerRef}
-      id="producto"
-      className="relative bg-koel-neutral-50"
-    >
-      {/* Sticky container for horizontal scroll effect */}
-      <div className="h-[300vh]">
-        <div className="sticky top-0 h-screen overflow-visible flex flex-col justify-center py-12 md:py-16">
-          {/* Section Header - Fixed */}
-          <div className="px-6 sm:px-8 md:px-16 lg:px-20 pb-8 sm:pb-12">
-            <div className="max-w-6xl mx-auto">
-              <MaskText delay={0.1}>
-                <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-koel-neutral-500 mb-4 sm:mb-6 font-light text-center">
-                  Nuestro sistema
-                </p>
-              </MaskText>
-
-              <MaskText delay={0.2}>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-display tracking-wide text-koel-neutral-900 mb-4 sm:mb-6 text-center">
-                  Diseño que cambia las reglas.
-                </h2>
-              </MaskText>
-            </div>
-          </div>
-
-          {/* Horizontal Scrolling Cards */}
-          <motion.div
-            style={{ x }}
-            className="flex gap-8 sm:gap-12 lg:gap-16 px-6 sm:px-8 lg:px-20 py-8"
-          >
-            <div className="w-[85vw] sm:w-[70vw] lg:w-[45vw] xl:w-[40vw] flex-shrink-0">
-              <ProductCard
-                title="Deodorant Case"
-                subtitle="Tu compañero duradero"
-                imagePlaceholder="[Render 3D del Case azul claro]"
-                features={caseFeatures}
-                price="$35,000"
-                accentColor="bg-gradient-to-br from-koel-blue/30 to-koel-bamboo/30"
-              />
-            </div>
-
-            <div className="w-[85vw] sm:w-[70vw] lg:w-[45vw] xl:w-[40vw] flex-shrink-0">
-              <ProductCard
-                title="Deodorant Pod"
-                subtitle="Recarga biodegradable"
-                imagePlaceholder="[Render del Pod con cartón biodegradable]"
-                features={podFeatures}
-                price="$15,000"
-                accentColor="bg-gradient-to-br from-koel-bamboo/30 to-koel-ginger/30"
-              />
-            </div>
-          </motion.div>
-
-          {/* Progress Bar */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-48 sm:w-64">
-            <div className="h-1 bg-koel-neutral-200 rounded-full overflow-hidden">
-              <motion.div
-                style={{ width: progressWidth }}
-                className="h-full bg-gradient-to-r from-koel-blue to-koel-bamboo"
-              />
-            </div>
-            <p className="text-center text-xs text-koel-neutral-500 mt-2 tracking-wider uppercase">
-              Desliza para explorar
+    <section id="producto" className="section-container bg-koel-neutral-50">
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-12 sm:mb-16">
+          <MaskText delay={0.1}>
+            <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-koel-neutral-500 mb-4 sm:mb-6 font-light">
+              Nuestro sistema
             </p>
+          </MaskText>
+
+          <MaskText delay={0.2}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-display tracking-wide text-koel-neutral-900">
+              Diseño que cambia las reglas.
+            </h2>
+          </MaskText>
+        </div>
+
+        {/* Embla Carousel */}
+        <div className="overflow-hidden -mx-6 sm:-mx-8 md:mx-0" ref={emblaRef}>
+          <div className="flex gap-6 sm:gap-8 lg:gap-12 px-6 sm:px-8 md:px-0">
+            {products.map((product, index) => (
+              <motion.div
+                key={index}
+                className="flex-[0_0_85%] sm:flex-[0_0_75%] md:flex-[0_0_70%] lg:flex-[0_0_45%] min-w-0"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <ProductCard
+                  {...product}
+                  isExpanded={expandedIndex === index}
+                  onToggleExpand={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                />
+              </motion.div>
+            ))}
           </div>
         </div>
+
+        {/* Dot Indicators */}
+        <div className="flex justify-center gap-2 mt-12">
+          {products.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => emblaApi?.scrollTo(index)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                selectedIndex === index
+                  ? 'w-8 bg-koel-aqua'
+                  : 'w-2 bg-koel-neutral-300 hover:bg-koel-neutral-400'
+              }`}
+              aria-label={`Go to ${products[index].title}`}
+            />
+          ))}
+        </div>
+
+        {/* Helper text */}
+        <p className="text-center text-xs text-koel-neutral-500 mt-4 tracking-wider uppercase">
+          Desliza para explorar
+        </p>
       </div>
     </section>
   );
