@@ -63,7 +63,7 @@ export default function Header() {
             {/* Mobile: Menu Button (Left) */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden w-10 h-10 sm:w-11 sm:h-11 bg-koel-blue border-2 border-white rounded-full flex items-center justify-center text-white hover:opacity-90 transition-all duration-300"
+              className="md:hidden w-10 h-10 sm:w-11 sm:h-11 bg-koel-blue border border-white rounded-full flex items-center justify-center text-white hover:opacity-90 transition-all duration-300"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -133,7 +133,7 @@ export default function Header() {
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative md:p-2 md:text-white md:hover:text-koel-blue md:transition-colors md:duration-300 md:hidden sm:w-11 sm:h-11 w-10 h-10 bg-koel-blue border-2 border-white rounded-full flex items-center justify-center text-white hover:opacity-90 transition-all duration-300"
+                className="relative md:p-2 md:text-white md:hover:text-koel-blue md:transition-colors md:duration-300 md:hidden sm:w-11 sm:h-11 w-10 h-10 bg-koel-blue border border-white rounded-full flex items-center justify-center text-white hover:opacity-90 transition-all duration-300"
                 aria-label="Shopping cart"
               >
                 <ShoppingCart
