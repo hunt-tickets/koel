@@ -331,7 +331,7 @@ export default function ProductSystemSection() {
   ];
 
   return (
-    <section id="producto" className="section-container bg-koel-neutral-50">
+    <section id="producto" className="section-container bg-koel-neutral-50 rounded-t-3xl">
       <div className="max-w-6xl mx-auto w-full">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
@@ -349,12 +349,12 @@ export default function ProductSystemSection() {
         </div>
 
         {/* Embla Carousel Wrapper */}
-        <div className="w-full overflow-hidden -mx-6 sm:-mx-8 md:mx-0 px-6 sm:px-8 md:px-0" ref={emblaRef}>
+        <div className="w-full overflow-hidden -mx-6 sm:-mx-8 md:mx-0 px-6 sm:px-8 md:px-0 flex justify-center" ref={emblaRef}>
           <div className="flex gap-6 sm:gap-8 lg:gap-12">
             {products.map((product, index) => (
               <motion.div
                 key={index}
-                className="flex-[0_0_92%] sm:flex-[0_0_80%] md:flex-[0_0_70%] lg:flex-[0_0_45%] min-w-0"
+                className="flex-[0_0_100%] sm:flex-[0_0_85%] md:flex-[0_0_70%] lg:flex-[0_0_45%] min-w-0"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
