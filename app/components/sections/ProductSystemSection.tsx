@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useCallback } from 'react';
 import { Sparkles, Shield, Leaf, Gem, CalendarRange, RotateCw, Flower2, ChevronDown, ArrowUpRight } from 'lucide-react';
+import useEmblaCarousel from 'embla-carousel-react';
 import { MagneticPrimaryButton } from '../ui/MagneticButton';
 import { MaskText } from '../ui/TextReveal';
 
@@ -164,7 +165,28 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
 }
 
 export default function ProductSystemSection() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: 'start',
+    containScroll: 'trimSnaps',
+    dragFree: true,
+  });
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on('select', onSelect);
+    return () => {
+      emblaApi.off('select', onSelect);
+    };
+  }, [emblaApi, onSelect]);
 
   const caseFeatures: ProductFeature[] = [
     {
@@ -319,8 +341,48 @@ export default function ProductSystemSection() {
           </MaskText>
         </div>
 
-        {/* Products Grid - Vertical Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
+        {/* MOBILE: Horizontal Carousel */}
+        <div className="md:hidden">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex gap-4">
+              {products.map((product, index) => (
+                <motion.div
+                  key={index}
+                  className="flex-[0_0_85%] min-w-0"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <ProductCard
+                    {...product}
+                    isExpanded={expandedIndex === index}
+                    onToggleExpand={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Carousel Indicators */}
+          <div className="flex justify-center gap-2 mt-8">
+            {products.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => emblaApi?.scrollTo(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  selectedIndex === index
+                    ? 'w-8 bg-koel-aqua'
+                    : 'w-2 bg-koel-neutral-300 hover:bg-koel-neutral-400'
+                }`}
+                aria-label={`Go to product ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* DESKTOP: Grid Layout */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
           {products.map((product, index) => (
             <motion.div
               key={index}
