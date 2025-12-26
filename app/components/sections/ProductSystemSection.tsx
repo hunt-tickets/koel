@@ -343,8 +343,9 @@ export default function ProductSystemSection() {
       </div>
 
       {/* MOBILE: Horizontal Carousel - Full Width */}
-      <div className="md:hidden bg-white">
-        <div className="overflow-hidden w-screen -mx-[calc((100vw-100%)/2)]" ref={emblaRef}>
+      <div className="md:hidden">
+        {/* Carousel Container */}
+        <div className="bg-white overflow-hidden w-screen -mx-[calc((100vw-100%)/2)]" ref={emblaRef}>
           <div className="flex gap-4 px-4">
             {products.map((product, index) => (
               <motion.div
@@ -367,22 +368,20 @@ export default function ProductSystemSection() {
           </div>
         </div>
 
-        {/* Mobile Carousel Indicators */}
-        <div className="max-w-6xl mx-auto w-full">
-          <div className="flex justify-center gap-2 mt-8">
-            {products.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => emblaApi?.scrollTo(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  selectedIndex === index
-                    ? 'w-8 bg-koel-aqua'
-                    : 'w-2 bg-koel-neutral-300 hover:bg-koel-neutral-400'
-                }`}
-                aria-label={`Go to product ${index + 1}`}
-              />
-            ))}
-          </div>
+        {/* Mobile Carousel Indicators - Integrated */}
+        <div className="bg-white flex justify-center gap-2 py-6">
+          {products.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => emblaApi?.scrollTo(index)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                selectedIndex === index
+                  ? 'w-8 bg-koel-aqua'
+                  : 'w-2 bg-koel-neutral-300 hover:bg-koel-neutral-400'
+              }`}
+              aria-label={`Go to product ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
 
