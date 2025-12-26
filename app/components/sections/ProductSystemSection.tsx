@@ -26,149 +26,225 @@ interface ProductCardProps {
 
 function ProductCard({ title, subtitle, imagePlaceholder, features, price, accentColor, isExpanded = false, onToggleExpand }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <motion.div
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      className="bg-white border border-koel-neutral-200 rounded-3xl lg:rounded-[2rem] p-8 sm:p-10 lg:p-12 flex flex-col shadow-premium w-full h-full min-h-[600px] relative"
-    >
-      {/* Diagonal Arrow - Top Right Corner */}
+    <>
       <motion.div
-        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20"
-        animate={{
-          y: isHovered ? -2 : 0,
-          x: isHovered ? 2 : 0,
-        }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
+        className="bg-white border border-koel-neutral-200 rounded-3xl lg:rounded-[2rem] p-8 sm:p-10 lg:p-12 flex flex-col shadow-premium w-full h-full min-h-[600px] relative"
       >
-        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-koel-aqua/20 to-koel-aqua/10 flex items-center justify-center hover:bg-gradient-to-br hover:from-koel-aqua/30 hover:to-koel-aqua/15 transition-all">
-          <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6 text-koel-aqua" strokeWidth={2} />
-        </div>
-      </motion.div>
-      {/* Product Image */}
-      <div className="relative w-full aspect-square mb-8 sm:mb-10 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-koel-neutral-50 to-koel-neutral-100 flex items-center justify-center p-10 border border-koel-neutral-200">
-        {/* Animated background */}
+        {/* Diagonal Arrow - Top Right Corner */}
         <motion.div
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20"
           animate={{
-            scale: [1, 1.1, 1],
-            rotate: [0, 5, 0],
+            y: isHovered ? -2 : 0,
+            x: isHovered ? 2 : 0,
           }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className={`absolute inset-0 opacity-20 ${accentColor}`}
-        />
-
-        {/* Simulated Product Render */}
-        <div className="relative w-full h-full flex flex-col items-center justify-center gap-4">
-          <motion.div
-            whileHover={{ rotateY: 10, scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-            className="w-28 h-40 sm:w-36 sm:h-52 bg-gradient-to-b from-koel-blue-light to-koel-blue rounded-[1.5rem] shadow-lg relative overflow-hidden"
-            style={{ transformStyle: 'preserve-3d' }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent" />
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 w-14 h-14 sm:w-16 sm:h-16 bg-white/20 rounded-full" />
-          </motion.div>
-          <p className="text-koel-neutral-500 text-center px-2 text-xs sm:text-sm">
-            {imagePlaceholder}<br />
-            <span className="text-[10px] sm:text-xs opacity-60">500x500px</span>
-          </p>
-        </div>
-      </div>
-
-      {/* Title with hover effect */}
-      <motion.h3
-        animate={{ x: isHovered ? 5 : 0 }}
-        transition={{ duration: 0.3 }}
-        className="text-2xl sm:text-3xl font-bold text-koel-neutral-900 mb-2 sm:mb-3"
-      >
-        {title}
-      </motion.h3>
-      <p className="text-base sm:text-lg text-koel-neutral-600 mb-6 sm:mb-8">
-        {subtitle}
-      </p>
-
-      {/* Expandir/Colapsar Button */}
-      <button
-        onClick={onToggleExpand}
-        className="flex items-center gap-2 text-koel-aqua hover:text-koel-teal transition-colors mb-6 group"
-      >
-        <span className="text-sm sm:text-base font-medium">
-          {isExpanded ? 'Ocultar detalles' : 'Ver detalles del producto'}
-        </span>
-        <motion.div
-          animate={{ rotate: isExpanded ? 180 : 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
         >
-          <ChevronDown className="w-5 h-5" strokeWidth={2} />
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-koel-aqua/20 to-koel-aqua/10 flex items-center justify-center hover:bg-gradient-to-br hover:from-koel-aqua/30 hover:to-koel-aqua/15 transition-all">
+            <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6 text-koel-aqua" strokeWidth={2} />
+          </div>
         </motion.div>
-      </button>
-
-      {/* Features Grid - Expandible */}
-      <AnimatePresence initial={false}>
-        {isExpanded && (
+        {/* Product Image */}
+        <div className="relative w-full aspect-square mb-8 sm:mb-10 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-koel-neutral-50 to-koel-neutral-100 flex items-center justify-center p-10 border border-koel-neutral-200">
+          {/* Animated background */}
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="grid grid-cols-1 gap-5 sm:gap-6 mb-8 pb-8 border-b border-koel-neutral-200">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="flex items-start gap-4 sm:gap-5 group cursor-default"
-                >
-                  {/* Icon */}
-                  <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-koel-aqua/10 to-koel-olive/10 rounded-xl sm:rounded-2xl flex items-center justify-center text-koel-aqua">
-                    {feature.icon}
-                  </div>
+            animate={{
+              scale: [1, 1.1, 1],
+              rotate: [0, 5, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className={`absolute inset-0 opacity-20 ${accentColor}`}
+          />
 
-                  {/* Content */}
-                  <div className="flex-1 pt-1">
-                    <h4 className="text-base sm:text-lg font-semibold text-koel-neutral-900 mb-1.5">
-                      {feature.title}
-                    </h4>
-                    <p className="text-sm sm:text-base text-koel-neutral-600 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
+          {/* Simulated Product Render */}
+          <div className="relative w-full h-full flex flex-col items-center justify-center gap-4">
+            <motion.div
+              whileHover={{ rotateY: 10, scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+              className="w-28 h-40 sm:w-36 sm:h-52 bg-gradient-to-b from-koel-blue-light to-koel-blue rounded-[1.5rem] shadow-lg relative overflow-hidden"
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent" />
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-14 h-14 sm:w-16 sm:h-16 bg-white/20 rounded-full" />
+            </motion.div>
+            <p className="text-koel-neutral-500 text-center px-2 text-xs sm:text-sm">
+              {imagePlaceholder}<br />
+              <span className="text-[10px] sm:text-xs opacity-60">500x500px</span>
+            </p>
+          </div>
+        </div>
+
+        {/* Title with hover effect */}
+        <motion.h3
+          animate={{ x: isHovered ? 5 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="text-2xl sm:text-3xl font-bold text-koel-neutral-900 mb-2 sm:mb-3"
+        >
+          {title}
+        </motion.h3>
+        <p className="text-base sm:text-lg text-koel-neutral-600 mb-6 sm:mb-8">
+          {subtitle}
+        </p>
+
+        {/* Desktop Only: Expandible Features */}
+        <div className="hidden md:block">
+          {/* Desktop Expand Button */}
+          <button
+            onClick={onToggleExpand}
+            className="flex items-center gap-2 text-koel-aqua hover:text-koel-teal transition-colors mb-6 group"
+          >
+            <span className="text-sm sm:text-base font-medium">
+              {isExpanded ? 'Ocultar detalles' : 'Ver detalles del producto'}
+            </span>
+            <motion.div
+              animate={{ rotate: isExpanded ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ChevronDown className="w-5 h-5" strokeWidth={2} />
+            </motion.div>
+          </button>
+
+          {/* Features Grid - Expandible */}
+          <AnimatePresence initial={false}>
+            {isExpanded && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                className="overflow-hidden"
+              >
+                <div className="grid grid-cols-1 gap-5 sm:gap-6 mb-8 pb-8 border-b border-koel-neutral-200">
+                  {features.map((feature, index) => (
+                    <div
+                      key={index}
+                      className="flex items-start gap-4 sm:gap-5 group cursor-default"
+                    >
+                      {/* Icon */}
+                      <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-koel-aqua/10 to-koel-olive/10 rounded-xl sm:rounded-2xl flex items-center justify-center text-koel-aqua">
+                        {feature.icon}
+                      </div>
+
+                      {/* Content */}
+                      <div className="flex-1 pt-1">
+                        <h4 className="text-base sm:text-lg font-semibold text-koel-neutral-900 mb-1.5">
+                          {feature.title}
+                        </h4>
+                        <p className="text-sm sm:text-base text-koel-neutral-600 leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Buy Button with Price */}
+        <div className="pt-6 mb-4">
+          <MagneticPrimaryButton
+            variant="primary"
+            size="lg"
+            className="w-full justify-center"
+            strength={0.15}
+          >
+            <span className="flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base">
+              <span>Comprar</span>
+              <span className="font-bold">·</span>
+              <span className="font-bold">{price}</span>
+            </span>
+          </MagneticPrimaryButton>
+        </div>
+
+        {/* Mobile: Modal Trigger Button, Desktop: Expand Button */}
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="md:hidden w-full text-center text-sm sm:text-base text-koel-aqua hover:text-koel-teal transition-colors font-medium"
+        >
+          Ver detalles
+        </button>
+      </motion.div>
+
+      {/* Mobile Modal - Details from bottom */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsModalOpen(false)}
+              className="fixed inset-0 bg-black/40 z-40 md:hidden"
+            />
+
+            {/* Modal */}
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl z-50 md:hidden max-h-[80vh] overflow-y-auto"
+            >
+              <div className="p-6 sm:p-8">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-2xl font-bold text-koel-neutral-900">{title}</h3>
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="text-koel-neutral-400 hover:text-koel-neutral-900 transition-colors"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Features */}
+                <div className="grid grid-cols-1 gap-5 sm:gap-6">
+                  {features.map((feature, index) => (
+                    <div key={index} className="flex items-start gap-4">
+                      {/* Icon */}
+                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-koel-aqua/10 to-koel-olive/10 rounded-xl flex items-center justify-center text-koel-aqua">
+                        {feature.icon}
+                      </div>
+
+                      {/* Content */}
+                      <div className="flex-1">
+                        <h4 className="text-lg font-semibold text-koel-neutral-900 mb-1">
+                          {feature.title}
+                        </h4>
+                        <p className="text-sm text-koel-neutral-600 leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Close Button */}
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="w-full mt-8 py-3 text-center text-sm font-medium text-koel-neutral-600 hover:text-koel-neutral-900 transition-colors"
+                >
+                  Cerrar
+                </button>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
-
-      {/* Buy Button with Price */}
-      <div className="pt-6 mb-4">
-        <MagneticPrimaryButton
-          variant="primary"
-          size="lg"
-          className="w-full justify-center"
-          strength={0.15}
-        >
-          <span className="flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base">
-            <span>Comprar</span>
-            <span className="font-bold">·</span>
-            <span className="font-bold">{price}</span>
-          </span>
-        </MagneticPrimaryButton>
-      </div>
-
-      {/* View Details Button */}
-      <button
-        onClick={onToggleExpand}
-        className="w-full text-center text-sm sm:text-base text-koel-aqua hover:text-koel-teal transition-colors font-medium"
-      >
-        Ver detalles
-      </button>
-    </motion.div>
+    </>
   );
 }
 
