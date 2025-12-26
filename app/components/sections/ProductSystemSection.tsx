@@ -24,13 +24,11 @@ interface ProductCardProps {
   onToggleExpand?: () => void;
 }
 
-function ProductCard({ title, subtitle, imagePlaceholder, features, price, accentColor, isExpanded = false, onToggleExpand }: ProductCardProps) {
+function ProductCard({ title, subtitle, imagePlaceholder, features, price, accentColor, isExpanded = false, onToggleExpand, onOpenModal }: ProductCardProps & { onOpenModal?: (product: any) => void }) {
   const [isHovered, setIsHovered] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <>
-      <motion.div
+    <motion.div
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
         className="bg-white border border-koel-neutral-200 rounded-3xl lg:rounded-[2rem] p-8 sm:p-10 lg:p-12 flex flex-col shadow-premium w-full h-full min-h-[600px] relative"
@@ -168,84 +166,14 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
 
         {/* Mobile: Modal Trigger Button, Desktop: Expand Button */}
         <button
-          onClick={() => setIsModalOpen(true)}
+          onClick={() => onOpenModal?.({ title, features })}
           className="md:hidden w-full text-center text-sm sm:text-base text-koel-aqua hover:text-koel-teal transition-colors font-medium"
         >
           Ver detalles
         </button>
       </motion.div>
-
-      {/* Mobile Modal - Details from bottom */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsModalOpen(false)}
-              className="fixed inset-0 bg-black/40 z-40 md:hidden"
-            />
-
-            {/* Modal */}
-            <motion.div
-              initial={{ y: '100%' }}
-              animate={{ y: 0 }}
-              exit={{ y: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl z-50 md:hidden max-h-[80vh] overflow-y-auto"
-            >
-              <div className="p-6 sm:p-8">
-                {/* Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-2xl font-bold text-koel-neutral-900">{title}</h3>
-                  <button
-                    onClick={() => setIsModalOpen(false)}
-                    className="text-koel-neutral-400 hover:text-koel-neutral-900 transition-colors"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                </div>
-
-                {/* Features */}
-                <div className="grid grid-cols-1 gap-5 sm:gap-6">
-                  {features.map((feature, index) => (
-                    <div key={index} className="flex items-start gap-4">
-                      {/* Icon */}
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-koel-aqua/10 to-koel-olive/10 rounded-xl flex items-center justify-center text-koel-aqua">
-                        {feature.icon}
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex-1">
-                        <h4 className="text-lg font-semibold text-koel-neutral-900 mb-1">
-                          {feature.title}
-                        </h4>
-                        <p className="text-sm text-koel-neutral-600 leading-relaxed">
-                          {feature.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Close Button */}
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="w-full mt-8 py-3 text-center text-sm font-medium text-koel-neutral-600 hover:text-koel-neutral-900 transition-colors"
-                >
-                  Cerrar
-                </button>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </>
-  );
+    );
+  }
 }
 
 export default function ProductSystemSection() {
@@ -257,6 +185,7 @@ export default function ProductSystemSection() {
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [modalData, setModalData] = useState<{ title: string; features: ProductFeature[] } | null>(null);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -444,6 +373,7 @@ export default function ProductSystemSection() {
                   {...product}
                   isExpanded={expandedIndex === index}
                   onToggleExpand={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                  onOpenModal={setModalData}
                 />
               </motion.div>
             ))}
@@ -484,11 +414,82 @@ export default function ProductSystemSection() {
                 {...product}
                 isExpanded={expandedIndex === index}
                 onToggleExpand={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                onOpenModal={setModalData}
               />
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Mobile Modal - Full Page */}
+      <AnimatePresence>
+        {modalData && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setModalData(null)}
+              className="fixed inset-0 bg-black/40 z-40 md:hidden"
+            />
+
+            {/* Modal */}
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl z-50 md:hidden max-h-[80vh] overflow-y-auto"
+            >
+              <div className="p-6 sm:p-8">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-2xl font-bold text-koel-neutral-900">{modalData.title}</h3>
+                  <button
+                    onClick={() => setModalData(null)}
+                    className="text-koel-neutral-400 hover:text-koel-neutral-900 transition-colors"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Features */}
+                <div className="grid grid-cols-1 gap-5 sm:gap-6">
+                  {modalData.features.map((feature, index) => (
+                    <div key={index} className="flex items-start gap-4">
+                      {/* Icon */}
+                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-koel-aqua/10 to-koel-olive/10 rounded-xl flex items-center justify-center text-koel-aqua">
+                        {feature.icon}
+                      </div>
+
+                      {/* Content */}
+                      <div className="flex-1">
+                        <h4 className="text-lg font-semibold text-koel-neutral-900 mb-1">
+                          {feature.title}
+                        </h4>
+                        <p className="text-sm text-koel-neutral-600 leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Close Button */}
+                <button
+                  onClick={() => setModalData(null)}
+                  className="w-full mt-8 py-3 text-center text-sm font-medium text-koel-neutral-600 hover:text-koel-neutral-900 transition-colors"
+                >
+                  Cerrar
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
