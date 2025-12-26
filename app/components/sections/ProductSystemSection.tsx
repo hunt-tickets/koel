@@ -343,9 +343,9 @@ export default function ProductSystemSection() {
       </div>
 
       {/* MOBILE: Horizontal Carousel - Full Width */}
-      <div className="md:hidden">
+      <div className="md:hidden bg-white">
         <div className="overflow-hidden w-screen -mx-[calc((100vw-100%)/2)]" ref={emblaRef}>
-          <div className="flex gap-4 px-4">
+          <div className="flex gap-4 px-4 pr-8">
             {products.map((product, index) => (
               <motion.div
                 key={index}
