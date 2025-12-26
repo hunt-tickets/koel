@@ -35,16 +35,15 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
     >
       {/* Diagonal Arrow - Top Right Corner */}
       <motion.div
-        className="absolute top-0 right-0 -mr-8 -mt-8"
+        className="absolute top-4 right-4 sm:top-6 sm:right-6"
         animate={{
-          y: isHovered ? -3 : 0,
-          x: isHovered ? 3 : 0,
-          rotate: isHovered ? 45 : 0
+          y: isHovered ? -2 : 0,
+          x: isHovered ? 2 : 0,
         }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        <div className="w-32 h-32 rounded-full bg-gradient-to-br from-koel-aqua/15 to-koel-aqua/5 flex items-center justify-center">
-          <ArrowUpRight className="w-8 h-8 text-koel-aqua" strokeWidth={2.5} />
+        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-koel-aqua/20 to-koel-aqua/10 flex items-center justify-center hover:bg-gradient-to-br hover:from-koel-aqua/30 hover:to-koel-aqua/15 transition-all">
+          <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6 text-koel-aqua" strokeWidth={2} />
         </div>
       </motion.div>
       {/* Product Image */}
@@ -263,7 +262,7 @@ export default function ProductSystemSection() {
 
   return (
     <section id="producto" className="section-container bg-koel-neutral-50">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto w-full">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
           <MaskText delay={0.1}>
@@ -279,9 +278,9 @@ export default function ProductSystemSection() {
           </MaskText>
         </div>
 
-        {/* Embla Carousel */}
-        <div className="overflow-hidden -mx-6 md:mx-0" ref={emblaRef}>
-          <div className="flex gap-6 sm:gap-8 lg:gap-12 px-6 md:px-0">
+        {/* Embla Carousel Wrapper */}
+        <div className="w-full overflow-hidden -mx-6 sm:-mx-8 md:mx-0 px-6 sm:px-8 md:px-0" ref={emblaRef}>
+          <div className="flex gap-6 sm:gap-8 lg:gap-12">
             {products.map((product, index) => (
               <motion.div
                 key={index}
