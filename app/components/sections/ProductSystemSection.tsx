@@ -325,8 +325,8 @@ export default function ProductSystemSection() {
 
   return (
     <section id="producto" className="section-container bg-koel-neutral-50 rounded-t-3xl">
+      {/* Section Header */}
       <div className="max-w-6xl mx-auto w-full">
-        {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
           <MaskText delay={0.1}>
             <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-koel-neutral-500 mb-4 sm:mb-6 font-light">
@@ -340,31 +340,33 @@ export default function ProductSystemSection() {
             </h2>
           </MaskText>
         </div>
+      </div>
 
-        {/* MOBILE: Horizontal Carousel */}
-        <div className="md:hidden">
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex gap-4">
-              {products.map((product, index) => (
-                <motion.div
-                  key={index}
-                  className="flex-[0_0_85%] min-w-0"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <ProductCard
-                    {...product}
-                    isExpanded={expandedIndex === index}
-                    onToggleExpand={() => setExpandedIndex(expandedIndex === index ? null : index)}
-                  />
-                </motion.div>
-              ))}
-            </div>
+      {/* MOBILE: Horizontal Carousel - Full Width */}
+      <div className="md:hidden">
+        <div className="overflow-hidden w-screen -mx-[calc((100vw-100%)/2)]" ref={emblaRef}>
+          <div className="flex gap-4 px-4">
+            {products.map((product, index) => (
+              <motion.div
+                key={index}
+                className="flex-[0_0_85%] min-w-0"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <ProductCard
+                  {...product}
+                  isExpanded={expandedIndex === index}
+                  onToggleExpand={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                />
+              </motion.div>
+            ))}
           </div>
+        </div>
 
-          {/* Mobile Carousel Indicators */}
+        {/* Mobile Carousel Indicators */}
+        <div className="max-w-6xl mx-auto w-full">
           <div className="flex justify-center gap-2 mt-8">
             {products.map((_, index) => (
               <button
@@ -380,8 +382,10 @@ export default function ProductSystemSection() {
             ))}
           </div>
         </div>
+      </div>
 
-        {/* DESKTOP: Grid Layout */}
+      {/* DESKTOP: Grid Layout */}
+      <div className="max-w-6xl mx-auto w-full">
         <div className="hidden md:grid grid-cols-2 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
           {products.map((product, index) => (
             <motion.div
