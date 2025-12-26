@@ -146,7 +146,7 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
       </AnimatePresence>
 
       {/* Buy Button with Price */}
-      <div className="pt-6">
+      <div className="pt-6 mb-4">
         <MagneticPrimaryButton
           variant="primary"
           size="lg"
@@ -160,6 +160,14 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
           </span>
         </MagneticPrimaryButton>
       </div>
+
+      {/* View Details Button */}
+      <button
+        onClick={onToggleExpand}
+        className="w-full text-center text-sm sm:text-base text-koel-aqua hover:text-koel-teal transition-colors font-medium"
+      >
+        Ver detalles
+      </button>
     </motion.div>
   );
 }
