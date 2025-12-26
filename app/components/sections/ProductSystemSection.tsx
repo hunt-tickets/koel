@@ -31,11 +31,11 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
     <motion.div
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="bg-white border border-koel-neutral-200 rounded-3xl lg:rounded-[2rem] p-8 sm:p-10 lg:p-12 flex flex-col shadow-premium w-full h-full min-h-[600px] relative overflow-hidden"
+      className="bg-white border border-koel-neutral-200 rounded-3xl lg:rounded-[2rem] p-8 sm:p-10 lg:p-12 flex flex-col shadow-premium w-full h-full min-h-[600px] relative"
     >
       {/* Diagonal Arrow - Top Right Corner */}
       <motion.div
-        className="absolute top-4 right-4 sm:top-6 sm:right-6"
+        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20"
         animate={{
           y: isHovered ? -2 : 0,
           x: isHovered ? 2 : 0,
