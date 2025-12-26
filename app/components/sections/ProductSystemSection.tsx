@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useCallback } from 'react';
-import { Sparkles, Shield, Leaf, Gem, CalendarRange, RotateCw, Flower2, ChevronDown } from 'lucide-react';
+import { Sparkles, Shield, Leaf, Gem, CalendarRange, RotateCw, Flower2, ChevronDown, ArrowUpRight } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { MagneticPrimaryButton } from '../ui/MagneticButton';
 import { MaskText } from '../ui/TextReveal';
@@ -31,8 +31,22 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
     <motion.div
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="bg-white border border-koel-neutral-200 rounded-3xl lg:rounded-[2rem] p-8 sm:p-10 lg:p-12 flex flex-col shadow-premium w-full h-full min-h-[600px]"
+      className="bg-white border border-koel-neutral-200 rounded-3xl lg:rounded-[2rem] p-8 sm:p-10 lg:p-12 flex flex-col shadow-premium w-full h-full min-h-[600px] relative overflow-hidden"
     >
+      {/* Diagonal Arrow - Top Right Corner */}
+      <motion.div
+        className="absolute top-0 right-0 -mr-8 -mt-8"
+        animate={{
+          y: isHovered ? -3 : 0,
+          x: isHovered ? 3 : 0,
+          rotate: isHovered ? 45 : 0
+        }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+      >
+        <div className="w-32 h-32 rounded-full bg-gradient-to-br from-koel-aqua/15 to-koel-aqua/5 flex items-center justify-center">
+          <ArrowUpRight className="w-8 h-8 text-koel-aqua" strokeWidth={2.5} />
+        </div>
+      </motion.div>
       {/* Product Image */}
       <div className="relative w-full aspect-square mb-8 sm:mb-10 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-koel-neutral-50 to-koel-neutral-100 flex items-center justify-center p-10 border border-koel-neutral-200">
         {/* Animated background */}
@@ -266,8 +280,8 @@ export default function ProductSystemSection() {
         </div>
 
         {/* Embla Carousel */}
-        <div className="overflow-hidden -mx-6 sm:-mx-8 md:mx-0" ref={emblaRef}>
-          <div className="flex gap-6 sm:gap-8 lg:gap-12 px-6 sm:px-8 md:px-0">
+        <div className="overflow-hidden -mx-6 md:mx-0" ref={emblaRef}>
+          <div className="flex gap-6 sm:gap-8 lg:gap-12 px-6 md:px-0">
             {products.map((product, index) => (
               <motion.div
                 key={index}

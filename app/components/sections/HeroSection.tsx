@@ -3,6 +3,7 @@
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { MaskText, StaggerText } from '../ui/TextReveal';
+import VideoPlayer from '../ui/VideoPlayer';
 
 export default function HeroSection() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -31,6 +32,28 @@ export default function HeroSection() {
 
   return (
     <section ref={ref} className="relative h-screen-safe flex items-center justify-center overflow-hidden">
+      {/* Video/Image Background - Only visible in this hero section */}
+      <div className="absolute inset-0 z-0">
+        {/* Mobile: Image */}
+        <div
+          className="md:hidden absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: 'url(/hero-mobile-bg.jpg)' }}
+        />
+
+        {/* Desktop: Video */}
+        <div className="hidden md:block w-full h-full">
+          <VideoPlayer
+            src="/hero-video.mp4"
+            className="w-full h-full"
+            autoPlay
+            loop
+            muted
+            showMuteButton={false}
+            playbackRate={0.75}
+          />
+        </div>
+      </div>
+
       {/* Cinematic Gradient Overlay */}
       <div className="absolute inset-0 z-[1] pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
