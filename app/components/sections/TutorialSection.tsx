@@ -13,64 +13,40 @@ interface TutorialStepProps {
   delay: number;
 }
 
-// Animated Mobile Icons
+// Animated Mobile Icons - Subtle and clean
 function RotateIcon() {
   return (
-    <motion.svg
+    <motion.div
       animate={{ rotate: 360 }}
-      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-      width="28"
-      height="28"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
     >
-      <path d="M21 12a9 9 0 1 1-9-9" />
-      <polyline points="21 3 21 9 15 9" />
-    </motion.svg>
+      <RotateCw className="w-7 h-7 sm:w-8 sm:h-8" strokeWidth={2} />
+    </motion.div>
   );
 }
 
 function InsertIcon() {
   return (
-    <motion.svg
-      animate={{ y: [0, 4, 0] }}
-      transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-      width="28"
-      height="28"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+    <motion.div
+      animate={{ y: [0, 3, 0] }}
+      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
     >
-      <line x1="12" y1="5" x2="12" y2="19" />
-      <polyline points="19 12 12 19 5 12" />
-    </motion.svg>
+      <svg className="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19" />
+        <polyline points="19 12 12 19 5 12" />
+      </svg>
+    </motion.div>
   );
 }
 
 function ClickIcon() {
   return (
-    <motion.svg
-      animate={{ scale: [1, 0.85, 1] }}
-      transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
-      width="28"
-      height="28"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+    <motion.div
+      animate={{ scale: [1, 0.9, 1] }}
+      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
     >
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="8 12 11 15 16 9" />
-    </motion.svg>
+      <Lock className="w-7 h-7 sm:w-8 sm:h-8" strokeWidth={2} />
+    </motion.div>
   );
 }
 
@@ -235,7 +211,7 @@ export default function TutorialSection() {
               >
                 {/* Number Circle with Icon */}
                 <div className="flex-shrink-0">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-full flex items-center justify-center text-white shadow-premium relative">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-koel-blue rounded-full flex items-center justify-center text-white shadow-premium relative">
                     {step.number === 1 && <RotateIcon />}
                     {step.number === 2 && <InsertIcon />}
                     {step.number === 3 && <ClickIcon />}
