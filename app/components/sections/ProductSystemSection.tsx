@@ -271,7 +271,7 @@ export default function ProductSystemSection() {
             {products.map((product, index) => (
               <motion.div
                 key={index}
-                className="flex-[0_0_85%] sm:flex-[0_0_75%] md:flex-[0_0_70%] lg:flex-[0_0_45%] min-w-0"
+                className="flex-[0_0_92%] sm:flex-[0_0_80%] md:flex-[0_0_70%] lg:flex-[0_0_45%] min-w-0"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
