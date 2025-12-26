@@ -153,7 +153,7 @@ function ProductCard({ title, subtitle, imagePlaceholder, features, price, accen
           className="w-full justify-center"
           strength={0.15}
         >
-          <span className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base">
+          <span className="flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base">
             <span>Comprar</span>
             <span className="font-bold">·</span>
             <span className="font-bold">{price}</span>
