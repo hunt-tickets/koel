@@ -47,9 +47,9 @@ export default function HeroSection() {
       {/* Content with Parallax */}
       <motion.div
         style={{ opacity, scale, y }}
-        className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-16 lg:px-20 py-20"
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-16 lg:px-20 py-20 flex items-end h-full"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 xl:gap-28 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 xl:gap-28 items-end w-full pb-12 md:pb-0 md:items-center">
           {/* Left: Animated Text with Premium Reveals */}
           <div className="text-white text-center lg:text-left order-2 lg:order-1">
             {/* Main Headline with Animated Word */}
@@ -86,12 +86,12 @@ export default function HeroSection() {
             </MaskText>
           </div>
 
-          {/* Right: Product with Enhanced Parallax */}
+          {/* Right: Product with Enhanced Parallax - Hidden on mobile */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="relative order-1 lg:order-2 px-4 sm:px-0"
+            className="relative order-1 lg:order-2 px-4 sm:px-0 hidden lg:block"
           >
             <motion.div
               style={{ y: productY, scale: productScale }}
