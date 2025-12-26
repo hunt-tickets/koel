@@ -41,7 +41,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-black/10 pointer-events-none" />
       </div>
 
       {/* Content Container */}
