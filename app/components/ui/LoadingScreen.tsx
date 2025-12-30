@@ -65,7 +65,7 @@ export default function LoadingScreen({
                 ease: 'easeInOut',
               }}
               className="relative w-48 h-16 md:w-64 md:h-24"
-              style={{filter: 'invert(1) sepia(0.4) hue-rotate(200deg) brightness(0.9)'}}
+              style={{filter: 'sepia(0.8) saturate(2) hue-rotate(170deg) brightness(0.35)'}}
             >
               <Image
                 src="/logo.svg"
