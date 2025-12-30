@@ -67,7 +67,7 @@ export default function LoadingScreen({
               className="relative w-48 h-16 md:w-64 md:h-24"
             >
               <Image
-                src="/logo.svg"
+                src="/logo-teal.svg"
                 alt="KOEL Logo"
                 fill
                 className="object-contain"
