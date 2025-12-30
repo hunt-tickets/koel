@@ -95,11 +95,9 @@ export default function LoadingScreen({
               }}
               exit={{ opacity: 0, scale: 0.8, rotate: 5 }}
               transition={{
-                initial: {
-                  delay: 0.55,
-                  duration: 0.7,
-                  ease: [0.34, 1.56, 0.64, 1],
-                },
+                delay: 0.55,
+                duration: 0.7,
+                ease: [0.34, 1.56, 0.64, 1],
                 y: {
                   delay: 0.55,
                   duration: 2,
