@@ -31,16 +31,13 @@ export default function LoadingScreen({
       {isLoading && (
         <motion.div
           key="splash"
-          initial={{ y: '100%' }}
-          animate={{ y: 0 }}
-          exit={{ y: '-100%' }}
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{
-            type: 'spring',
-            damping: 25,
-            stiffness: 120,
             duration: 0.6,
           }}
-          className="fixed inset-0 w-screen h-screen bg-koel-aqua z-[9999] flex items-center justify-center overflow-hidden"
+          className="fixed inset-0 w-screen h-screen bg-koel-blue z-[9999] flex items-center justify-center overflow-hidden"
         >
 
           {/* Logo container */}
