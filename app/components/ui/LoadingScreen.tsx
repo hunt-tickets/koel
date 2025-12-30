@@ -65,12 +65,13 @@ export default function LoadingScreen({
                 ease: 'easeInOut',
               }}
               className="relative w-48 h-16 md:w-64 md:h-24"
+              style={{filter: 'invert(1) sepia(0.4) hue-rotate(200deg) brightness(0.9)'}}
             >
               <Image
                 src="/logo.svg"
                 alt="KOEL Logo"
                 fill
-                className="object-contain brightness-0 invert"
+                className="object-contain"
                 priority
               />
             </motion.div>
@@ -95,7 +96,7 @@ export default function LoadingScreen({
                     delay: index * 0.2,
                     ease: 'easeInOut',
                   }}
-                  className="w-3 h-3 rounded-full bg-white"
+                  className="w-3 h-3 rounded-full bg-koel-teal"
                 />
               ))}
             </motion.div>
@@ -105,7 +106,7 @@ export default function LoadingScreen({
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.5 }}
-              className="text-white/90 text-sm md:text-base font-heading tracking-wide uppercase"
+              className="text-koel-teal text-sm md:text-base font-heading tracking-wide uppercase"
             >
               A New Way to Care
             </motion.p>
