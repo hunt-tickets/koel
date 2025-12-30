@@ -1,41 +1,22 @@
 'use client';
 
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import { MaskText, StaggerText } from '../ui/TextReveal';
 import VideoPlayer from '../ui/VideoPlayer';
+import { useHeroTransition, useIsDesktop } from '@/app/hooks';
 
 interface HeroSectionProps {
   isLoading?: boolean;
   isTransitioning?: boolean;
 }
 
-export default function HeroSection({ isLoading = true, isTransitioning = false }: HeroSectionProps) {
+function HeroSectionComponent({ isLoading = true, isTransitioning = false }: HeroSectionProps) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [showTransition, setShowTransition] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(true);
+  const { showTransition, timings } = useHeroTransition();
+  const { isDesktop } = useIsDesktop();
   const words = ['CIBE', 'CARGA', 'USA'];
   const ref = useRef(null);
-
-  // Detect screen size after mount
-  useEffect(() => {
-    setIsDesktop(window.innerWidth >= 768);
-  }, []);
-
-  // Trigger transition when loading completes
-  useEffect(() => {
-    if (!isLoading && !showTransition) {
-      // Show transition animation
-      setShowTransition(true);
-
-      // Hide transition after animation completes (delay 1.5 + duration 1.2 = 2.7s, add buffer)
-      const timer = setTimeout(() => {
-        setShowTransition(false);
-      }, 2800);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isLoading]);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -82,13 +63,13 @@ export default function HeroSection({ isLoading = true, isTransitioning = false 
                 ease: "easeOut"
               },
               scale: {
-                duration: 1.2,
-                delay: 1.5,
+                duration: timings.scaleDuration / 1000,
+                delay: timings.scaleDelay / 1000,
                 ease: "easeOut"
               },
               clipPath: {
-                duration: 1.5,
-                delay: 0.2,
+                duration: timings.irisDuration / 1000,
+                delay: timings.irisDelay / 1000,
                 ease: "easeOut"
               }
             }}
@@ -328,3 +309,6 @@ export default function HeroSection({ isLoading = true, isTransitioning = false 
     </section>
   );
 }
+
+const HeroSection = memo(HeroSectionComponent);
+export default HeroSection;
