@@ -36,6 +36,17 @@ export default function Home() {
         <div className="fixed inset-0 bg-koel-neutral-100 z-[9998]" />
       )}
 
+      {/* Header - Always visible but fades during transition */}
+      <motion.div
+        animate={{ opacity: isTransitioning ? 0 : 1 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+        style={{
+          pointerEvents: isTransitioning ? 'none' : 'auto'
+        }}
+      >
+        <Header />
+      </motion.div>
+
       {/* Splash Screen */}
       <LoadingScreen minDuration={2500} onLoadingComplete={handleLoadingComplete} />
 
@@ -45,19 +56,6 @@ export default function Home() {
       }`}>
         {/* Content Container */}
         <div className="relative z-10">
-          {/* Header - Smooth fade in/out during hero transition */}
-          <motion.div
-            initial={{ opacity: 1 }}
-            animate={{ opacity: isTransitioning ? 0 : 1 }}
-            transition={{ duration: 0.5 }}
-            className="pointer-events-none"
-            style={{
-              pointerEvents: isTransitioning ? 'none' : 'auto'
-            }}
-          >
-            <Header />
-          </motion.div>
-
           {/* Hero Section - receives loading state for transition animation */}
           <HeroSection isLoading={isLoading} isTransitioning={isTransitioning} />
 
