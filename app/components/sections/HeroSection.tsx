@@ -78,7 +78,7 @@ export default function HeroSection({ isLoading = true, isTransitioning = false 
             {/* Expanding image */}
             <motion.div
               key="hero-transition"
-              initial={{ opacity: 0, scale: 0.3 }}
+              initial={{ opacity: 1, scale: 0.3 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.1 }}
               transition={{
