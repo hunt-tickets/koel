@@ -218,7 +218,20 @@ export default function Header() {
 
                 {/* Footer Info */}
                 <div className="px-6 py-8 border-t border-white/10">
-                  <p className="text-white/60 text-xs font-light tracking-wide uppercase">KOEL</p>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.35, duration: 0.5 }}
+                    className="relative w-16 h-5 mb-2"
+                  >
+                    <Image
+                      src="/logo.svg"
+                      alt="KOEL Logo"
+                      fill
+                      className="object-contain brightness-0 invert"
+                      priority
+                    />
+                  </motion.div>
                   <p className="text-white text-sm font-light mt-3 mb-6">Pure, Natural, Complete</p>
 
                   {/* Social Icons */}
