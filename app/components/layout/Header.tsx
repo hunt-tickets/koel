@@ -171,7 +171,12 @@ export default function Header() {
               initial={{ y: '-100%' }}
               animate={{ y: 0 }}
               exit={{ y: '-100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              transition={{
+                type: 'spring',
+                damping: 30,
+                stiffness: 200,
+                duration: 0.8
+              }}
               className="fixed inset-0 bg-koel-blue z-50 md:hidden flex flex-col"
             >
               <div className="flex flex-col h-full w-full">
@@ -194,8 +199,8 @@ export default function Header() {
                       initial={{ opacity: 0, x: -40, y: 10 }}
                       animate={{ opacity: 1, x: 0, y: 0 }}
                       transition={{
-                        delay: 0.1 + index * 0.08,
-                        duration: 0.5,
+                        delay: 0.3 + index * 0.15,
+                        duration: 0.7,
                         ease: [0.34, 1.56, 0.64, 1]
                       }}
                       className="w-full border-b border-white/5"
