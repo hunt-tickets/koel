@@ -22,20 +22,20 @@ function ValueItem({ icon, title, description, index }: ValueItemProps) {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ x: 10 }}
-      className="flex items-start gap-5 sm:gap-6 group cursor-default"
+      className="flex items-start gap-4 sm:gap-5 group cursor-default"
     >
       <motion.div
         whileHover={{ scale: 1.15, rotate: 10 }}
         transition={{ duration: 0.3 }}
-        className="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-2xl flex items-center justify-center text-white shadow-lg"
+        className="flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-2xl flex items-center justify-center text-white shadow-lg"
       >
         {icon}
       </motion.div>
-      <div className="pt-1">
-        <h4 className="text-lg sm:text-xl font-bold text-koel-neutral-900 mb-2 group-hover:text-koel-blue transition-colors">
+      <div className="pt-0.5">
+        <h4 className="text-base sm:text-xl font-bold text-koel-neutral-900 mb-1 sm:mb-2 group-hover:text-koel-blue transition-colors">
           {title}
         </h4>
-        <p className="text-base sm:text-lg text-koel-neutral-600 leading-relaxed">
+        <p className="text-sm sm:text-base text-koel-neutral-600 leading-snug sm:leading-relaxed">
           {description}
         </p>
       </div>
@@ -90,21 +90,21 @@ export default function ValuePropositionSection() {
     <section ref={containerRef} className="section-container bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16 sm:mb-24 lg:mb-32">
+        <div className="text-center mb-10 sm:mb-16 lg:mb-32">
           <MaskText delay={0.1}>
-            <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-koel-neutral-500 mb-4 sm:mb-6 font-light">
+            <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-koel-neutral-500 mb-2 sm:mb-4 font-light">
               Por qué elegir KOEL
             </p>
           </MaskText>
 
           <MaskText delay={0.2}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-display tracking-wide text-koel-neutral-900 mb-4 sm:mb-6">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-display tracking-wide text-koel-neutral-900 mb-3 sm:mb-4">
               Diseñado para ti,
             </h2>
           </MaskText>
 
           <MaskText delay={0.3}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-display tracking-wide mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-display tracking-wide mb-4 sm:mb-6">
               <span className="text-gradient-koel">creado para marcar la diferencia.</span>
             </h2>
           </MaskText>
@@ -114,15 +114,15 @@ export default function ValuePropositionSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg sm:text-xl lg:text-2xl text-koel-neutral-600 max-w-4xl mx-auto leading-relaxed"
+            className="text-base sm:text-xl lg:text-2xl text-koel-neutral-600 max-w-4xl mx-auto leading-relaxed"
           >
             Simplifica tu rutina con un desodorante que combina estilo, innovación y funcionalidad.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 sm:gap-20 lg:gap-28 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-28 items-center">
           {/* Left: Value Points */}
-          <div className="space-y-8 sm:space-y-10 order-2 lg:order-1">
+          <div className="space-y-5 sm:space-y-8 order-2 lg:order-1">
             {valuePoints.map((point, index) => (
               <ValueItem key={index} {...point} index={index} />
             ))}
