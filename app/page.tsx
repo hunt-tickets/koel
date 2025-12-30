@@ -22,11 +22,9 @@ export default function Home() {
     setIsTransitioning(true);
 
     // Hide transition after animation completes (2800ms for full animation + buffer)
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       setIsTransitioning(false);
     }, 3000);
-
-    return () => clearTimeout(timer);
   };
 
   return (
