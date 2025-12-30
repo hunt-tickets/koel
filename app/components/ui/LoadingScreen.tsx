@@ -54,6 +54,21 @@ export default function LoadingScreen({
             }}
             className="relative z-10 flex flex-col items-center gap-8"
           >
+            {/* Text labels above logo */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.5, ease: 'easeOut' }}
+              className="flex flex-col items-center gap-1"
+            >
+              <p className="text-koel-teal text-xs md:text-sm font-light tracking-[0.2em] uppercase">
+                Refillable Deodorant
+              </p>
+              <p className="text-koel-teal text-xs md:text-sm font-light tracking-widest uppercase">
+                Premium Care
+              </p>
+            </motion.div>
+
             {/* Logo */}
             <motion.div
               animate={{
