@@ -177,7 +177,7 @@ export default function Header() {
                 stiffness: 200,
                 duration: 0.8
               }}
-              className="fixed inset-0 bg-koel-blue z-50 md:hidden flex flex-col"
+              className="fixed inset-0 bg-koel-olive z-50 md:hidden flex flex-col"
             >
               <div className="flex flex-col h-full w-full">
                 {/* Header with Close Button */}
