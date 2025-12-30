@@ -57,21 +57,23 @@ export default function HeroTransition({ isLoading, onTransitionComplete }: Hero
           >
             {/* Desktop Background */}
             <div
-              className="absolute inset-0 hidden md:block bg-cover bg-center"
+              className="absolute inset-0 hidden md:block"
               style={{
-                backgroundImage: 'url(/hero-mobile-bg.jpg)',
+                backgroundImage: 'url(/hero1.jpg)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
               }}
             />
 
             {/* Mobile Background */}
             <div
-              className="absolute inset-0 md:hidden bg-cover bg-center"
+              className="absolute inset-0 md:hidden"
               style={{
                 backgroundImage: 'url(/hero-mobile-bg.jpg)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
               }}
             />
 
