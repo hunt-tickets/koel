@@ -57,48 +57,22 @@ export default function HeroSection({ isLoading = true }: HeroSectionProps) {
         {showTransition && (
           <motion.div
             key="hero-transition"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="absolute inset-0 z-20 overflow-hidden"
+            initial={{ opacity: 0, scale: 0.3 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.1 }}
+            transition={{
+              duration: 0.8,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
+            className="absolute inset-0 z-20 origin-center"
+            style={{
+              backgroundImage: `url(${typeof window !== 'undefined' && window.innerWidth >= 768 ? '/hero1.jpg' : '/hero-mobile-bg.jpg'})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
           >
-            <motion.div
-              initial={{
-                clipPath: 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)',
-              }}
-              animate={{
-                clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-              }}
-              exit={{
-                opacity: 0,
-              }}
-              transition={{
-                duration: 0.8,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-              className="absolute inset-0"
-            >
-              {/* Desktop */}
-              <div
-                className="absolute inset-0 hidden md:block"
-                style={{
-                  backgroundImage: 'url(/hero1.jpg)',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-              />
-              {/* Mobile */}
-              <div
-                className="absolute inset-0 md:hidden"
-                style={{
-                  backgroundImage: 'url(/hero-mobile-bg.jpg)',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
-            </motion.div>
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
           </motion.div>
         )}
       </AnimatePresence>
