@@ -168,9 +168,9 @@ export default function Header() {
 
             {/* Full Screen Menu */}
             <motion.div
-              initial={{ y: '100%' }}
+              initial={{ y: '-100%' }}
               animate={{ y: 0 }}
-              exit={{ y: '100%' }}
+              exit={{ y: '-100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
               className="fixed inset-0 bg-koel-blue z-50 md:hidden flex flex-col"
             >
