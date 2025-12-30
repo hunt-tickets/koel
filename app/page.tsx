@@ -14,9 +14,18 @@ import LoadingScreen from './components/ui/LoadingScreen';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
+    setIsTransitioning(true);
+
+    // Hide transition after animation completes
+    const timer = setTimeout(() => {
+      setIsTransitioning(false);
+    }, 1400);
+
+    return () => clearTimeout(timer);
   };
 
   return (
@@ -28,8 +37,8 @@ export default function Home() {
       <main className="min-h-screen relative">
         {/* Content Container */}
         <div className="relative z-10">
-          {/* Header */}
-          <Header />
+          {/* Header - Hidden during hero transition */}
+          {!isTransitioning && <Header />}
 
           {/* Hero Section - receives loading state for transition animation */}
           <HeroSection isLoading={isLoading} />
