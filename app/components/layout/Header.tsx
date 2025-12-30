@@ -174,36 +174,44 @@ export default function Header() {
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
               className="fixed inset-0 bg-koel-blue z-50 md:hidden flex flex-col"
             >
-              <div className="flex flex-col h-full">
-                {/* Close Button */}
-                <div className="flex justify-end p-6">
+              <div className="flex flex-col h-full w-full">
+                {/* Header with Close Button */}
+                <div className="flex justify-between items-center px-6 py-8 border-b border-white/10">
+                  <h3 className="text-white text-sm font-light tracking-[0.2em] uppercase">Navegación</h3>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2 text-white hover:text-white/80 transition-colors"
+                    className="p-2 text-white hover:text-white/70 transition-colors"
                   >
-                    <X className="w-6 h-6" strokeWidth={2} />
+                    <X className="w-5 h-5" strokeWidth={2} />
                   </button>
                 </div>
 
-                {/* Navigation Links - Centered */}
-                <nav className="flex flex-col gap-8 px-6 flex-1 justify-center items-center">
-                  {navLinks.map((link) => (
+                {/* Navigation Links */}
+                <nav className="flex flex-col w-full flex-1">
+                  {navLinks.map((link, index) => (
                     <motion.div
                       key={link.href}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 }}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="w-full border-b border-white/5"
                     >
                       <Link
                         href={link.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-white text-2xl font-medium hover:text-white/80 transition-colors duration-300"
+                        className="block px-6 py-5 sm:py-6 text-white text-lg font-light hover:bg-white/5 transition-colors duration-300"
                       >
-                        {link.label}
+                        • {link.label}
                       </Link>
                     </motion.div>
                   ))}
                 </nav>
+
+                {/* Footer Info */}
+                <div className="px-6 py-8 border-t border-white/10">
+                  <p className="text-white/60 text-xs font-light tracking-wide uppercase">KOEL</p>
+                  <p className="text-white text-sm font-light mt-3">Pure, Natural, Complete</p>
+                </div>
               </div>
             </motion.div>
           </>
