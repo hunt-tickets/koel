@@ -30,16 +30,13 @@ export default function Home() {
 
   return (
     <>
-      {/* White background overlay during loading and transition */}
-      {(isLoading || isTransitioning) && (
-        <div className="fixed inset-0 bg-white z-[15]" />
-      )}
-
       {/* Splash Screen */}
       <LoadingScreen minDuration={2500} onLoadingComplete={handleLoadingComplete} />
 
-      {/* Main Content */}
-      <main className="min-h-screen relative">
+      {/* Main Content - White background during loading and transition */}
+      <main className={`min-h-screen relative transition-colors duration-300 ${
+        isLoading || isTransitioning ? 'bg-koel-neutral-100' : ''
+      }`}>
         {/* Content Container */}
         <div className="relative z-10">
           {/* Header - Hidden during hero transition */}
