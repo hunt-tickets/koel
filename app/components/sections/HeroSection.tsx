@@ -28,7 +28,7 @@ export default function HeroSection({ isLoading = true, isTransitioning = false 
       // Show transition animation
       setShowTransition(true);
 
-      // Hide transition after animation completes (delay 0.5 + duration 1.2 = 1.7s, add buffer)
+      // Hide transition after animation completes (delay 0.4 + duration 1.4 = 1.8s, add buffer)
       const timer = setTimeout(() => {
         setShowTransition(false);
       }, 2000);
@@ -64,8 +64,16 @@ export default function HeroSection({ isLoading = true, isTransitioning = false 
         {showTransition && (
           <motion.div
             key="hero-transition"
-            initial={{ opacity: 0, scale: 0.3 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{
+              opacity: 0,
+              scale: 0.05,
+              rotate: 12
+            }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              rotate: 0
+            }}
             exit={{ opacity: 0, scale: 1.1 }}
             transition={{
               opacity: {
@@ -74,8 +82,13 @@ export default function HeroSection({ isLoading = true, isTransitioning = false 
                 ease: "easeOut"
               },
               scale: {
-                duration: 1.2,
-                delay: 0.5,
+                duration: 1.4,
+                delay: 0.4,
+                ease: "easeOut"
+              },
+              rotate: {
+                duration: 0.8,
+                delay: 0.2,
                 ease: "easeOut"
               }
             }}
