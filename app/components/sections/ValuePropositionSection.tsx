@@ -27,7 +27,7 @@ function ValueItem({ icon, title, description, index }: ValueItemProps) {
       <motion.div
         whileHover={{ scale: 1.15, rotate: 10 }}
         transition={{ duration: 0.3 }}
-        className="flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-koel-blue to-koel-bamboo rounded-2xl flex items-center justify-center text-white shadow-lg"
+        className="flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 bg-koel-blue rounded-2xl flex items-center justify-center text-white shadow-lg"
       >
         {icon}
       </motion.div>
