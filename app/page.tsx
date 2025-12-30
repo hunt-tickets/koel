@@ -46,19 +46,17 @@ export default function Home() {
         {/* Content Container */}
         <div className="relative z-10">
           {/* Header - Smooth fade in/out during hero transition */}
-          <AnimatePresence mode="wait">
-            {!isTransitioning && (
-              <motion.div
-                key="header"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4 }}
-              >
-                <Header />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: isTransitioning ? 0 : 1 }}
+            transition={{ duration: 0.5 }}
+            className="pointer-events-none"
+            style={{
+              pointerEvents: isTransitioning ? 'none' : 'auto'
+            }}
+          >
+            <Header />
+          </motion.div>
 
           {/* Hero Section - receives loading state for transition animation */}
           <HeroSection isLoading={isLoading} isTransitioning={isTransitioning} />
