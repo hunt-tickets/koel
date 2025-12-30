@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Header, Footer } from './components/layout';
 import {
   HeroSection,
@@ -39,8 +40,20 @@ export default function Home() {
       }`}>
         {/* Content Container */}
         <div className="relative z-10">
-          {/* Header - Hidden during hero transition */}
-          {!isTransitioning && <Header />}
+          {/* Header - Smooth fade in/out during hero transition */}
+          <AnimatePresence mode="wait">
+            {!isTransitioning && (
+              <motion.div
+                key="header"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+              >
+                <Header />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Hero Section - receives loading state for transition animation */}
           <HeroSection isLoading={isLoading} isTransitioning={isTransitioning} />
