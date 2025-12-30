@@ -63,13 +63,13 @@ export default function Header() {
             {/* Mobile: Menu Button (Left) */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden w-10 h-10 sm:w-11 sm:h-11 bg-koel-blue border border-white rounded-full flex items-center justify-center text-white hover:opacity-90 transition-all duration-300"
+              className="md:hidden p-2 text-white hover:text-koel-blue transition-colors duration-300"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
-                <X className={`transition-all duration-500 ${isScrolled ? 'w-5 h-5' : 'w-5 h-5 sm:w-6 sm:h-6'}`} strokeWidth={2} />
+                <X className={`transition-all duration-500 ${isScrolled ? 'w-5 h-5' : 'w-6 h-6'}`} strokeWidth={2} />
               ) : (
-                <Menu className={`transition-all duration-500 ${isScrolled ? 'w-5 h-5' : 'w-5 h-5 sm:w-6 sm:h-6'}`} strokeWidth={2} />
+                <Menu className={`transition-all duration-500 ${isScrolled ? 'w-5 h-5' : 'w-6 h-6'}`} strokeWidth={2} />
               )}
             </button>
 
@@ -133,27 +133,7 @@ export default function Header() {
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative md:p-2 md:text-white md:hover:text-koel-blue md:transition-colors md:duration-300 md:hidden sm:w-11 sm:h-11 w-10 h-10 bg-koel-blue border border-white rounded-full flex items-center justify-center text-white hover:opacity-90 transition-all duration-300"
-                aria-label="Shopping cart"
-              >
-                <ShoppingCart
-                  className={`transition-all duration-500 ${
-                    isScrolled ? 'w-5 h-5' : 'w-5 h-5 sm:w-6 sm:h-6'
-                  }`}
-                  strokeWidth={2}
-                />
-                {cartItemCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-koel-aqua rounded-full text-[10px] flex items-center justify-center text-white font-bold">
-                    {cartItemCount}
-                  </span>
-                )}
-              </motion.button>
-
-              {/* Desktop: Cart Icon */}
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="hidden md:flex relative p-2 text-white hover:text-koel-blue transition-colors duration-300"
+                className="relative p-2 text-white hover:text-koel-blue transition-colors duration-300"
                 aria-label="Shopping cart"
               >
                 <ShoppingCart
