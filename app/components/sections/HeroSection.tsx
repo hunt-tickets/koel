@@ -77,7 +77,8 @@ export default function HeroSection({ isLoading = true }: HeroSectionProps) {
         )}
       </AnimatePresence>
 
-      {/* Video/Image Background - Only visible in this hero section */}
+      {/* Video/Image Background - Only visible when transition is not active */}
+      {!showTransition && (
       <div className="absolute inset-0 z-0">
         {/* Mobile: Image */}
         <div
@@ -98,8 +99,10 @@ export default function HeroSection({ isLoading = true }: HeroSectionProps) {
           />
         </div>
       </div>
+      )}
 
-      {/* Cinematic Gradient Overlay */}
+      {/* Cinematic Gradient Overlay - Only visible when transition is not active */}
+      {!showTransition && (
       <div className="absolute inset-0 z-[1] pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
@@ -111,8 +114,10 @@ export default function HeroSection({ isLoading = true }: HeroSectionProps) {
           }}
         />
       </div>
+      )}
 
-      {/* Content with Parallax */}
+      {/* Content with Parallax - Only visible when transition is not active */}
+      {!showTransition && (
       <motion.div
         style={{ opacity, scale, y }}
         className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-16 lg:px-20 py-20 flex items-end h-full"
@@ -269,6 +274,7 @@ export default function HeroSection({ isLoading = true }: HeroSectionProps) {
           </motion.div>
         </div>
       </motion.div>
+      )}
 
       {/* Decorative Elements */}
       <motion.div
