@@ -5,10 +5,27 @@ import { useState, useEffect, useRef } from 'react';
 import { MaskText, StaggerText } from '../ui/TextReveal';
 import VideoPlayer from '../ui/VideoPlayer';
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  isLoading?: boolean;
+}
+
+export default function HeroSection({ isLoading = true }: HeroSectionProps) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [showTransition, setShowTransition] = useState(!isLoading);
+  const [isTransitionDone, setIsTransitionDone] = useState(isLoading);
   const words = ['CIBE', 'CARGA', 'USA'];
   const ref = useRef(null);
+
+  useEffect(() => {
+    if (!isLoading && !isTransitionDone) {
+      setShowTransition(true);
+      const timer = setTimeout(() => {
+        setIsTransitionDone(true);
+        setShowTransition(false);
+      }, 1400);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading, isTransitionDone]);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -32,6 +49,57 @@ export default function HeroSection() {
 
   return (
     <section ref={ref} className="relative h-screen-safe flex items-center justify-center overflow-hidden">
+      {/* Hero Transition - Expanding image animation */}
+      <AnimatePresence>
+        {showTransition && (
+          <motion.div
+            key="hero-transition"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="absolute inset-0 z-20 overflow-hidden"
+          >
+            <motion.div
+              initial={{
+                clipPath: 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)',
+              }}
+              animate={{
+                clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+              }}
+              exit={{
+                opacity: 0,
+              }}
+              transition={{
+                duration: 0.8,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+              className="absolute inset-0"
+            >
+              {/* Desktop */}
+              <div
+                className="absolute inset-0 hidden md:block"
+                style={{
+                  backgroundImage: 'url(/hero1.jpg)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+              />
+              {/* Mobile */}
+              <div
+                className="absolute inset-0 md:hidden"
+                style={{
+                  backgroundImage: 'url(/hero-mobile-bg.jpg)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Video/Image Background - Only visible in this hero section */}
       <div className="absolute inset-0 z-0">
         {/* Mobile: Image */}

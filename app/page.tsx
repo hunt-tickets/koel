@@ -11,7 +11,6 @@ import {
 } from './components/sections';
 import VideoPlayer from './components/ui/VideoPlayer';
 import LoadingScreen from './components/ui/LoadingScreen';
-import HeroTransition from './components/ui/HeroTransition';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,21 +21,18 @@ export default function Home() {
 
   return (
     <>
-      {/* Splash Screen - Se superpone al contenido */}
+      {/* Splash Screen */}
       <LoadingScreen minDuration={2500} onLoadingComplete={handleLoadingComplete} />
 
-      {/* Hero Transition Layer - Smart expand animation */}
-      <HeroTransition isLoading={isLoading} />
-
-      {/* Main Content - Siempre renderizado (el splash lo cubre) */}
+      {/* Main Content */}
       <main className="min-h-screen relative">
         {/* Content Container */}
         <div className="relative z-10">
           {/* Header */}
           <Header />
 
-          {/* Hero Section */}
-          <HeroSection />
+          {/* Hero Section - receives loading state for transition animation */}
+          <HeroSection isLoading={isLoading} />
 
           {/* Product System Section */}
           <ProductSystemSection />
