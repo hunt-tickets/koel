@@ -6,7 +6,6 @@ import {
   ProductSystemSection,
   TutorialSection,
   ValuePropositionSection,
-  EmailCaptureSection,
   FAQSection,
 } from './components/sections';
 import VideoPlayer from './components/ui/VideoPlayer';
@@ -36,9 +35,6 @@ export default function Home() {
 
         {/* Value Proposition Section */}
         <ValuePropositionSection />
-
-        {/* Email Capture Section */}
-        <EmailCaptureSection />
 
         {/* FAQ Section */}
         <FAQSection />
