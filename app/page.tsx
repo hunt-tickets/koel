@@ -41,7 +41,7 @@ export default function Home() {
           {!isTransitioning && <Header />}
 
           {/* Hero Section - receives loading state for transition animation */}
-          <HeroSection isLoading={isLoading} />
+          <HeroSection isLoading={isLoading} isTransitioning={isTransitioning} />
 
           {/* Product System Section */}
           <ProductSystemSection />

@@ -7,9 +7,10 @@ import VideoPlayer from '../ui/VideoPlayer';
 
 interface HeroSectionProps {
   isLoading?: boolean;
+  isTransitioning?: boolean;
 }
 
-export default function HeroSection({ isLoading = true }: HeroSectionProps) {
+export default function HeroSection({ isLoading = true, isTransitioning = false }: HeroSectionProps) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [showTransition, setShowTransition] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
@@ -61,30 +62,45 @@ export default function HeroSection({ isLoading = true }: HeroSectionProps) {
       {/* Hero Transition - Expanding image animation */}
       <AnimatePresence>
         {showTransition && (
-          <motion.div
-            key="hero-transition"
-            initial={{ opacity: 0, scale: 0.3 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.1 }}
-            transition={{
-              duration: 0.8,
-              ease: [0.25, 0.46, 0.45, 0.94],
-            }}
-            className="absolute inset-0 z-20 origin-center"
-            style={{
-              backgroundImage: `url(${isDesktop ? '/hero1.jpg' : '/hero-mobile-bg.jpg'})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          >
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
-          </motion.div>
+          <>
+            {/* White background for transition */}
+            <motion.div
+              key="hero-bg"
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: 0.8,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+              className="absolute inset-0 z-[19] bg-white"
+            />
+
+            {/* Expanding image */}
+            <motion.div
+              key="hero-transition"
+              initial={{ opacity: 0, scale: 0.3 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.1 }}
+              transition={{
+                duration: 0.8,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+              className="absolute inset-0 z-20 origin-center"
+              style={{
+                backgroundImage: `url(${isDesktop ? '/hero1.jpg' : '/hero-mobile-bg.jpg'})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            >
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 
       {/* Video/Image Background */}
-      <div className="absolute inset-0 z-0">
+      <div className={`absolute inset-0 z-0 ${showTransition ? 'hidden' : ''}`}>
         {/* Mobile: Image */}
         <div
           className="md:hidden absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -106,7 +122,7 @@ export default function HeroSection({ isLoading = true }: HeroSectionProps) {
       </div>
 
       {/* Cinematic Gradient Overlay */}
-      <div className="absolute inset-0 z-[1] pointer-events-none">
+      <div className={`absolute inset-0 z-[1] pointer-events-none ${showTransition ? 'hidden' : ''}`}>
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
         {/* Vignette effect */}
@@ -121,7 +137,7 @@ export default function HeroSection({ isLoading = true }: HeroSectionProps) {
       {/* Content with Parallax */}
       <motion.div
         style={{ opacity, scale, y }}
-        className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-16 lg:px-20 py-20 flex items-end h-full"
+        className={`relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-16 lg:px-20 py-20 flex items-end h-full ${showTransition ? 'hidden' : ''}`}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 xl:gap-28 items-end w-full pb-12 md:pb-0 md:items-center">
           {/* Left: Animated Text with Premium Reveals */}
@@ -277,28 +293,32 @@ export default function HeroSection({ isLoading = true }: HeroSectionProps) {
       </motion.div>
 
       {/* Decorative Elements */}
-      <motion.div
-        animate={{
-          rotate: [0, 360],
-        }}
-        transition={{
-          duration: 60,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        className="absolute top-1/4 right-[10%] w-64 h-64 border border-white/5 rounded-full pointer-events-none"
-      />
-      <motion.div
-        animate={{
-          rotate: [360, 0],
-        }}
-        transition={{
-          duration: 45,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        className="absolute bottom-1/4 left-[5%] w-48 h-48 border border-white/5 rounded-full pointer-events-none"
-      />
+      {!showTransition && (
+        <>
+          <motion.div
+            animate={{
+              rotate: [0, 360],
+            }}
+            transition={{
+              duration: 60,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute top-1/4 right-[10%] w-64 h-64 border border-white/5 rounded-full pointer-events-none"
+          />
+          <motion.div
+            animate={{
+              rotate: [360, 0],
+            }}
+            transition={{
+              duration: 45,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute bottom-1/4 left-[5%] w-48 h-48 border border-white/5 rounded-full pointer-events-none"
+          />
+        </>
+      )}
     </section>
   );
 }
