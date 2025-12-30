@@ -82,9 +82,8 @@ export default function Header() {
                   src="/logo.svg"
                   alt="KOEL Logo"
                   fill
-                  className={`object-contain transition-all duration-300 ${
-                    isScrolled ? 'brightness-0 invert' : ''
-                  }`}
+                  className="object-contain"
+                  style={{ mixBlendMode: 'difference' }}
                   priority
                 />
               </motion.div>
@@ -102,9 +101,8 @@ export default function Header() {
                   src="/logo.svg"
                   alt="KOEL Logo"
                   fill
-                  className={`object-contain transition-all duration-300 ${
-                    isScrolled ? 'brightness-0 invert' : ''
-                  }`}
+                  className="object-contain"
+                  style={{ mixBlendMode: 'difference' }}
                   priority
                 />
               </motion.div>
