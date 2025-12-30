@@ -21,10 +21,10 @@ export default function Home() {
     setIsLoading(false);
     setIsTransitioning(true);
 
-    // Hide transition after animation completes (2000ms for slow expansion + buffer)
+    // Hide transition after animation completes (2800ms for full animation + buffer)
     const timer = setTimeout(() => {
       setIsTransitioning(false);
-    }, 2200);
+    }, 3000);
 
     return () => clearTimeout(timer);
   };

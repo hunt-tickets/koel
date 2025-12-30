@@ -28,10 +28,10 @@ export default function HeroSection({ isLoading = true, isTransitioning = false 
       // Show transition animation
       setShowTransition(true);
 
-      // Hide transition after animation completes (delay 0.4 + duration 1.4 = 1.8s, add buffer)
+      // Hide transition after animation completes (delay 1.5 + duration 1.2 = 2.7s, add buffer)
       const timer = setTimeout(() => {
         setShowTransition(false);
-      }, 2000);
+      }, 2800);
 
       return () => clearTimeout(timer);
     }
@@ -67,35 +67,28 @@ export default function HeroSection({ isLoading = true, isTransitioning = false 
             initial={{
               opacity: 0,
               scale: 0.05,
-              rotate: 12,
               clipPath: "circle(0% at 50% 50%)"
             }}
             animate={{
               opacity: 1,
               scale: 1,
-              rotate: 0,
               clipPath: "circle(100% at 50% 50%)"
             }}
             exit={{ opacity: 0, scale: 1.1 }}
             transition={{
               opacity: {
-                duration: 0.6,
-                delay: 0.2,
-                ease: "easeOut"
-              },
-              scale: {
-                duration: 1.4,
-                delay: 0.4,
-                ease: "easeOut"
-              },
-              rotate: {
                 duration: 0.8,
                 delay: 0.2,
                 ease: "easeOut"
               },
+              scale: {
+                duration: 1.2,
+                delay: 1.5,
+                ease: "easeOut"
+              },
               clipPath: {
-                duration: 1.0,
-                delay: 0.3,
+                duration: 1.5,
+                delay: 0.2,
                 ease: "easeOut"
               }
             }}
