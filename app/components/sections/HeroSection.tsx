@@ -12,8 +12,14 @@ interface HeroSectionProps {
 export default function HeroSection({ isLoading = true }: HeroSectionProps) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [showTransition, setShowTransition] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(true);
   const words = ['CIBE', 'CARGA', 'USA'];
   const ref = useRef(null);
+
+  // Detect screen size after mount
+  useEffect(() => {
+    setIsDesktop(window.innerWidth >= 768);
+  }, []);
 
   // Trigger transition when loading completes
   useEffect(() => {
@@ -66,7 +72,7 @@ export default function HeroSection({ isLoading = true }: HeroSectionProps) {
             }}
             className="absolute inset-0 z-20 origin-center"
             style={{
-              backgroundImage: `url(${typeof window !== 'undefined' && window.innerWidth >= 768 ? '/hero1.jpg' : '/hero-mobile-bg.jpg'})`,
+              backgroundImage: `url(${isDesktop ? '/hero1.jpg' : '/hero-mobile-bg.jpg'})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
