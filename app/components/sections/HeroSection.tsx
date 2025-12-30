@@ -66,7 +66,7 @@ export default function HeroSection({ isLoading = true, isTransitioning = false 
             key="hero-transition"
             initial={{
               opacity: 0,
-              scale: 0.05,
+              scale: 0.18,
               clipPath: "circle(0% at 50% 50%)"
             }}
             animate={{
