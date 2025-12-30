@@ -30,6 +30,11 @@ export default function Home() {
 
   return (
     <>
+      {/* White background overlay during loading and transition */}
+      {(isLoading || isTransitioning) && (
+        <div className="fixed inset-0 bg-white z-[15]" />
+      )}
+
       {/* Splash Screen */}
       <LoadingScreen minDuration={2500} onLoadingComplete={handleLoadingComplete} />
 
