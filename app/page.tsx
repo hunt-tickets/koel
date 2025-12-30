@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AppStateProvider, useAppState } from './providers/AppStateProvider';
 import { Header, Footer } from './components/layout';
+import HeaderWrapper from './components/layout/HeaderWrapper';
 import {
   HeroSection,
   ProductSystemSection,
@@ -10,40 +10,19 @@ import {
   ValuePropositionSection,
   FAQSection,
 } from './components/sections';
-import VideoPlayer from './components/ui/VideoPlayer';
 import LoadingScreen from './components/ui/LoadingScreen';
+import LoadingStateOverlay from './components/ui/LoadingStateOverlay';
 
-export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-    setIsTransitioning(true);
-
-    // Hide transition after animation completes (2800ms for full animation + buffer)
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 3000);
-  };
+function HomeContent() {
+  const { isLoading, isTransitioning, handleLoadingComplete } = useAppState();
 
   return (
     <>
       {/* Initial blocking overlay - prevents flash of content on load */}
-      {isLoading && (
-        <div className="fixed inset-0 bg-koel-neutral-100 z-[9998]" />
-      )}
+      <LoadingStateOverlay isVisible={isLoading} />
 
-      {/* Header - Always visible but fades during transition */}
-      <motion.div
-        animate={{ opacity: isTransitioning ? 0 : 1 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
-        style={{
-          pointerEvents: isTransitioning ? 'none' : 'auto'
-        }}
-      >
-        <Header />
-      </motion.div>
+      {/* Header - Memoized, only animates opacity based on transitioning state */}
+      <HeaderWrapper isTransitioning={isTransitioning} />
 
       {/* Splash Screen */}
       <LoadingScreen minDuration={2500} onLoadingComplete={handleLoadingComplete} />
@@ -74,5 +53,13 @@ export default function Home() {
         </div>
       </main>
     </>
+  );
+}
+
+export default function Home() {
+  return (
+    <AppStateProvider>
+      <HomeContent />
+    </AppStateProvider>
   );
 }
