@@ -11,21 +11,24 @@ interface HeroSectionProps {
 
 export default function HeroSection({ isLoading = true }: HeroSectionProps) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [showTransition, setShowTransition] = useState(!isLoading);
-  const [isTransitionDone, setIsTransitionDone] = useState(isLoading);
+  const [showTransition, setShowTransition] = useState(false);
   const words = ['CIBE', 'CARGA', 'USA'];
   const ref = useRef(null);
 
+  // Trigger transition when loading completes
   useEffect(() => {
-    if (!isLoading && !isTransitionDone) {
+    if (!isLoading && !showTransition) {
+      // Show transition animation
       setShowTransition(true);
+
+      // Hide transition after animation completes
       const timer = setTimeout(() => {
-        setIsTransitionDone(true);
         setShowTransition(false);
       }, 1400);
+
       return () => clearTimeout(timer);
     }
-  }, [isLoading, isTransitionDone]);
+  }, [isLoading]);
 
   const { scrollYProgress } = useScroll({
     target: ref,
