@@ -126,27 +126,6 @@ export default function ValuePropositionSection() {
             {valuePoints.map((point, index) => (
               <ValueItem key={index} {...point} index={index} />
             ))}
-
-            {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="pt-6 sm:pt-8 flex justify-center lg:justify-start"
-            >
-              <MagneticPrimaryButton variant="primary" size="lg" strength={0.2}>
-                <span className="flex items-center gap-3">
-                  Pre-order now
-                  <motion.span
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    →
-                  </motion.span>
-                </span>
-              </MagneticPrimaryButton>
-            </motion.div>
           </div>
 
           {/* Right: Video with Parallax */}
