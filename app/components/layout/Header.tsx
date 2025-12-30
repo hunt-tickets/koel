@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Menu, X, ShoppingCart } from 'lucide-react';
+import { Menu, X, ShoppingCart, Instagram, Facebook, Twitter, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import CircularBadge from '../ui/CircularBadge';
@@ -219,7 +219,59 @@ export default function Header() {
                 {/* Footer Info */}
                 <div className="px-6 py-8 border-t border-white/10">
                   <p className="text-white/60 text-xs font-light tracking-wide uppercase">KOEL</p>
-                  <p className="text-white text-sm font-light mt-3">Pure, Natural, Complete</p>
+                  <p className="text-white text-sm font-light mt-3 mb-6">Pure, Natural, Complete</p>
+
+                  {/* Social Icons */}
+                  <div className="flex gap-5 items-center">
+                    <motion.a
+                      href="https://instagram.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4, duration: 0.5 }}
+                      whileHover={{ scale: 1.15, y: -3 }}
+                      className="text-white/70 hover:text-white transition-colors"
+                    >
+                      <Instagram className="w-5 h-5" strokeWidth={1.5} />
+                    </motion.a>
+                    <motion.a
+                      href="https://facebook.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.45, duration: 0.5 }}
+                      whileHover={{ scale: 1.15, y: -3 }}
+                      className="text-white/70 hover:text-white transition-colors"
+                    >
+                      <Facebook className="w-5 h-5" strokeWidth={1.5} />
+                    </motion.a>
+                    <motion.a
+                      href="https://twitter.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5, duration: 0.5 }}
+                      whileHover={{ scale: 1.15, y: -3 }}
+                      className="text-white/70 hover:text-white transition-colors"
+                    >
+                      <Twitter className="w-5 h-5" strokeWidth={1.5} />
+                    </motion.a>
+                    <motion.a
+                      href="https://linkedin.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.55, duration: 0.5 }}
+                      whileHover={{ scale: 1.15, y: -3 }}
+                      className="text-white/70 hover:text-white transition-colors"
+                    >
+                      <Linkedin className="w-5 h-5" strokeWidth={1.5} />
+                    </motion.a>
+                  </div>
                 </div>
               </div>
             </motion.div>
