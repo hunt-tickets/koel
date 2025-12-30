@@ -31,6 +31,11 @@ export default function Home() {
 
   return (
     <>
+      {/* Initial blocking overlay - prevents flash of content on load */}
+      {isLoading && (
+        <div className="fixed inset-0 bg-koel-neutral-100 z-[9998]" />
+      )}
+
       {/* Splash Screen */}
       <LoadingScreen minDuration={2500} onLoadingComplete={handleLoadingComplete} />
 
