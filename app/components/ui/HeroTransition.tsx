@@ -9,10 +9,11 @@ interface HeroTransitionProps {
 }
 
 export default function HeroTransition({ isLoading, onTransitionComplete }: HeroTransitionProps) {
-  const [showTransition, setShowTransition] = useState(true);
+  const [showTransition, setShowTransition] = useState(false);
 
   useEffect(() => {
-    if (!isLoading && showTransition) {
+    if (!isLoading) {
+      setShowTransition(true);
       // Animation duration is 0.8s, add 200ms for exit and buffer
       const timer = setTimeout(() => {
         setShowTransition(false);
@@ -21,7 +22,7 @@ export default function HeroTransition({ isLoading, onTransitionComplete }: Hero
 
       return () => clearTimeout(timer);
     }
-  }, [isLoading, showTransition, onTransitionComplete]);
+  }, [isLoading, onTransitionComplete]);
 
   if (!showTransition) return null;
 
