@@ -163,39 +163,45 @@ export default function Header() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden"
             />
 
-            {/* Menu */}
+            {/* Full Screen Menu */}
             <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 20 }}
-              className="fixed top-0 right-0 bottom-0 w-64 glass-dark z-50 md:hidden"
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="fixed inset-0 bg-koel-blue z-50 md:hidden flex flex-col"
             >
               <div className="flex flex-col h-full">
                 {/* Close Button */}
                 <div className="flex justify-end p-6">
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2 text-white hover:text-koel-blue"
+                    className="p-2 text-white hover:text-white/80 transition-colors"
                   >
                     <X className="w-6 h-6" strokeWidth={2} />
                   </button>
                 </div>
 
-                {/* Navigation Links */}
-                <nav className="flex flex-col gap-6 px-6">
+                {/* Navigation Links - Centered */}
+                <nav className="flex flex-col gap-8 px-6 flex-1 justify-center items-center">
                   {navLinks.map((link) => (
-                    <Link
+                    <motion.div
                       key={link.href}
-                      href={link.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-white text-lg font-medium hover:text-koel-blue transition-colors duration-300"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 }}
                     >
-                      {link.label}
-                    </Link>
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="text-white text-2xl font-medium hover:text-white/80 transition-colors duration-300"
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
                   ))}
                 </nav>
               </div>
