@@ -31,10 +31,13 @@ export default function LoadingScreen({
       {isLoading && (
         <motion.div
           key="splash"
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={{ y: 0 }}
+          animate={{ y: 0 }}
+          exit={{ y: '-100%' }}
           transition={{
+            type: 'spring',
+            damping: 25,
+            stiffness: 120,
             duration: 0.6,
           }}
           className="fixed inset-0 w-screen h-screen bg-koel-blue z-[9999] flex items-center justify-center overflow-hidden"
@@ -42,8 +45,8 @@ export default function LoadingScreen({
 
           {/* Logo container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{
               delay: 0.3,
               duration: 0.6,
