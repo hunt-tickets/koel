@@ -67,12 +67,14 @@ export default function HeroSection({ isLoading = true, isTransitioning = false 
             initial={{
               opacity: 0,
               scale: 0.05,
-              rotate: 12
+              rotate: 12,
+              clipPath: "circle(0% at 50% 50%)"
             }}
             animate={{
               opacity: 1,
               scale: 1,
-              rotate: 0
+              rotate: 0,
+              clipPath: "circle(100% at 50% 50%)"
             }}
             exit={{ opacity: 0, scale: 1.1 }}
             transition={{
@@ -89,6 +91,11 @@ export default function HeroSection({ isLoading = true, isTransitioning = false 
               rotate: {
                 duration: 0.8,
                 delay: 0.2,
+                ease: "easeOut"
+              },
+              clipPath: {
+                duration: 1.0,
+                delay: 0.3,
                 ease: "easeOut"
               }
             }}
