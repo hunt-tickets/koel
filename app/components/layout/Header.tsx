@@ -177,15 +177,15 @@ export default function Header() {
                 stiffness: 200,
                 duration: 0.8
               }}
-              className="fixed inset-0 bg-koel-teal z-50 md:hidden flex flex-col"
+              className="fixed inset-0 bg-koel-blue z-50 md:hidden flex flex-col"
             >
               <div className="flex flex-col h-full w-full">
                 {/* Header with Close Button */}
-                <div className="flex justify-between items-center px-6 py-8 border-b border-white/10">
-                  <h3 className="text-white text-sm font-light tracking-[0.2em] uppercase">Navegación</h3>
+                <div className="flex justify-between items-center px-6 py-8 border-b border-koel-blue/20">
+                  <h3 className="text-koel-blue text-sm font-light tracking-[0.2em] uppercase">Navegación</h3>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2 text-white hover:text-white/70 transition-colors"
+                    className="p-2 text-koel-blue hover:text-koel-blue/70 transition-colors"
                   >
                     <X className="w-5 h-5" strokeWidth={2} />
                   </button>
@@ -203,12 +203,12 @@ export default function Header() {
                         duration: 0.7,
                         ease: [0.34, 1.56, 0.64, 1]
                       }}
-                      className="w-full border-b border-white/5"
+                      className="w-full border-b border-koel-blue/10"
                     >
                       <Link
                         href={link.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="block px-6 py-5 sm:py-6 text-white text-lg font-light hover:bg-white/5 transition-colors duration-300"
+                        className="block px-6 py-5 sm:py-6 text-koel-blue text-lg font-light hover:bg-koel-blue/10 transition-colors duration-300"
                       >
                         • {link.label}
                       </Link>
@@ -217,7 +217,7 @@ export default function Header() {
                 </nav>
 
                 {/* Footer Info */}
-                <div className="px-6 py-8 border-t border-white/10">
+                <div className="px-6 py-8 border-t border-koel-blue/20">
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -232,7 +232,7 @@ export default function Header() {
                       priority
                     />
                   </motion.div>
-                  <p className="text-white text-sm font-light mt-3 mb-6">Pure, Natural, Complete</p>
+                  <p className="text-koel-blue text-sm font-light mt-3 mb-6">Pure, Natural, Complete</p>
 
                   {/* Social Icons */}
                   <div className="flex gap-5 items-center">
@@ -244,7 +244,7 @@ export default function Header() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4, duration: 0.5 }}
                       whileHover={{ scale: 1.15, y: -3 }}
-                      className="text-white/70 hover:text-white transition-colors"
+                      className="text-koel-blue/70 hover:text-koel-blue transition-colors"
                     >
                       <Instagram className="w-5 h-5" strokeWidth={1.5} />
                     </motion.a>
@@ -256,7 +256,7 @@ export default function Header() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.45, duration: 0.5 }}
                       whileHover={{ scale: 1.15, y: -3 }}
-                      className="text-white/70 hover:text-white transition-colors"
+                      className="text-koel-blue/70 hover:text-koel-blue transition-colors"
                     >
                       <Facebook className="w-5 h-5" strokeWidth={1.5} />
                     </motion.a>
@@ -268,7 +268,7 @@ export default function Header() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.5, duration: 0.5 }}
                       whileHover={{ scale: 1.15, y: -3 }}
-                      className="text-white/70 hover:text-white transition-colors"
+                      className="text-koel-blue/70 hover:text-koel-blue transition-colors"
                     >
                       <Twitter className="w-5 h-5" strokeWidth={1.5} />
                     </motion.a>
@@ -280,7 +280,7 @@ export default function Header() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.55, duration: 0.5 }}
                       whileHover={{ scale: 1.15, y: -3 }}
-                      className="text-white/70 hover:text-white transition-colors"
+                      className="text-koel-blue/70 hover:text-koel-blue transition-colors"
                     >
                       <Linkedin className="w-5 h-5" strokeWidth={1.5} />
                     </motion.a>
