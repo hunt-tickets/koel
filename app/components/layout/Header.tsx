@@ -191,9 +191,13 @@ export default function Header() {
                   {navLinks.map((link, index) => (
                     <motion.div
                       key={link.href}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
+                      initial={{ opacity: 0, x: -40, y: 10 }}
+                      animate={{ opacity: 1, x: 0, y: 0 }}
+                      transition={{
+                        delay: 0.1 + index * 0.08,
+                        duration: 0.5,
+                        ease: [0.34, 1.56, 0.64, 1]
+                      }}
                       className="w-full border-b border-white/5"
                     >
                       <Link

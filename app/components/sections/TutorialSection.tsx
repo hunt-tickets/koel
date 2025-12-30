@@ -203,10 +203,14 @@ export default function TutorialSection() {
             {steps.map((step, index) => (
               <motion.div
                 key={step.number}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: -30, y: 10 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.15,
+                  ease: [0.34, 1.56, 0.64, 1]
+                }}
                 className="flex gap-5 sm:gap-6 items-start"
               >
                 {/* Number Circle with Icon */}
