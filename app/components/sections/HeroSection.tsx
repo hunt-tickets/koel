@@ -21,10 +21,10 @@ function HeroSectionComponent({ isLoading = true, isTransitioning = false }: Her
 
   // Image carousel for hero transition reveal
   const transitionImages = [
-    '/placeholder-1.jpg',
-    '/placeholder-2.jpg',
-    '/placeholder-3.jpg',
-    '/placeholder-4.jpg',
+    'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1200&h=800&fit=crop',
+    'https://images.unsplash.com/photo-1599599810694-a5f897b0b76e?w=1200&h=800&fit=crop',
+    'https://images.unsplash.com/photo-1552168324-de7eddc34e47?w=1200&h=800&fit=crop',
+    'https://images.unsplash.com/photo-1631730486197-0ac19cba18d5?w=1200&h=800&fit=crop',
     isDesktop ? '/hero1.jpg' : '/hero-mobile-bg.jpg', // Final main image
   ];
 
