@@ -21,10 +21,10 @@ function HeroSectionComponent({ isLoading = true, isTransitioning = false }: Her
 
   // Image carousel for hero transition reveal
   const transitionImages = [
-    'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1200&h=800&fit=crop',
-    'https://images.unsplash.com/photo-1599599810694-a5f897b0b76e?w=1200&h=800&fit=crop',
-    'https://images.unsplash.com/photo-1552168324-de7eddc34e47?w=1200&h=800&fit=crop',
-    'https://images.unsplash.com/photo-1631730486197-0ac19cba18d5?w=1200&h=800&fit=crop',
+    'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1600&q=80',
+    'https://images.unsplash.com/photo-1599599810694-a5f897b0b76e?w=1600&q=80',
+    'https://images.unsplash.com/photo-1552168324-de7eddc34e47?w=1600&q=80',
+    'https://images.unsplash.com/photo-1631730486197-0ac19cba18d5?w=1600&q=80',
     isDesktop ? '/hero1.jpg' : '/hero-mobile-bg.jpg', // Final main image
   ];
 
@@ -104,7 +104,7 @@ function HeroSectionComponent({ isLoading = true, isTransitioning = false }: Her
                 ease: "easeOut"
               }
             }}
-            className="absolute inset-0 z-20 origin-center"
+            className="fixed inset-0 z-[9900] origin-center"
             style={{
               backgroundImage: `url(${transitionImages[currentImageIndex]})`,
               backgroundSize: 'cover',
