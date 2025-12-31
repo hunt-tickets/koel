@@ -19,11 +19,9 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
     setIsTransitioning(true);
 
     // Reset transition after animation completes
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       setIsTransitioning(false);
     }, 3000);
-
-    return () => clearTimeout(timer);
   }, []);
 
   return (

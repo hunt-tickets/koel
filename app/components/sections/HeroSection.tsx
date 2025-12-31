@@ -28,7 +28,18 @@ function HeroSectionComponent({ isLoading = true, isTransitioning = false }: Her
     isDesktop ? '/hero1.jpg' : '/hero-mobile-bg.jpg', // Final main image
   ];
 
-  // Change images rapidly during transition reveal
+  // Preload carousel images to ensure they're available before carousel starts
+  useEffect(() => {
+    const preloadImage = (src: string) => {
+      const img = new Image();
+      img.src = src;
+    };
+
+    // Only preload Unsplash images (skip local images)
+    transitionImages.slice(0, -1).forEach(preloadImage);
+  }, []);
+
+  // Change images during transition reveal - increased interval for network latency
   useEffect(() => {
     if (!showTransition) {
       setCurrentImageIndex(0);
@@ -44,7 +55,7 @@ function HeroSectionComponent({ isLoading = true, isTransitioning = false }: Her
         }
         return nextIndex;
       });
-    }, 150); // Change image every 150ms for quick carousel effect
+    }, 400); // Increased from 150ms to 400ms to allow Unsplash images time to load
 
     return () => clearInterval(imageChangeInterval);
   }, [showTransition, transitionImages.length]);
