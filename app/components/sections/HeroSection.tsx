@@ -48,12 +48,12 @@ function HeroSectionComponent({ isLoading = true, isTransitioning = false }: Her
             initial={{
               opacity: 0,
               scale: 0.28,
-              clipPath: "circle(0% at 50% 50%)"
+              clipPath: "inset(0% 50% 0% 50%)"
             }}
             animate={{
               opacity: 1,
               scale: 1,
-              clipPath: "circle(100% at 50% 50%)"
+              clipPath: "inset(0% 0% 0% 0%)"
             }}
             exit={{ opacity: 0, scale: 1.1 }}
             transition={{
