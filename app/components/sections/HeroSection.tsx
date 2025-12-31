@@ -13,10 +13,41 @@ interface HeroSectionProps {
 
 function HeroSectionComponent({ isLoading = true, isTransitioning = false }: HeroSectionProps) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { showTransition, timings } = useHeroTransition();
   const { isDesktop } = useIsDesktop();
   const words = ['CIBE', 'CARGA', 'USA'];
   const ref = useRef(null);
+
+  // Image carousel for hero transition reveal
+  const transitionImages = [
+    '/placeholder-1.jpg',
+    '/placeholder-2.jpg',
+    '/placeholder-3.jpg',
+    '/placeholder-4.jpg',
+    isDesktop ? '/hero1.jpg' : '/hero-mobile-bg.jpg', // Final main image
+  ];
+
+  // Change images rapidly during transition reveal
+  useEffect(() => {
+    if (!showTransition) {
+      setCurrentImageIndex(0);
+      return;
+    }
+
+    const imageChangeInterval = setInterval(() => {
+      setCurrentImageIndex((prev) => {
+        const nextIndex = prev + 1;
+        if (nextIndex >= transitionImages.length) {
+          clearInterval(imageChangeInterval);
+          return transitionImages.length - 1;
+        }
+        return nextIndex;
+      });
+    }, 150); // Change image every 150ms for quick carousel effect
+
+    return () => clearInterval(imageChangeInterval);
+  }, [showTransition, transitionImages.length]);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -75,7 +106,7 @@ function HeroSectionComponent({ isLoading = true, isTransitioning = false }: Her
             }}
             className="absolute inset-0 z-20 origin-center"
             style={{
-              backgroundImage: `url(${isDesktop ? '/hero1.jpg' : '/hero-mobile-bg.jpg'})`,
+              backgroundImage: `url(${transitionImages[currentImageIndex]})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
