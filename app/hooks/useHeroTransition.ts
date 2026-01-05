@@ -24,7 +24,7 @@ export function useHeroTransition() {
   };
 
   useEffect(() => {
-    if (!isLoading && !showTransition) {
+    if (!isLoading) {
       setShowTransition(true);
 
       const hideTimer = setTimeout(() => {
@@ -33,7 +33,7 @@ export function useHeroTransition() {
 
       return () => clearTimeout(hideTimer);
     }
-  }, [isLoading, showTransition, timings.totalDuration]);
+  }, [isLoading, timings.totalDuration]);
 
   return { showTransition, timings };
 }
